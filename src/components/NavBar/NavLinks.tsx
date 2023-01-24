@@ -6,7 +6,7 @@ const NavLinks = () => {
   return (
     <>
       <Flex
-        display={{ base: "none", xl: "flex" }}
+        display={{ base: "none", lg: "flex" }}
         direction="column"
         alignItems="center"
         className="nav-links-xl"
