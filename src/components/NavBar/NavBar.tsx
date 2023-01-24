@@ -15,7 +15,7 @@ const NavBar = () => {
   return (
     <Flex
       gridColumn="1"
-      paddingBlock="29.165%"
+      paddingBlock={{ lg: "30%", xl: "25%", "2xl": "29.165%" }}
       gap="8%"
       // border={{
       //   base: "2px solid purple",
