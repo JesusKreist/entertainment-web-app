@@ -7,7 +7,8 @@ const ProfileAvatar = () => {
       ratio={1 / 1}
       className="avatar"
       justifySelf="end"
-      // border="1px solid white"
+      border="1px solid white"
+      rounded="full"
       marginTop="auto"
     >
       <Image src="/assets/image-avatar.png" alt="avatar" objectFit="cover" />
