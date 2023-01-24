@@ -3,7 +3,7 @@ import { AspectRatio, Image } from "@chakra-ui/react";
 const ProfileAvatar = () => {
   return (
     <AspectRatio
-      width="41.67%"
+      width={{ base: "60%", xl: "50%", "2xl": "41.67%" }}
       ratio={1 / 1}
       className="avatar"
       justifySelf="end"

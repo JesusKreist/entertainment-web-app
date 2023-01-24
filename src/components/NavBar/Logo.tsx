@@ -5,7 +5,7 @@ const Logo = () => {
     <AspectRatio
       className="logo"
       // border="1px solid white"
-      width="33.33%"
+      width={"33.33%"}
       ratio={5 / 4}
       // height="1.63rem"
     >
