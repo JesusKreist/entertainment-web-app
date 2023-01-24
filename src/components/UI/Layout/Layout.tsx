@@ -22,6 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       }}
       bgColor="brand.darkBlue"
       color="white"
+      alignItems="center"
     >
       {children}
     </Grid>
