@@ -18,9 +18,9 @@ const ProfileAvatar = () => {
       <Box
         display={{ base: "block", lg: "none" }}
         border="1px solid white"
-        rounded="full"
+        rounded={"full"}
         // height="2rem"
-        width="2.5rem"
+        width={{ base: "2.5rem", md: "2.5rem" }}
       >
         <Image
           src="/assets/image-avatar.png"

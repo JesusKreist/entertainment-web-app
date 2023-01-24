@@ -36,7 +36,7 @@ const NavLinks = () => {
         width={{ lg: "1rem" }}
         justifyContent="space-between"
         display={{ base: "flex", xl: "none" }}
-        gap="2rem"
+        gap={{ base: "1.5rem", md: "2rem" }}
       >
         <NavLinkButton imageName="icon-nav-home.svg" altText="home icon" />
         <NavLinkButton imageName="icon-nav-movies.svg" altText="movies icon" />

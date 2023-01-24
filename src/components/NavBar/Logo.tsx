@@ -16,7 +16,7 @@ const Logo = () => {
 
       <Box
         display={{ base: "block", lg: "none" }}
-        width="2rem"
+        width={{ base: "1.5625rem", md: "2rem" }}
         //   border="1px solid white"
       >
         <Image src="/assets/logo.svg" alt="logo" objectFit="cover" />

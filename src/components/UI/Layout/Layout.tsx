@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       as="main"
       className="layout-grid"
       paddingInline={{ lg: "3vw" }}
-      paddingTop={{ base: "1.5625rem", lg: "unset" }}
+      paddingTop={{ md: "1.5625rem", lg: "unset" }}
       templateColumns={{ lg: "repeat(12, 1fr)" }}
       templateRows={{ base: "4.5rem 1fr", lg: "unset" }}
       minHeight="100vh"

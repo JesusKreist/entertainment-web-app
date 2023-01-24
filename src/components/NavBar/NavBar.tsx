@@ -26,9 +26,9 @@ const NavBar = () => {
         "2xl": "2px solid green",
       }}
       height={{ base: "100%", lg: "90%" }}
-      width={{ base: "95%", lg: "100%" }}
+      width={{ base: "100%", md: "95%", lg: "100%" }}
       margin={{ base: "0 auto", lg: "unset" }}
-      borderRadius={{ base: "0.625rem", lg: "1.25rem" }}
+      borderRadius={{ md: "0.625rem", lg: "1.25rem" }}
       bgColor="brand.semiDarkBlue"
       direction={{ lg: "column" }}
       alignItems="center"
