@@ -28,7 +28,7 @@ const NavLinks = () => {
       </Flex>
 
       <Flex
-        direction="column"
+        // direction="column"
         alignItems="center"
         className="nav-links-base-to-lg"
         //   border="1px solid white"
@@ -36,6 +36,7 @@ const NavLinks = () => {
         width={{ lg: "1rem" }}
         justifyContent="space-between"
         display={{ base: "flex", xl: "none" }}
+        gap="2rem"
       >
         <NavLinkButton imageName="icon-nav-home.svg" altText="home icon" />
         <NavLinkButton imageName="icon-nav-movies.svg" altText="movies icon" />

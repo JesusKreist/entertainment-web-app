@@ -16,6 +16,7 @@ const NavBar = () => {
     <Flex
       gridColumn={{ lg: "1" }}
       paddingBlock={{ lg: "30%", xl: "25%", "2xl": "29.165%" }}
+      paddingInline={{ base: "2rem", lg: "unset" }}
       gap="8%"
       border={{
         base: "2px solid purple",
@@ -29,13 +30,14 @@ const NavBar = () => {
       margin={{ base: "0 auto", lg: "unset" }}
       borderRadius={{ base: "0.625rem", lg: "1.25rem" }}
       bgColor="brand.semiDarkBlue"
-      direction="column"
+      direction={{ lg: "column" }}
       alignItems="center"
+      justifyContent={{ base: "space-between", lg: "unset" }}
     >
-      <Box></Box>
-      {/* <Logo />
+      {/* <Box></Box> */}
+      <Logo />
       <NavLinks />
-      <ProfileAvatar /> */}
+      <ProfileAvatar />
     </Flex>
   );
 };
