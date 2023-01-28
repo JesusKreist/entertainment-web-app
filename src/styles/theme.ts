@@ -72,7 +72,8 @@ const colors = {
 
 const textStyles = {
   h2: {
-    fontSize: "2rem",
+    // "font-size": "2rem",
+    "font-size": { lg: "2vw", xl: "2vw" },
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",
@@ -89,7 +90,7 @@ const textStyles = {
     paragraphSpacing: "1px",
   },
   h4: {
-    fontSize: "1.5rem",
+    "font-size": "1.5rem",
     fontWeight: "medium",
     fontFamily: "Outfit",
     lineHeight: "auto",
@@ -97,7 +98,7 @@ const textStyles = {
     paragraphSpacing: "1px",
   },
   h5: {
-    fontSize: "1.125rem",
+    "font-size": "1.125rem",
     fontWeight: "medium",
     fontFamily: "Outfit",
     lineHeight: "auto",
@@ -106,7 +107,7 @@ const textStyles = {
   },
 
   paragraphMedium: {
-    fontSize: "0.9375rem",
+    "font-size": "0.9375rem",
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",
@@ -114,7 +115,7 @@ const textStyles = {
     paragraphSpacing: "1px",
   },
   paragraphSmall: {
-    fontSize: "0.8125rem",
+    "font-size": "0.8125rem",
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",
