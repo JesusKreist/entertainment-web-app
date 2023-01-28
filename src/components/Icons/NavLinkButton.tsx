@@ -11,7 +11,6 @@ const NavLinkButton: React.FC<NavLinkButtonProps> = ({
 }) => (
   <Box
     width={{ base: "1rem", md: "1.25rem", lg: "100%" }}
-    // width={{ base: "1.5625rem", md: "2rem", lg: "100%" }}
     // border="1px solid white"
   >
     <Image
