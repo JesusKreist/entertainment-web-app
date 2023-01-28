@@ -6,14 +6,14 @@ const NavLinks = () => {
   return (
     <>
       <Flex
-        display={{ base: "none", lg: "flex" }}
+        // display={{ base: "none", lg: "flex" }}
         direction="column"
         alignItems="center"
         className="nav-links-xl"
         //   border="1px solid white"
         height={{ xl: "200px", "2xl": "26%" }}
         justifyContent="space-between"
-        style={{ aspectRatio: "0.1" }}
+        // style={{ aspectRatio: "0.1" }}
       >
         <NavLinkButton imageName="icon-nav-home.svg" altText="home icon" />
         <NavLinkButton imageName="icon-nav-movies.svg" altText="movies icon" />
@@ -27,7 +27,7 @@ const NavLinks = () => {
         />
       </Flex>
 
-      <Flex
+      {/* <Flex
         // direction="column"
         alignItems="center"
         className="nav-links-base-to-lg"
@@ -48,7 +48,7 @@ const NavLinks = () => {
           imageName="icon-nav-bookmark.svg"
           altText="bookmark icon"
         />
-      </Flex>
+      </Flex> */}
     </>
   );
 };

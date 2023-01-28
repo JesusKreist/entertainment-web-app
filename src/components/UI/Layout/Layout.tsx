@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       paddingTop={{ md: "1.5625rem", lg: "unset" }}
       // templateColumns={{ lg: "repeat(12, 1fr)" }}
       templateColumns={{ lg: "6.67vw 1fr" }}
-      templateRows={{ base: "4.5rem 1fr", lg: "unset" }}
+      templateRows={{ base: "4.5rem 1fr", lg: "repeat(24, 1fr)" }}
       minHeight="100vh"
       // gap={{ base: "1.25rem", lg: "1.95vw" }}
       border={{
