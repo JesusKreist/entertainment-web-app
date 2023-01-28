@@ -10,7 +10,7 @@ const SearchBar = () => {
       // overflow="hidden"
       gridAutoFlow="column"
       // border="2px solid white"
-      gap={{ md: "1.5rem", lg: "0.5vw" }}
+      gap={{ base: "1.5rem", md: "1.5rem", lg: "0.5vw" }}
       justifyContent={{ base: "start", lg: "start" }}
       paddingRight={{ lg: "3vw" }}
     >
@@ -41,7 +41,7 @@ const SearchBar = () => {
         alignSelf={{ base: "end", lg: "unset" }}
       >
         <Input
-          textStyle="h2"
+          textStyle="h3"
           height={{ lg: "50%" }}
           variant="unstyled"
           border="none"
