@@ -12,8 +12,8 @@ const NavLinks = () => {
         className="nav-links-xl"
         //   border="1px solid white"
         // height={{ xl: "200px", "2xl": "26%" }}
-        gridRow={{ lg: "5 / span 7" }}
-        gap="3vh"
+        gridRow={{ lg: "5 / span 5" }}
+        gap="1vh"
         templateRows="repeat(4, 1fr)"
         width="100%"
         // justifyContent="space-between"
