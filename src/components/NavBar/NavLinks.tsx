@@ -1,18 +1,22 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Grid } from "@chakra-ui/react";
 import React from "react";
 import NavLinkButton from "../Icons/NavLinkButton";
 
 const NavLinks = () => {
   return (
     <>
-      <Flex
+      <Grid
         // display={{ base: "none", lg: "flex" }}
-        direction="column"
-        alignItems="center"
+        // direction="column"
+        // alignItems="center"
         className="nav-links-xl"
         //   border="1px solid white"
-        height={{ xl: "200px", "2xl": "26%" }}
-        justifyContent="space-between"
+        // height={{ xl: "200px", "2xl": "26%" }}
+        gridRow={{ lg: "5 / span 7" }}
+        gap="3vh"
+        templateRows="repeat(4, 1fr)"
+        width="100%"
+        // justifyContent="space-between"
         // style={{ aspectRatio: "0.1" }}
       >
         <NavLinkButton imageName="icon-nav-home.svg" altText="home icon" />
@@ -25,7 +29,7 @@ const NavLinks = () => {
           imageName="icon-nav-bookmark.svg"
           altText="bookmark icon"
         />
-      </Flex>
+      </Grid>
 
       {/* <Flex
         // direction="column"

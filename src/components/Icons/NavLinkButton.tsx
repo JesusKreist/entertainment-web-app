@@ -9,12 +9,17 @@ const NavLinkButton: React.FC<NavLinkButtonProps> = ({
   imageName,
   altText,
 }) => (
-  <Box width={{ base: "1rem", md: "1.25rem", lg: "100%" }}>
+  <Box
+    width={{ base: "1rem", md: "1.25rem", lg: "100%" }}
+    // width={{ base: "1.5625rem", md: "2rem", lg: "100%" }}
+    border="1px solid white"
+  >
     <Image
       src={`/assets/${imageName}`}
       alt={altText}
       objectFit="cover"
-      width={"100%"}
+      height="50%"
+      margin="0 auto"
     />
   </Box>
 );

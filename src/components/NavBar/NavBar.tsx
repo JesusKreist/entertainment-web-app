@@ -42,8 +42,8 @@ const NavBar = () => {
     >
       {/* <Box></Box> */}
       <Logo />
-      {/* <NavLinks />
-      <ProfileAvatar /> */}
+      <NavLinks />
+      {/* <ProfileAvatar /> */}
     </Grid>
   );
 };
