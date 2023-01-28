@@ -10,7 +10,7 @@ const SearchBar = () => {
       // overflow="hidden"
       gridAutoFlow="column"
       // border="2px solid white"
-      gap={{ base: "1.5rem", md: "1.5rem", lg: "0.5vw" }}
+      gap={{ base: "1.5rem", md: "1.5rem", lg: "1vw" }}
       justifyContent={{ base: "start", lg: "start" }}
       paddingRight={{ lg: "3vw" }}
     >
@@ -20,7 +20,7 @@ const SearchBar = () => {
         height="100%"
         // border="1px solid white"
         sx={{
-          aspectRatio: "1 / 1",
+          aspectRatio: "0.5",
         }}
       >
         <Image
