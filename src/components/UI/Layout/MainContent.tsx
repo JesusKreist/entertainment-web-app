@@ -8,6 +8,8 @@ interface MainContentProps {
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
     <Box
+      as="main"
+      className="main-content"
       border={{
         base: "2px solid purple",
         md: "2px solid yellow",
@@ -15,6 +17,8 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
         xl: "2px solid blue",
         "2xl": "2px solid green",
       }}
+      gridColumn={{ lg: "2" }}
+      gridRow={{ lg: "3 / -1" }}
       height="100%"
     >
       {children}

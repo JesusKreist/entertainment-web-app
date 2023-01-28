@@ -23,7 +23,7 @@ const NavBar = () => {
       width={{ base: "100%", md: "95%", lg: "100%" }}
       borderRadius={{ md: "0.625rem", lg: "1.25rem" }}
       bgColor="brand.semiDarkBlue"
-      justifyContent={{ base: "space-between", lg: "center" }}
+      justifyContent={{ base: "space-between", lg: "unset" }}
       templateRows={{ lg: "repeat(20, 1fr)" }}
       gridAutoFlow={{ base: "column", lg: "row" }}
       margin={{ base: "0 auto", lg: "unset" }}

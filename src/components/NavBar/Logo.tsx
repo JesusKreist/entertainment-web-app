@@ -13,6 +13,7 @@ const Logo = () => {
         alt="logo"
         objectFit={{ base: "contain", lg: "cover" }}
         height="100%"
+        // width="100%"
         margin="0 auto"
       />
     </Box>

@@ -4,7 +4,7 @@ const ProfileAvatar = () => {
   return (
     <Flex
       className="profile-avatar"
-      gridRow={{ lg: "span 2 / -2" }}
+      gridRow={{ lg: "span 3 / -2" }}
       // border="1px solid white"
       alignItems={{ base: "center", lg: "end" }}
       width={{ base: "2.5rem", md: "2.5rem", lg: "100%" }}
@@ -12,9 +12,9 @@ const ProfileAvatar = () => {
       <Image
         src="/assets/image-avatar.png"
         alt="logo"
-        objectFit="contain"
-        width={{ lg: "40%" }}
-        // height="100%"
+        objectFit={{ base: "contain", lg: "cover" }}
+        // width={{ lg: "40%" }}
+        height={{ lg: "50%" }}
         margin="0 auto"
         border="2px solid white"
         rounded={"full"}
