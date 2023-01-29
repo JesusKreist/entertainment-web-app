@@ -1,5 +1,6 @@
 import { Flex, Image, Box, Grid } from "@chakra-ui/react";
 import React from "react";
+import { MovieOrShow } from "../../../data/data";
 
 interface CarouselImageProps {
   src: string;
@@ -31,7 +32,10 @@ const CarouselImage: React.FC<CarouselImageProps> = ({ src, alt }) => {
   );
 };
 
-const Carousel = () => {
+interface CarouselProps {
+  carouselItems: MovieOrShow[];
+}
+const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
   return (
     <Grid
       className="carousel"
@@ -40,14 +44,23 @@ const Carousel = () => {
       // overflow="scroll"
       gridAutoFlow="column"
     >
-      <CarouselImage src="/assets/image-1.png" alt="image 1" />
+      {carouselItems.map((item) => {
+        return (
+          <CarouselImage
+            key={item.title}
+            src={item.thumbnail.trending.large}
+            alt={item.title}
+          />
+        );
+      })}
+      {/* <CarouselImage src="/assets/image-1.png" alt="image 1" />
       <CarouselImage src="/assets/image-2.png" alt="image 2" />
       <CarouselImage src="/assets/image-3.png" alt="image 3" />
       <CarouselImage src="/assets/image-4.png" alt="image 4" />
       <CarouselImage src="/assets/image-5.png" alt="image 5" />
       <CarouselImage src="/assets/image-6.png" alt="image 6" />
       <CarouselImage src="/assets/image-7.png" alt="image 7" />
-      <CarouselImage src="/assets/image-8.png" alt="image 8" />
+      <CarouselImage src="/assets/image-8.png" alt="image 8" /> */}
     </Grid>
   );
 };
