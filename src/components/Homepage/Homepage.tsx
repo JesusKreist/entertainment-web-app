@@ -1,8 +1,14 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
+import Carousel from "../Sections/Carousel/Carousel";
+import Section from "../Sections/Section/Section";
 
 const Homepage = () => {
-  return null;
+  return (
+    <Section title="Trending" gridRow="4 / span 9" overflowX="scroll">
+      <Carousel />
+    </Section>
+  );
   return (
     <Box
       height="200vh"

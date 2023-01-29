@@ -30,7 +30,6 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
       paddingTop={{ base: "1.5rem", md: "1.5625rem", lg: "unset" }}
       paddingLeft={{ lg: "3vw" }}
     >
-      {/* <Box></Box> */}
       <SearchBar />
       {children}
     </Grid>

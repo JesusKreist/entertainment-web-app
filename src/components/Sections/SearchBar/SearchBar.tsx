@@ -20,7 +20,7 @@ const SearchBar = () => {
         height="100%"
         // border="1px solid white"
         sx={{
-          aspectRatio: "0.5",
+          aspectRatio: { base: "1", lg: "0.5" },
         }}
       >
         <Image

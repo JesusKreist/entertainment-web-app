@@ -72,7 +72,7 @@ const colors = {
 
 const textStyles = {
   h2: {
-    "font-size": "2rem",
+    "font-size": { base: "1.25rem", md: "2rem", lg: "2.5vw" },
 
     fontWeight: "light",
     fontFamily: "Outfit",
