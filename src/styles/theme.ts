@@ -71,7 +71,7 @@ const colors = {
 // };
 
 const textStyles = {
-  h2: {
+  headingL: {
     "font-size": { base: "1.25rem", md: "2rem", lg: "2.5vw" },
 
     fontWeight: "light",
@@ -81,23 +81,24 @@ const textStyles = {
     paragraphSpacing: "1px",
   },
 
-  h3: {
-    "font-size": { base: "", lg: "2vw", xl: "2vw" },
+  headingM: {
+    "font-size": { base: "", lg: "1.5rem", xl: "2vw" },
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",
     letterSpacing: "0px",
     paragraphSpacing: "1px",
   },
-  h4: {
-    "font-size": { base: "", lg: "1.5rem", xl: "1.4vw" },
+  headingS: {
+    // "font-size": { base: "", lg: "1.5rem", xl: "1.4vw" },
+    "font-size": { base: "", lg: "1.4vw" },
     fontWeight: "medium",
     fontFamily: "Outfit",
     lineHeight: "auto",
     letterSpacing: "0px",
     paragraphSpacing: "1px",
   },
-  h5: {
+  headingXS: {
     "font-size": "1.125rem",
     fontWeight: "medium",
     fontFamily: "Outfit",
