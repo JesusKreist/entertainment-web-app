@@ -1,13 +1,110 @@
-import { Flex, Image, Box, Grid } from "@chakra-ui/react";
+import { Flex, Image, Box, Grid, Text } from "@chakra-ui/react";
 import React from "react";
 import { MovieOrShow } from "../../../data/data";
+
+interface CarouselItemTextProps {
+  year: number;
+  category: "Movie" | "TV Series";
+  parentalRating: string;
+}
+
+const CarouselItemText: React.FC<CarouselItemTextProps> = ({
+  year,
+  category,
+  parentalRating,
+}) => {
+  const categoryIcon =
+    category === "Movie"
+      ? "assets/icon-category-movie.svg"
+      : "assets/icon-category-tv.svg";
+
+  return (
+    <>
+      <Flex
+        border="1px solid white"
+        gridRow="10 / span 2"
+        gridColumn="2 / -2"
+        gap="0.4vw"
+        textStyle="paragraphMedium"
+        alignItems="center"
+        opacity={0.75}
+      >
+        <Text>{year}</Text>
+
+        <Box
+          height="10%"
+          // width="1vw"
+          rounded="full"
+          // alignSelf="center"
+          sx={{
+            aspectRatio: "1",
+          }}
+          bgColor="white"
+        ></Box>
+
+        <Box
+          height={{ base: "1rem", md: "1.25rem", lg: "50%" }}
+          sx={{
+            aspectRatio: "1",
+          }}
+          // border="1px solid red"
+          marginRight="-0.1vw"
+        >
+          <Image
+            src={categoryIcon}
+            alt="bookmark icon"
+            margin="0 auto"
+            // border="1px solid white"
+            height="100%"
+            objectFit="contain"
+            // alignSelf="center"
+          />
+        </Box>
+
+        <Text display="inline-flex" gap="0.3vw" whiteSpace="nowrap">
+          {/* <Image
+            src={categoryIcon}
+            alt="bookmark icon"
+            margin="0 auto"
+            border="1px solid white"
+            alignSelf="center"
+          /> */}
+          {category}
+        </Text>
+
+        <Box
+          height="10%"
+          // width="1vw"
+          rounded="full"
+          // alignSelf="center"
+          sx={{
+            aspectRatio: "1",
+          }}
+          bgColor="white"
+        ></Box>
+
+        <Text>{parentalRating}</Text>
+      </Flex>
+      <Box border="1px solid white" gridRow="" gridColumn=""></Box>
+    </>
+  );
+};
 
 interface CarouselImageProps {
   src: string;
   alt: string;
+  year: number;
+  category: "Movie" | "TV Series";
+  parentalRating: string;
 }
 
-const CarouselImage: React.FC<CarouselImageProps> = ({ src, alt }) => {
+const CarouselImage: React.FC<CarouselImageProps> = ({
+  src,
+  alt,
+  year,
+  category,
+  parentalRating,
+}) => {
   return (
     <Grid
       className="carousel-image"
@@ -21,16 +118,14 @@ const CarouselImage: React.FC<CarouselImageProps> = ({ src, alt }) => {
       templateColumns="repeat(16, minmax(0, 1fr))"
     >
       <Flex
-        border="1px solid white"
+        // border="1px solid white"
         gridRow="2 / 5"
         gridColumn="14 / 16"
-        // gridRow="2 / 9"
-        // gridColumn="2 / 16"
         justifyContent="center"
       >
         <Box
           as="button"
-          border="1px solid red"
+          // border="1px solid red"
           sx={{
             aspectRatio: "1",
           }}
@@ -40,16 +135,18 @@ const CarouselImage: React.FC<CarouselImageProps> = ({ src, alt }) => {
           <Image
             src="assets/figma-bookmark-icon.svg"
             alt="bookmark icon"
-            // objectFit="fill"
-            // maxWidth="100%"
-            // width="100%"
             height="50%"
             margin="0 auto"
           />
         </Box>
       </Flex>
-      <Box border="1px solid white" gridRow="" gridColumn=""></Box>
-      <Box border="1px solid white" gridRow="" gridColumn=""></Box>
+
+      <CarouselItemText
+        year={year}
+        category={category}
+        parentalRating={parentalRating}
+      />
+
       {/* <Image
         src={src}
         alt={alt}
@@ -81,6 +178,9 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
             key={item.title}
             src={item.thumbnail.trending.large}
             alt={item.title}
+            year={item.year}
+            category={item.category === "Movie" ? "Movie" : "TV Series"}
+            parentalRating={item.rating}
           />
         );
       })}

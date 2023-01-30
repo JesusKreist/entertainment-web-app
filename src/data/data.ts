@@ -489,7 +489,3 @@ export const allMoviesAndShows = [
 export const trendingMoviesAndShows: MovieOrShow[] = allMoviesAndShows.filter(
   (m): m is MovieOrShow => m.isTrending
 );
-
-// export const trendingMoviesAndShows: MovieOrShow[] = allMoviesAndShows.filter(
-//   (m) => m.isTrending
-// );

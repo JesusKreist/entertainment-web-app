@@ -107,7 +107,7 @@ const textStyles = {
   },
 
   paragraphMedium: {
-    "font-size": "0.9375rem",
+    "font-size": { base: "", lg: "0.9375rem", "2xl": "0.8vw" },
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",
