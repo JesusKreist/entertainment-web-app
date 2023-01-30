@@ -30,6 +30,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
         textStyle="paragraphMedium"
         alignItems="center"
         opacity={0.75}
+        zIndex={1}
       >
         <Text>{year}</Text>
 
@@ -77,6 +78,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
         // border="1px solid white"
         gridRow="12 / span 3"
         gridColumn="2 / -2"
+        zIndex={1}
       >
         <Text textStyle="h4">{title}</Text>
       </Box>
@@ -108,7 +110,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
         aspectRatio: { base: "1", lg: "47/23" },
       }}
       borderRadius="1vw"
-      border="2px solid white"
+      // border="2px solid white"
       templateRows="repeat(16, minmax(0, 1fr))"
       templateColumns="repeat(16, minmax(0, 1fr))"
     >
@@ -117,6 +119,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
         gridRow="2 / 5"
         gridColumn="14 / 16"
         justifyContent="center"
+        zIndex={1}
       >
         <Box
           as="button"
@@ -143,15 +146,16 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
         title={title}
       />
 
-      {/* <Image
+      <Image
         src={src}
-        alt={alt}
+        alt={title}
         width="100%"
         height="100%"
-        
-      >
-        CarouselImage
-      </Image> */}
+        gridColumn="1 / -1"
+        gridRow="1 / -1"
+        borderRadius="1vw"
+        zIndex={0}
+      />
     </Grid>
   );
 };
