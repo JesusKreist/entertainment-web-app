@@ -6,12 +6,14 @@ interface CarouselItemTextProps {
   year: number;
   category: "Movie" | "TV Series";
   parentalRating: string;
+  title: string;
 }
 
 const CarouselItemText: React.FC<CarouselItemTextProps> = ({
   year,
   category,
   parentalRating,
+  title,
 }) => {
   const categoryIcon =
     category === "Movie"
@@ -21,7 +23,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
   return (
     <>
       <Flex
-        border="1px solid white"
+        // border="1px solid white"
         gridRow="10 / span 2"
         gridColumn="2 / -2"
         gap="0.4vw"
@@ -33,9 +35,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
 
         <Box
           height="10%"
-          // width="1vw"
           rounded="full"
-          // alignSelf="center"
           sx={{
             aspectRatio: "1",
           }}
@@ -57,26 +57,14 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
             // border="1px solid white"
             height="100%"
             objectFit="contain"
-            // alignSelf="center"
           />
         </Box>
 
-        <Text display="inline-flex" gap="0.3vw" whiteSpace="nowrap">
-          {/* <Image
-            src={categoryIcon}
-            alt="bookmark icon"
-            margin="0 auto"
-            border="1px solid white"
-            alignSelf="center"
-          /> */}
-          {category}
-        </Text>
+        <Text whiteSpace="nowrap">{category}</Text>
 
         <Box
           height="10%"
-          // width="1vw"
           rounded="full"
-          // alignSelf="center"
           sx={{
             aspectRatio: "1",
           }}
@@ -85,25 +73,32 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
 
         <Text>{parentalRating}</Text>
       </Flex>
-      <Box border="1px solid white" gridRow="" gridColumn=""></Box>
+      <Box
+        // border="1px solid white"
+        gridRow="12 / span 3"
+        gridColumn="2 / -2"
+      >
+        <Text textStyle="h4">{title}</Text>
+      </Box>
     </>
   );
 };
 
 interface CarouselImageProps {
   src: string;
-  alt: string;
+
   year: number;
   category: "Movie" | "TV Series";
   parentalRating: string;
+  title: string;
 }
 
 const CarouselImage: React.FC<CarouselImageProps> = ({
   src,
-  alt,
   year,
   category,
   parentalRating,
+  title,
 }) => {
   return (
     <Grid
@@ -145,6 +140,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
         year={year}
         category={category}
         parentalRating={parentalRating}
+        title={title}
       />
 
       {/* <Image
@@ -177,7 +173,7 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
           <CarouselImage
             key={item.title}
             src={item.thumbnail.trending.large}
-            alt={item.title}
+            title={item.title}
             year={item.year}
             category={item.category === "Movie" ? "Movie" : "TV Series"}
             parentalRating={item.rating}

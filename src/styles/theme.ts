@@ -90,7 +90,7 @@ const textStyles = {
     paragraphSpacing: "1px",
   },
   h4: {
-    "font-size": "1.5rem",
+    "font-size": { base: "", lg: "1.5rem", xl: "1.4vw" },
     fontWeight: "medium",
     fontFamily: "Outfit",
     lineHeight: "auto",
@@ -107,7 +107,7 @@ const textStyles = {
   },
 
   paragraphMedium: {
-    "font-size": { base: "", lg: "0.9375rem", "2xl": "0.8vw" },
+    "font-size": { base: "", lg: "0.9375rem", "2xl": "0.9vw" },
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",
