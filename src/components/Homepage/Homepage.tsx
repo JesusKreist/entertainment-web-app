@@ -8,7 +8,11 @@ const Homepage = () => {
   const allTrendingMoviesAndShows = trendingMoviesAndShows;
 
   return (
-    <Section title="Trending" gridRow="4 / span 9" overflowX="scroll">
+    <Section
+      title="Trending"
+      gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
+      overflowX="scroll"
+    >
       <Carousel carouselItems={allTrendingMoviesAndShows} />
     </Section>
   );

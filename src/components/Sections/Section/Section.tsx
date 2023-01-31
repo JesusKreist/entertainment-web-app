@@ -9,7 +9,7 @@ const Section: React.FC<SectionProps> = (props) => {
   const { title, children, ...styleProps } = props;
   return (
     <Flex {...styleProps} direction="column" gap="1vh" flexShrink={0}>
-      <Text textStyle="h2">{title}</Text>
+      <Text textStyle="headingL">{title}</Text>
       {children}
     </Flex>
   );

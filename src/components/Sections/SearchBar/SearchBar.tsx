@@ -5,13 +5,20 @@ const SearchBar = () => {
   return (
     <Flex
       className="search-bar"
-      gridRow={{ lg: "2 / span 2" }}
-      paddingInline={{ base: "1.25rem", lg: "unset" }}
+      gridRow={{ lg: "4 / span 2" }}
+      gridColumn={{ lg: "2" }}
+      // height={{
+      //   base: "1.5rem",
+      //   md: "2rem",
+      //   lg: "unset",
+      // }}
       // overflow="hidden"
       gridAutoFlow="column"
-      // border="2px solid white"
-      gap={{ base: "1.5rem", md: "1.5rem", lg: "1vw" }}
+      border="2px solid white"
+      gap={{ base: "1.5rem", md: "1rem", lg: "1vw" }}
       justifyContent={{ base: "start", lg: "start" }}
+      paddingTop={{ base: "1.5rem", md: "1.5625rem", lg: "unset" }}
+      paddingInline={{ base: "1.25rem", lg: "unset" }}
       paddingRight={{ lg: "3vw" }}
     >
       <Box
@@ -41,7 +48,7 @@ const SearchBar = () => {
         alignSelf={{ base: "end", lg: "unset" }}
       >
         <Input
-          textStyle="h3"
+          textStyle="headingM"
           height={{ lg: "50%" }}
           variant="unstyled"
           border="none"

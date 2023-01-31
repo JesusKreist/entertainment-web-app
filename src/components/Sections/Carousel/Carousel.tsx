@@ -80,7 +80,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
         gridColumn="2 / -2"
         zIndex={1}
       >
-        <Text textStyle="h4">{title}</Text>
+        <Text textStyle="headingS">{title}</Text>
       </Box>
     </>
   );
@@ -106,6 +106,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
     <Grid
       className="carousel-image"
       width="22.46vw"
+      minW={{ lg: "370px", "2xl": "470px" }}
       sx={{
         aspectRatio: { base: "1", lg: "47/23" },
       }}

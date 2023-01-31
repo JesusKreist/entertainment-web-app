@@ -14,12 +14,14 @@ import theme from "../styles/theme";
 import Layout from "../components/UI/Layout/Layout";
 import NavBar from "../components/NavBar/NavBar";
 import MainContent from "../components/UI/Layout/MainContent";
+import SearchBar from "../components/Sections/SearchBar/SearchBar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <Layout>
         <NavBar />
+        <SearchBar />
         <MainContent>
           <Component {...pageProps} />
         </MainContent>
