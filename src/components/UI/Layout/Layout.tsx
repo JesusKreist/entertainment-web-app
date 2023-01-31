@@ -18,6 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         md: "4.5rem max-content 1fr",
         lg: "repeat(24, 1fr)",
       }}
+      rowGap={{ base: "1rem", md: "1rem", lg: "unset" }}
       minH="100vh"
       maxH="100vh"
       // gap={{ base: "1.25rem", lg: "1.95vw" }}

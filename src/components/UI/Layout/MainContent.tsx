@@ -11,16 +11,17 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
     <Grid
       as="main"
       className="main-content"
-      // border={{
-      //   base: "2px solid purple",
-      //   md: "2px solid yellow",
-      //   lg: "2px solid red",
-      //   xl: "2px solid blue",
-      //   "2xl": "2px solid green",
-      // }}
+      border={{
+        base: "2px solid purple",
+        md: "2px solid yellow",
+        lg: "2px solid red",
+        xl: "2px solid blue",
+        "2xl": "2px solid green",
+      }}
       gridColumn={{ lg: "2" }}
-      gridRow={{ lg: "3 / -1" }}
+      gridRow={{ lg: "6 / -1" }}
       height="100%"
+      alignContent={{ base: "center", lg: "start" }}
       // templateRows={{
       //   base: "1.5rem 11.3125rem minmax(0, 1fr)",
       //   md: "2rem 18.4375rem minmax(0, 1fr)",
@@ -28,6 +29,7 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
       // }}
       // overflow="scroll"
       paddingLeft={{ lg: "3vw" }}
+      rowGap={{ lg: "3vw" }}
     >
       {children}
     </Grid>

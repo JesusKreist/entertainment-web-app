@@ -11,13 +11,13 @@ const NavBar = () => {
       className="nav-bar"
       gridColumn={{ lg: "1" }}
       gridRow={{ lg: "3 / -3" }}
-      border={{
-        base: "2px solid purple",
-        md: "2px solid yellow",
-        lg: "2px solid red",
-        xl: "2px solid blue",
-        "2xl": "2px solid green",
-      }}
+      // border={{
+      //   base: "2px solid purple",
+      //   md: "2px solid yellow",
+      //   lg: "2px solid red",
+      //   xl: "2px solid blue",
+      //   "2xl": "2px solid green",
+      // }}
       paddingInline={{ base: "1.25rem", lg: "unset" }}
       height={{ base: "100%", lg: "100%" }}
       width={{ base: "100%", md: "95%", lg: "100%" }}

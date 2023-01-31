@@ -8,37 +8,16 @@ const Homepage = () => {
   const allTrendingMoviesAndShows = trendingMoviesAndShows;
 
   return (
-    <Section
-      title="Trending"
-      gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
-      overflowX="scroll"
-    >
-      <Carousel carouselItems={allTrendingMoviesAndShows} />
-    </Section>
-  );
-  return (
-    <Box
-      height="200vh"
-      // overflow="scroll"
-      border={{
-        base: "2px solid purple",
-        md: "2px solid yellow",
-        lg: "2px solid red",
-        xl: "2px solid blue",
-        "2xl": "2px solid green",
-      }}
-    >
-      Homepage
-    </Box>
-  );
-  return (
-    <Box
-      border="2px solid white"
-      marginTop="5vh"
-      // paddingTop={{ xl: "25%", "2xl": "29.165%" }}
-    >
-      Iono
-    </Box>
+    <>
+      <Section
+        title="Trending"
+        // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
+        overflowX="scroll"
+      >
+        <Carousel carouselItems={allTrendingMoviesAndShows} />
+      </Section>
+      <Box>dfiff</Box>
+    </>
   );
 };
 

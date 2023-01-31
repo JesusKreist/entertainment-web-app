@@ -7,8 +7,9 @@ interface SectionProps extends BoxProps {
 }
 const Section: React.FC<SectionProps> = (props) => {
   const { title, children, ...styleProps } = props;
+  // return <Box>No section</Box>;
   return (
-    <Flex {...styleProps} direction="column" gap="1vh" flexShrink={0}>
+    <Flex {...styleProps} direction="column" gap="1vh">
       <Text textStyle="headingL">{title}</Text>
       {children}
     </Flex>

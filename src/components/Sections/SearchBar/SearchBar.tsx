@@ -7,18 +7,14 @@ const SearchBar = () => {
       className="search-bar"
       gridRow={{ lg: "4 / span 2" }}
       gridColumn={{ lg: "2" }}
-      // height={{
-      //   base: "1.5rem",
-      //   md: "2rem",
-      //   lg: "unset",
-      // }}
       // overflow="hidden"
       gridAutoFlow="column"
-      border="2px solid white"
+      // border="2px solid white"
       gap={{ base: "1.5rem", md: "1rem", lg: "1vw" }}
       justifyContent={{ base: "start", lg: "start" }}
-      paddingTop={{ base: "1.5rem", md: "1.5625rem", lg: "unset" }}
+      paddingTop={{ base: "0.5rem", md: "0.5625rem", lg: "unset" }}
       paddingInline={{ base: "1.25rem", lg: "unset" }}
+      paddingLeft={{ lg: "3vw" }}
       paddingRight={{ lg: "3vw" }}
     >
       <Box
