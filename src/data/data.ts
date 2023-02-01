@@ -1,5 +1,13 @@
 export interface MovieOrShow {
   title: string;
+  year: number;
+  category: string;
+  rating: string;
+  isBookmarked: boolean;
+  isTrending: boolean;
+}
+
+export interface TrendingMovieOrShow extends MovieOrShow {
   thumbnail: {
     trending: {
       small: string;
@@ -11,11 +19,22 @@ export interface MovieOrShow {
       large: string;
     };
   };
-  year: number;
-  category: string;
-  rating: string;
-  isBookmarked: boolean;
-  isTrending: boolean;
+}
+
+export interface AnyMovieOrShow {
+  thumbnail: {
+    trending:
+      | {
+          small: string;
+          large: string;
+        }
+      | undefined;
+    regular: {
+      small: string;
+      medium: string;
+      large: string;
+    };
+  };
 }
 
 export const allMoviesAndShows = [
@@ -486,6 +505,5 @@ export const allMoviesAndShows = [
 // });
 
 // https://stackoverflow.com/a/54317362 - Type Guard hack
-export const trendingMoviesAndShows: MovieOrShow[] = allMoviesAndShows.filter(
-  (m): m is MovieOrShow => m.isTrending
-);
+export const trendingMoviesAndShows: TrendingMovieOrShow[] =
+  allMoviesAndShows.filter((m): m is TrendingMovieOrShow => m.isTrending);

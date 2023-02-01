@@ -9,6 +9,17 @@ interface CarouselItemTextProps {
   title: string;
 }
 
+const CarouselItemTextDot = () => (
+  <Box
+    height="10%"
+    rounded="full"
+    sx={{
+      aspectRatio: "1",
+    }}
+    bgColor="white"
+  ></Box>
+);
+
 const CarouselItemText: React.FC<CarouselItemTextProps> = ({
   year,
   category,
@@ -34,14 +45,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
       >
         <Text>{year}</Text>
 
-        <Box
-          height="10%"
-          rounded="full"
-          sx={{
-            aspectRatio: "1",
-          }}
-          bgColor="white"
-        ></Box>
+        <CarouselItemTextDot />
 
         <Box
           height={{ base: "1rem", md: "1.25rem", lg: "50%" }}
@@ -63,14 +67,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
 
         <Text whiteSpace="nowrap">{category}</Text>
 
-        <Box
-          height="10%"
-          rounded="full"
-          sx={{
-            aspectRatio: "1",
-          }}
-          bgColor="white"
-        ></Box>
+        <CarouselItemTextDot />
 
         <Text>{parentalRating}</Text>
       </Flex>
