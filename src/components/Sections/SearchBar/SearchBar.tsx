@@ -16,22 +16,23 @@ const SearchBar = () => {
       paddingInline={{ base: "1.25rem", lg: "unset" }}
       paddingLeft={{ lg: "3vw" }}
       paddingRight={{ lg: "3vw" }}
+      height="100%"
     >
       <Box
-        minH={0}
-        minW={0}
-        height="100%"
+        // minH={0}
+        // minW={0}
+        height={{ base: "100%", lg: "50%" }}
+        // width="100%"
         // border="1px solid white"
         sx={{
-          aspectRatio: { base: "1", lg: "0.5" },
+          aspectRatio: { base: "1", lg: "1" },
         }}
       >
         <Image
           src="/assets/icon-search.svg"
           alt="search icon"
           objectFit="contain"
-          // width={{ lg: "100%" }}
-          height={{ lg: "50%" }}
+          height={{ lg: "100%" }}
           width="100%"
           margin="0 auto"
           // border="2px solid white"
@@ -47,10 +48,10 @@ const SearchBar = () => {
           textStyle="headingM"
           height={{ lg: "50%" }}
           variant="unstyled"
-          border="none"
+          // border="none"
           // border="2px solid white"
           borderRadius="0"
-          borderBottom="1px solid transparent"
+          // borderBottom="1px solid transparent"
           _focus={{ borderBottom: "1px solid #979797" }}
           placeholder="Search for Movies or TV series"
         />
