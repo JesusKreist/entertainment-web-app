@@ -100,7 +100,7 @@ const textStyles = {
   },
   headingXS: {
     // "font-size": "1.125rem",
-    "font-size": { base: "0.875rem", md: "1.125rem", xl: "5vw" },
+    "font-size": { base: "0.875rem", md: "1.125rem", xl: "1.05vw" },
     fontWeight: "medium",
     fontFamily: "Outfit",
     lineHeight: "auto",
@@ -118,7 +118,7 @@ const textStyles = {
   },
   paragraphSmall: {
     // "font-size": "0.8125rem",
-    "font-size": { base: "0.6875rem", md: "0.8125rem", "2xl": "9vw" },
+    "font-size": { base: "0.6875rem", md: "0.8125rem", "2xl": "0.78vw" },
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",

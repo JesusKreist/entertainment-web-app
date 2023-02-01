@@ -57,7 +57,7 @@ const CarouselItemText: React.FC<CarouselItemTextProps> = ({
         >
           <Image
             src={categoryIcon}
-            alt="bookmark icon"
+            alt="category icon"
             margin="0 auto"
             // border="1px solid white"
             height="100%"

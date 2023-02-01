@@ -21,23 +21,29 @@ export interface TrendingMovieOrShow extends MovieOrShow {
   };
 }
 
-export interface AnyMovieOrShow {
-  thumbnail: {
-    trending:
-      | {
+export interface AnyMovieOrShow extends MovieOrShow {
+  thumbnail:
+    | {
+        trending: {
           small: string;
           large: string;
-        }
-      | undefined;
-    regular: {
-      small: string;
-      medium: string;
-      large: string;
-    };
-  };
+        };
+        regular: {
+          small: string;
+          medium: string;
+          large: string;
+        };
+      }
+    | {
+        regular: {
+          small: string;
+          medium: string;
+          large: string;
+        };
+      };
 }
 
-export const allMoviesAndShows = [
+export const allMoviesAndShows: AnyMovieOrShow[] = [
   {
     title: "Beyond Earth",
     thumbnail: {
