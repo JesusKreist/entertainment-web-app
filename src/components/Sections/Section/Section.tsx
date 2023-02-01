@@ -9,10 +9,23 @@ const Section: React.FC<SectionProps> = (props) => {
   const { title, children, ...styleProps } = props;
   // return <Box>No section</Box>;
   return (
-    <Flex {...styleProps} direction="column" gap="1vh">
-      <Text textStyle="headingL">{title}</Text>
-      {children}
-    </Flex>
+    <>
+      <Text
+        textStyle="headingL"
+        marginTop={{ base: "1rem", lg: "1vw", xl: "" }}
+        marginBottom={{
+          base: "-0.5rem",
+          md: "-0.5rem",
+          lg: "-0.5vw",
+          xl: "-0.9vw",
+        }}
+      >
+        {title}
+      </Text>
+      <Flex direction="column" {...styleProps}>
+        {children}
+      </Flex>
+    </>
   );
 };
 

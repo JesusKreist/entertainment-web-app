@@ -22,9 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Layout>
         <NavBar />
         <SearchBar />
-        <MainContent>
-          <Component {...pageProps} />
-        </MainContent>
+        <Component {...pageProps} />
       </Layout>
     </ChakraProvider>
   );

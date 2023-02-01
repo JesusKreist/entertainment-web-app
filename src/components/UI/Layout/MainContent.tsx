@@ -21,15 +21,10 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
       gridColumn={{ lg: "2" }}
       gridRow={{ lg: "6 / -1" }}
       height="100%"
-      alignContent={{ base: "center", lg: "start" }}
-      // templateRows={{
-      //   base: "1.5rem 11.3125rem minmax(0, 1fr)",
-      //   md: "2rem 18.4375rem minmax(0, 1fr)",
-      //   lg: "repeat(22, minmax(0, 1fr))",
-      // }}
-      // overflow="scroll"
+      // alignContent="start"
+      // alignItems="start"
       paddingLeft={{ lg: "3vw" }}
-      rowGap={{ lg: "3vw" }}
+      rowGap={{ md: "1rem", lg: "2vw" }}
     >
       {children}
     </Grid>

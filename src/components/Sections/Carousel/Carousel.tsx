@@ -1,6 +1,6 @@
 import { Flex, Image, Box, Grid, Text } from "@chakra-ui/react";
 import React from "react";
-import { MovieOrShow } from "../../../data/data";
+import { TrendingMovieOrShow } from "../../../data/data";
 
 interface CarouselItemTextProps {
   year: number;
@@ -105,11 +105,12 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
   return (
     <Grid
       className="carousel-image"
-      width="22.46vw"
-      minW={{ lg: "370px", "2xl": "470px" }}
+      // width="22.46vw"
+      minW={{ base: "240px", md: "470px" }}
       sx={{
-        aspectRatio: { base: "1", lg: "47/23" },
+        aspectRatio: { base: "24/14", md: "47/23" },
       }}
+      // border="1px solid red"
       borderRadius="1vw"
       // border="2px solid white"
       templateRows="repeat(16, minmax(0, 1fr))"
@@ -162,7 +163,7 @@ const CarouselImage: React.FC<CarouselImageProps> = ({
 };
 
 interface CarouselProps {
-  carouselItems: MovieOrShow[];
+  carouselItems: TrendingMovieOrShow[];
 }
 const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
   return (
@@ -172,6 +173,7 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
       gap="1.5vw"
       // overflow="scroll"
       gridAutoFlow="column"
+      // border="1px solid white"
     >
       {carouselItems.map((item) => {
         return (
@@ -185,14 +187,6 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
           />
         );
       })}
-      {/* <CarouselImage src="/assets/image-1.png" alt="image 1" />
-      <CarouselImage src="/assets/image-2.png" alt="image 2" />
-      <CarouselImage src="/assets/image-3.png" alt="image 3" />
-      <CarouselImage src="/assets/image-4.png" alt="image 4" />
-      <CarouselImage src="/assets/image-5.png" alt="image 5" />
-      <CarouselImage src="/assets/image-6.png" alt="image 6" />
-      <CarouselImage src="/assets/image-7.png" alt="image 7" />
-      <CarouselImage src="/assets/image-8.png" alt="image 8" /> */}
     </Grid>
   );
 };
