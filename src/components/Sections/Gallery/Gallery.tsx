@@ -153,11 +153,11 @@ const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {
       // overflow="scroll"
       // gridAutoFlow="column"
       // gridAutoColumns="repeat(auto-fit, minmax(250px, 500px))"
-      gridTemplateColumns="repeat(4, 1fr)"
+      gridTemplateColumns={{ md: "repeat(3, 1fr)", lg: "repeat(4, 1fr)" }}
       // border="1px solid white"
       // height="3vh"
       // paddingRight={{ lg: "3vw" }}
-      marginRight="3vw"
+      marginRight={{ md: "1.25rem", lg: "3vw" }}
     >
       {/* <GalleryItem /> */}
       {mediaToDisplay.map((item) => {

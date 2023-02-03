@@ -25,6 +25,7 @@ const Homepage = () => {
       paddingLeft={{ base: "1.25rem", lg: "3vw" }}
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
+      // overflowY="hidden"
     >
       <Section
         title="Trending"
@@ -38,7 +39,9 @@ const Homepage = () => {
       <Section
         title="Recommended for you"
         // paddingRight={{ base: "", md: "unset" }}
-        overflowX="scroll"
+        // overflowX="scroll"
+        overflowX="hidden"
+
         // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
       >
         <Gallery mediaToDisplay={allMoviesAndShows} />

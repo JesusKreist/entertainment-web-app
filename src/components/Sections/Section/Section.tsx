@@ -22,9 +22,7 @@ const Section: React.FC<SectionProps> = (props) => {
       >
         {title}
       </Text>
-      <Flex direction="column" {...styleProps}>
-        {children}
-      </Flex>
+      <Box {...styleProps}>{children}</Box>
     </>
   );
 };
