@@ -34,13 +34,14 @@ const GalleryItemText: React.FC<GalleryItemTextProps> = ({
     <>
       <Flex
         // border="1px solid white"
-        gridRow="2 / span 3"
+        gridRow="1 / span 3"
         gridColumn="1 / -1"
         gap="0.4vw"
         textStyle="paragraphSmall"
         alignItems="center"
         opacity={0.75}
         zIndex={1}
+        paddingTop="2%"
       >
         <Text>{year}</Text>
 
@@ -70,9 +71,10 @@ const GalleryItemText: React.FC<GalleryItemTextProps> = ({
 
         <Text>{parentalRating}</Text>
       </Flex>
+
       <Box
         // border="1px solid white"
-        gridRow="5 / span 4"
+        gridRow="4 / span 4"
         gridColumn="1 / -1"
         zIndex={1}
       >
