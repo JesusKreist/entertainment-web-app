@@ -36,7 +36,7 @@ const GalleryItemText: React.FC<GalleryItemTextProps> = ({
         // border="1px solid white"
         gridRow="1 / span 3"
         gridColumn="1 / -1"
-        gap="0.4vw"
+        gap={{ md: "1rem", lg: "0.5rem", xl: "0.5rem", "2xl": "0.4vw" }}
         textStyle="paragraphSmall"
         alignItems="center"
         opacity={0.75}
@@ -53,7 +53,12 @@ const GalleryItemText: React.FC<GalleryItemTextProps> = ({
             aspectRatio: "1",
           }}
           // border="1px solid red"
-          marginRight="-0.1vw"
+          marginRight={{
+            md: "",
+            lg: "-0.2rem",
+            xl: "-0.2rem",
+            "2xl": "-0.1vw",
+          }}
         >
           <Image
             src={categoryIcon}
