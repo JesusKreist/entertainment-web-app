@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid, Box, Image, Flex } from "@chakra-ui/react";
 import GalleryItemImage from "./GalleryItemImage";
 import GalleryItemText from "./GalleryItemText/GalleryItemText";
 

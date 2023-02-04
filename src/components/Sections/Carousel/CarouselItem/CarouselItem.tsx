@@ -42,6 +42,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
         <Box
           as="button"
           // border="1px solid red"
+          height={{ base: "1.6875rem", md: "2.7rem", "2xl": "3vw" }}
           sx={{
             aspectRatio: "1",
           }}
@@ -56,6 +57,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
           />
         </Box>
       </Flex>
+
+      <Box className="play-button"></Box>
 
       <CarouselItemText
         year={year}

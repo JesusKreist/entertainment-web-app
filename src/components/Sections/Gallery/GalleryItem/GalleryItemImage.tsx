@@ -1,4 +1,4 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Flex, Grid, Image } from "@chakra-ui/react";
 
 interface GalleryItemImageProps {
   src: string;
@@ -6,18 +6,48 @@ interface GalleryItemImageProps {
 }
 const GalleryItemImage: React.FC<GalleryItemImageProps> = ({ src, title }) => {
   return (
-    <Box
+    <Grid
       width="100%"
+      templateRows="repeat(16, minmax(0, 1fr))"
+      templateColumns="repeat(16, minmax(0, 1fr))"
       // border="1px solid yellow"
     >
+      <Flex
+        // border="1px solid white"
+        gridRow="2 / 6"
+        gridColumn="13 / 16"
+        justifyContent="center"
+        zIndex={1}
+      >
+        <Box
+          as="button"
+          // width="1.6875rem"
+          height={{ base: "1.6875rem", md: "2.7rem", "2xl": "3vw" }}
+          // border="1px solid red"
+          sx={{
+            aspectRatio: "1",
+          }}
+          rounded="full"
+          bgColor="rgb(151, 151, 151, 0.5)"
+        >
+          <Image
+            src="assets/figma-bookmark-icon.svg"
+            alt="bookmark icon"
+            height="50%"
+            margin="0 auto"
+          />
+        </Box>
+      </Flex>
       <Image
+        gridRow="1 / -1"
+        gridColumn="1 / -1"
         src={src}
         alt={title}
         width="100%"
         height="100%"
-        borderRadius="1vw"
+        borderRadius={{ base: "1vw", "2xl": "1vw" }}
       />
-    </Box>
+    </Grid>
   );
 };
 
