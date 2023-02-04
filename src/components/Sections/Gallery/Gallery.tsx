@@ -37,18 +37,13 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
           borderRadius="1vw"
         />
       </Box>
-      <Grid
-        // border="1px solid white"
-        templateRows="repeat(7, minmax(0, 1fr))"
-        templateColumns="repeat(16, minmax(0, 1fr))"
-      >
-        <GalleryItemText
-          year={year}
-          category={category}
-          parentalRating={parentalRating}
-          title={title}
-        />
-      </Grid>
+
+      <GalleryItemText
+        year={year}
+        category={category}
+        parentalRating={parentalRating}
+        title={title}
+      />
     </Grid>
   );
 };

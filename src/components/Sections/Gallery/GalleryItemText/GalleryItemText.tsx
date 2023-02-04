@@ -1,4 +1,4 @@
-import { Box, Text, Image, Flex } from "@chakra-ui/react";
+import { Box, Text, Image, Flex, Grid } from "@chakra-ui/react";
 import React from "react";
 import BottomText from "./BottomText";
 import TopText from "./TopText";
@@ -17,14 +17,18 @@ const GalleryItemText: React.FC<GalleryItemTextProps> = ({
   title,
 }) => {
   return (
-    <>
+    <Grid
+      templateRows="repeat(7, minmax(0, 1fr))"
+      templateColumns="repeat(16, minmax(0, 1fr))"
+      // border="1px solid white"
+    >
       <TopText
         year={year}
         category={category}
         parentalRating={parentalRating}
       />
       <BottomText title={title} />
-    </>
+    </Grid>
   );
 };
 
