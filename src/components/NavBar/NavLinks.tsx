@@ -13,15 +13,25 @@ const NavLinks = () => {
       gridAutoFlow={{ base: "column", lg: "row" }}
       alignItems={{ base: "center", lg: "unset" }}
     >
-      <NavLinkButton imageName="icon-nav-home.svg" altText="home icon" />
-      <NavLinkButton imageName="icon-nav-movies.svg" altText="movies icon" />
+      <NavLinkButton
+        imageName="icon-nav-home.svg"
+        altText="home icon"
+        linkLocation="/"
+      />
+      <NavLinkButton
+        imageName="icon-nav-movies.svg"
+        altText="movies icon"
+        linkLocation="movies"
+      />
       <NavLinkButton
         imageName="icon-nav-tv-series.svg"
         altText="tv series icon"
+        linkLocation="tv-series"
       />
       <NavLinkButton
         imageName="icon-nav-bookmark.svg"
         altText="bookmark icon"
+        linkLocation="bookmarks"
       />
     </Grid>
   );
