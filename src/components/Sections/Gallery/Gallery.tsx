@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
 import { AnyMovieOrShow } from "../../../data/data";
-import GalleryItemText from "./GalleryItemText/GalleryItemText";
+import GalleryItemText from "./GalleryItem/GalleryItemText/GalleryItemText";
 
 interface GalleryItemProps {
   src: string;
