@@ -44,7 +44,7 @@ const TopText: React.FC<TopTextProps> = ({
       <GalleryItemTextDot />
 
       <Box
-        height={{ base: "70%", md: "50%" }}
+        height={{ base: "0.7rem", md: "50%" }}
         sx={{
           aspectRatio: "1",
         }}

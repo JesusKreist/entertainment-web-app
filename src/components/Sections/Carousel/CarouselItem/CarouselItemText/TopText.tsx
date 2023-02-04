@@ -32,7 +32,7 @@ const TopText: React.FC<TopTextProps> = ({
       // border="1px solid white"
       gridRow="10 / span 2"
       gridColumn="2 / -2"
-      gap="0.4vw"
+      gap={{ base: "0.5rem", "2xl": "0.4vw" }}
       textStyle="paragraphMedium"
       alignItems="center"
       opacity={0.75}
@@ -43,7 +43,7 @@ const TopText: React.FC<TopTextProps> = ({
       <CarouselItemTextDot />
 
       <Box
-        height={{ base: "1rem", md: "1.25rem", lg: "50%" }}
+        height={{ base: "0.7rem", md: "50%" }}
         sx={{
           aspectRatio: "1",
         }}
