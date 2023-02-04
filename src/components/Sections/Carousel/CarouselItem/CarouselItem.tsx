@@ -1,6 +1,7 @@
 import { Grid, Flex, Image, Box, Text } from "@chakra-ui/react";
 import React from "react";
 import BookmarkButton from "./BookmarkButton";
+import CarouselItemImage from "./CarouselItemImage";
 import CarouselItemText from "./CarouselItemText/CarouselItemText";
 
 interface CarouselItemProps {
@@ -22,8 +23,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
   return (
     <Grid
       className="carousel-image"
-      // width="22.46vw"
-      minW={{ base: "240px", md: "470px" }}
+      //   width="22.46vw"
+      minW={{ base: "max(240px, 64vw)", md: "max(470px, 22.46vw)" }}
       sx={{
         aspectRatio: { base: "24/14", md: "47/23" },
       }}
@@ -43,16 +44,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
         title={title}
       />
 
-      <Image
-        src={src}
-        alt={title}
-        width="100%"
-        height="100%"
-        gridColumn="1 / -1"
-        gridRow="1 / -1"
-        borderRadius="1vw"
-        zIndex={0}
-      />
+      <CarouselItemImage src={src} title={title} />
     </Grid>
   );
 };
