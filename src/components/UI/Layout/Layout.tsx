@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       templateRows={{
         base: "4.5rem max-content 1fr",
         md: "4.5rem max-content 1fr",
-        lg: "repeat(24, 1fr)",
+        lg: "repeat(24, minmax(0, 1fr))",
       }}
       rowGap={{ base: "1rem", md: "1rem", lg: "unset" }}
       minH="100vh"
@@ -32,6 +32,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       bgColor="brand.darkBlue"
       color="white"
       alignItems="center"
+      // overflowY="scroll"
     >
       {children}
     </Grid>

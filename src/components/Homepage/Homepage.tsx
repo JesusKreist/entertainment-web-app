@@ -23,25 +23,12 @@ const Homepage = () => {
       paddingLeft={{ base: "1.25rem", lg: "3vw" }}
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
-      // overflowY="hidden"
     >
-      <Section
-        title="Trending"
-        // paddingRight={{ base: "", md: "unset" }}
-        overflowX="scroll"
-        // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
-      >
+      <Section title="Trending" overflowX="scroll">
         <Carousel carouselItems={trendingShows} />
       </Section>
 
-      <Section
-        title="Recommended for you"
-        // paddingRight={{ base: "", md: "unset" }}
-        // overflowX="scroll"
-        overflowX="hidden"
-
-        // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
-      >
+      <Section title="Recommended for you" overflowX="hidden">
         <Gallery mediaToDisplay={allShows} />
       </Section>
     </Grid>

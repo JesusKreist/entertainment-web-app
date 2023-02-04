@@ -1,9 +1,9 @@
 import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
-import { AnyMovieOrShow } from "../../../data/data";
+import { AnyShow } from "../../../data/data";
 import GalleryItem from "./GalleryItem/GalleryItem";
 
 interface GalleryProps {
-  mediaToDisplay: AnyMovieOrShow[];
+  mediaToDisplay: AnyShow[];
 }
 
 const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {

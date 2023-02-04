@@ -22,7 +22,7 @@ const Section: React.FC<SectionProps> = (props) => {
       >
         {title}
       </Text>
-      <Box {...styleProps}>{children}</Box>
+      <Box {...styleProps}>{children} </Box>
     </>
   );
 };

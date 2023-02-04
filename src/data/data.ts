@@ -21,18 +21,6 @@ export interface TrendingShow extends ShowTemplate {
   };
 }
 
-export interface Movie extends ShowTemplate {
-  category: "Movie";
-}
-
-export interface Series extends ShowTemplate {
-  category: "TV Series";
-}
-
-export interface BookmarkedShow extends ShowTemplate {
-  isBookmarked: true;
-}
-
 export interface AnyShow extends ShowTemplate {
   thumbnail:
     | {
@@ -53,6 +41,18 @@ export interface AnyShow extends ShowTemplate {
           large: string;
         };
       };
+}
+
+export interface Movie extends AnyShow {
+  category: "Movie";
+}
+
+export interface Series extends AnyShow {
+  category: "TV Series";
+}
+
+export interface BookmarkedShow extends AnyShow {
+  isBookmarked: true;
 }
 
 export const allShows: AnyShow[] = [
@@ -535,6 +535,14 @@ export const series: Series[] = allShows.filter(
   (m) => m.category === "TV Series"
 ) as Series[];
 
-export const bookmarkedShows: BookmarkedShow[] = allShows.filter(
+export const allBookmarkedShows: BookmarkedShow[] = allShows.filter(
   (m) => m.isBookmarked
 ) as BookmarkedShow[];
+
+export const bookmarkedMovies: Movie[] = allShows.filter(
+  (m) => m.isBookmarked && m.category === "Movie"
+) as Movie[];
+
+export const bookmarkedSeries: Series[] = allShows.filter(
+  (m) => m.isBookmarked && m.category === "TV Series"
+) as Series[];
