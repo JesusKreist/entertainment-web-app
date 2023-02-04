@@ -1,5 +1,6 @@
 import { Box, Text, Image, Flex } from "@chakra-ui/react";
 import React from "react";
+import BottomText from "./BottomText";
 import TopText from "./TopText";
 
 interface GalleryItemTextProps {
@@ -22,14 +23,7 @@ const GalleryItemText: React.FC<GalleryItemTextProps> = ({
         category={category}
         parentalRating={parentalRating}
       />
-      <Box
-        // border="1px solid white"
-        gridRow="4 / span 4"
-        gridColumn="1 / -1"
-        zIndex={1}
-      >
-        <Text textStyle="headingXS">{title}</Text>
-      </Box>
+      <BottomText title={title} />
     </>
   );
 };
