@@ -27,6 +27,7 @@ const TopText: React.FC<TopTextProps> = ({
     category === "Movie"
       ? "assets/icon-category-movie.svg"
       : "assets/icon-category-tv.svg";
+
   return (
     <Flex
       // border="1px solid white"
