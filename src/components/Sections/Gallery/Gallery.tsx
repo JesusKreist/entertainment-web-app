@@ -9,7 +9,7 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {
   return (
     <Grid
-      className="carousel"
+      className="gallery"
       // width="100%"
       gap={{ base: "1.25rem", "2xl": "1.5vw" }}
       // overflow="scroll"
