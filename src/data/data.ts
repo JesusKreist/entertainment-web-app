@@ -1,4 +1,4 @@
-export interface MovieOrShow {
+export interface ShowTemplate {
   title: string;
   year: number;
   category: string;
@@ -7,7 +7,7 @@ export interface MovieOrShow {
   isTrending: boolean;
 }
 
-export interface TrendingMovieOrShow extends MovieOrShow {
+export interface TrendingShow extends ShowTemplate {
   thumbnail: {
     trending: {
       small: string;
@@ -21,7 +21,19 @@ export interface TrendingMovieOrShow extends MovieOrShow {
   };
 }
 
-export interface AnyMovieOrShow extends MovieOrShow {
+export interface Movie extends ShowTemplate {
+  category: "Movie";
+}
+
+export interface Series extends ShowTemplate {
+  category: "TV Series";
+}
+
+export interface BookmarkedShow extends ShowTemplate {
+  isBookmarked: true;
+}
+
+export interface AnyShow extends ShowTemplate {
   thumbnail:
     | {
         trending: {
@@ -43,7 +55,7 @@ export interface AnyMovieOrShow extends MovieOrShow {
       };
 }
 
-export const allMoviesAndShows: AnyMovieOrShow[] = [
+export const allShows: AnyShow[] = [
   {
     title: "Beyond Earth",
     thumbnail: {
@@ -511,5 +523,18 @@ export const allMoviesAndShows: AnyMovieOrShow[] = [
 // });
 
 // https://stackoverflow.com/a/54317362 - Type Guard hack
-export const trendingMoviesAndShows: TrendingMovieOrShow[] =
-  allMoviesAndShows.filter((m): m is TrendingMovieOrShow => m.isTrending);
+export const trendingShows: TrendingShow[] = allShows.filter(
+  (m): m is TrendingShow => m.isTrending
+);
+
+export const movies: Movie[] = allShows.filter(
+  (m) => m.category === "Movie"
+) as Movie[];
+
+export const series: Series[] = allShows.filter(
+  (m) => m.category === "TV Series"
+) as Series[];
+
+export const bookmarkedShows: BookmarkedShow[] = allShows.filter(
+  (m) => m.isBookmarked
+) as BookmarkedShow[];

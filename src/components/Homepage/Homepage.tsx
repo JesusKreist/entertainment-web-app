@@ -1,13 +1,11 @@
 import { Box, Grid } from "@chakra-ui/react";
 import React from "react";
-import { allMoviesAndShows, trendingMoviesAndShows } from "../../data/data";
+import { allShows, trendingShows } from "../../data/data";
 import Carousel from "../Sections/Carousel/Carousel";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 
 const Homepage = () => {
-  const allTrendingMoviesAndShows = trendingMoviesAndShows;
-
   return (
     <Grid
       // border={{
@@ -33,7 +31,7 @@ const Homepage = () => {
         overflowX="scroll"
         // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
       >
-        <Carousel carouselItems={allTrendingMoviesAndShows} />
+        <Carousel carouselItems={trendingShows} />
       </Section>
 
       <Section
@@ -44,7 +42,7 @@ const Homepage = () => {
 
         // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
       >
-        <Gallery mediaToDisplay={allMoviesAndShows} />
+        <Gallery mediaToDisplay={allShows} />
       </Section>
     </Grid>
   );
