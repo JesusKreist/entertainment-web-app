@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
 import { AnyMovieOrShow } from "../../../data/data";
+import GalleryItemImage from "./GalleryItem/GalleryItemImage";
 import GalleryItemText from "./GalleryItem/GalleryItemText/GalleryItemText";
 
 interface GalleryItemProps {
@@ -25,19 +26,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         aspectRatio: { base: "24/14", md: "280/226" },
       }}
     >
-      <Box
-        width="100%"
-        // border="1px solid yellow"
-      >
-        <Image
-          src={src}
-          alt={title}
-          width="100%"
-          height="100%"
-          borderRadius="1vw"
-        />
-      </Box>
-
+      <GalleryItemImage src={src} title={title} />
       <GalleryItemText
         year={year}
         category={category}
