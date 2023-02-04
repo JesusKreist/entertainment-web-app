@@ -13,7 +13,7 @@ const BookmarkButton = () => {
       <Box
         as="button"
         // border="1px solid red"
-        height={{ base: "1.6875rem", md: "2.7rem", "2xl": "3vw" }}
+        height={{ base: "2.5rem", md: "2.7rem", "2xl": "3vw" }}
         sx={{
           aspectRatio: "1",
         }}

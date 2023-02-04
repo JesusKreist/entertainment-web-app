@@ -22,7 +22,7 @@ const GalleryItemImage: React.FC<GalleryItemImageProps> = ({ src, title }) => {
         <Box
           as="button"
           // width="1.6875rem"
-          height={{ base: "1.6875rem", md: "2.7rem", "2xl": "3vw" }}
+          height={{ base: "2.5rem", md: "2.7rem", "2xl": "3vw" }}
           // border="1px solid red"
           sx={{
             aspectRatio: "1",
