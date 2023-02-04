@@ -167,7 +167,7 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
     <Grid
       className="carousel"
       width="100%"
-      gap="1.5vw"
+      gap={{ base: "1.25rem", lg: "1.5vw" }}
       // overflow="scroll"
       gridAutoFlow="column"
       // border="1px solid white"

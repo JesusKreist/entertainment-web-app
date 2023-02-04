@@ -19,10 +19,10 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
 }) => {
   return (
     <Grid
-      templateRows="77% 1fr"
+      templateRows={{ base: "71.43% 1fr", md: "77% 1fr" }}
       // border="1px solid red"
       sx={{
-        aspectRatio: { base: "24/14", md: "280/226" },
+        aspectRatio: { base: "164/154", md: "280/226" },
       }}
     >
       <GalleryItemImage src={src} title={title} />
