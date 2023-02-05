@@ -17,9 +17,6 @@ const NavLinkButton: React.FC<NavLinkButtonProps> = ({
   pageCategory,
   currentPageCategory,
 }) => {
-  const setPageCategory = usePageStore((state) => state.setPageCategory);
-  // const currentPageCategory = usePageStore((state) => state.pageCategory);
-
   const src =
     pageCategory === currentPageCategory
       ? `/assets/icon-category-${pageCategory}.svg`
@@ -29,9 +26,6 @@ const NavLinkButton: React.FC<NavLinkButtonProps> = ({
     <Box
       as={Link}
       href={linkLocation}
-      onClick={() => {
-        setPageCategory(pageCategory);
-      }}
       width={{ base: "1rem", md: "1.25rem", lg: "100%" }}
 
       // border="1px solid white"
