@@ -1,10 +1,35 @@
 import { Grid } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { usePageStore } from "../../../data/appState";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  const { pathname } = useRouter();
+
+  useEffect(() => {
+    switch (pathname) {
+      case "/":
+        setPageCategory("home");
+        break;
+      case "/movies":
+        setPageCategory("movies");
+        break;
+      case "/tv-series":
+        setPageCategory("series");
+        break;
+      case "/bookmarks":
+        setPageCategory("bookmarks");
+        break;
+      default:
+        break;
+    }
+  }, [pathname, setPageCategory]);
+
   return (
     <Grid
       as="main"

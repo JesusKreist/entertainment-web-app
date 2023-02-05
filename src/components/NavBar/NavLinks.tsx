@@ -6,27 +6,27 @@ import NavLinkButton from "../Icons/NavLinkButton";
 
 const NavLinks = () => {
   const currentPageCategory = usePageStore((state) => state.pageCategory);
-  const setPageCategory = usePageStore((state) => state.setPageCategory);
-  const { pathname } = useRouter();
+  // const setPageCategory = usePageStore((state) => state.setPageCategory);
+  // const { pathname } = useRouter();
 
-  useEffect(() => {
-    switch (pathname) {
-      case "/":
-        setPageCategory("home");
-        break;
-      case "/movies":
-        setPageCategory("movies");
-        break;
-      case "/tv-series":
-        setPageCategory("series");
-        break;
-      case "/bookmarks":
-        setPageCategory("bookmarks");
-        break;
-      default:
-        break;
-    }
-  }, [pathname, setPageCategory]);
+  // useEffect(() => {
+  //   switch (pathname) {
+  //     case "/":
+  //       setPageCategory("home");
+  //       break;
+  //     case "/movies":
+  //       setPageCategory("movies");
+  //       break;
+  //     case "/tv-series":
+  //       setPageCategory("series");
+  //       break;
+  //     case "/bookmarks":
+  //       setPageCategory("bookmarks");
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }, [pathname, setPageCategory]);
 
   return (
     <Grid
