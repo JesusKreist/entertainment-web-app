@@ -1,7 +1,9 @@
 import { Box, Flex, Grid, Image, Input } from "@chakra-ui/react";
 import React from "react";
+import { usePageStore } from "../../../data/appState";
 
 const SearchBar = () => {
+  const { searchBarPlaceHolder } = usePageStore();
   return (
     <Flex
       className="search-bar"
@@ -53,7 +55,7 @@ const SearchBar = () => {
           borderRadius="0"
           // borderBottom="1px solid transparent"
           _focus={{ borderBottom: "1px solid #979797" }}
-          placeholder="Search for Movies or TV series"
+          placeholder={searchBarPlaceHolder}
         />
       </Box>
     </Flex>

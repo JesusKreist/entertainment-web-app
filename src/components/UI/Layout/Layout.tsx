@@ -8,27 +8,31 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  const { setPageCategory, setSearchBarPlaceHolder } = usePageStore();
   const { pathname } = useRouter();
 
   useEffect(() => {
     switch (pathname) {
       case "/":
         setPageCategory("home");
+        setSearchBarPlaceHolder("home");
         break;
       case "/movies":
         setPageCategory("movies");
+        setSearchBarPlaceHolder("movies");
         break;
       case "/tv-series":
         setPageCategory("series");
+        setSearchBarPlaceHolder("series");
         break;
       case "/bookmarks":
         setPageCategory("bookmarks");
+        setSearchBarPlaceHolder("bookmarks");
         break;
       default:
         break;
     }
-  }, [pathname, setPageCategory]);
+  }, [pathname, setPageCategory, setSearchBarPlaceHolder]);
 
   return (
     <Grid
