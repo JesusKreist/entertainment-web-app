@@ -1,9 +1,16 @@
 import { Grid } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { usePageStore } from "../../data/appState";
 import { movies } from "../../data/data";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 
 const Movies = () => {
+  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  useEffect(() => {
+    setPageCategory("movies");
+  }, [setPageCategory]);
+
   return (
     <Grid
       // border={{

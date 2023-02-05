@@ -1,9 +1,16 @@
 import { Grid } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { usePageStore } from "../../data/appState";
 import { bookmarkedMovies, bookmarkedSeries } from "../../data/data";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 
 const Bookmarks = () => {
+  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  useEffect(() => {
+    setPageCategory("bookmarks");
+  }, [setPageCategory]);
+
   return (
     <Grid
       // border={{

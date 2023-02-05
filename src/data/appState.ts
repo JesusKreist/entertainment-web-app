@@ -2,7 +2,12 @@ import { create } from "zustand";
 
 import { devtools } from "zustand/middleware";
 
-type PageCategory = "home" | "movies" | "series" | "bookmarks";
+export type PageCategory =
+  | "home"
+  | "movies"
+  | "series"
+  | "bookmarks"
+  | undefined;
 
 interface PageState {
   pageCategory: PageCategory;
@@ -12,7 +17,7 @@ interface PageState {
 export const usePageStore = create<PageState>()(
   devtools(
     (set) => ({
-      pageCategory: "home",
+      pageCategory: undefined,
 
       setPageCategory: (category: PageCategory) => {
         set({ pageCategory: category });

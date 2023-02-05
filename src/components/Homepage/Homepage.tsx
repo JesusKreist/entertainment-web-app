@@ -1,11 +1,16 @@
 import { Box, Grid } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
+import { usePageStore } from "../../data/appState";
 import { allShows, trendingShows } from "../../data/data";
 import Carousel from "../Sections/Carousel/Carousel";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 
 const Homepage = () => {
+  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  useEffect(() => {
+    setPageCategory("home");
+  }, [setPageCategory]);
   return (
     <Grid
       // border={{

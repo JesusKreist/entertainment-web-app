@@ -1,9 +1,16 @@
 import { Grid } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { usePageStore } from "../../data/appState";
 import { series } from "../../data/data";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 
 const TVSeries = () => {
+  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  useEffect(() => {
+    setPageCategory("series");
+  }, [setPageCategory]);
+
   return (
     <Grid
       // border={{
