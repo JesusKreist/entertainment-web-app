@@ -1,15 +1,32 @@
 import { Grid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
-import { bookmarkedMovies, bookmarkedSeries } from "../../data/data";
+import {
+  allBookmarkedShows,
+  bookmarkedMovies,
+  bookmarkedSeries,
+} from "../../data/data";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
+import MainContent from "../UI/Layout/MainContent";
 
 const Bookmarks = () => {
   const setPageCategory = usePageStore((state) => state.setPageCategory);
   useEffect(() => {
     setPageCategory("bookmarks");
   }, [setPageCategory]);
+
+  const defaultContent = (
+    <>
+      <Section title="Bookmarked Movies">
+        <Gallery mediaToDisplay={bookmarkedMovies} />
+      </Section>
+
+      <Section title="Bookmarked TV Series">
+        <Gallery mediaToDisplay={bookmarkedSeries} />
+      </Section>
+    </>
+  );
 
   return (
     <Grid
@@ -30,13 +47,22 @@ const Bookmarks = () => {
       overflowY="scroll"
       // overflowY="hidden"
     >
-      <Section title="Bookmarked Movies">
+      <MainContent
+        mediaToDisplay={allBookmarkedShows}
+        defaultContent={defaultContent}
+      />
+      {/* <MainContent
+        mediaToDisplay={bookmarkedSeries}
+        defaultContent={defaultContentForSeries}
+      /> */}
+
+      {/* <Section title="Bookmarked Movies">
         <Gallery mediaToDisplay={bookmarkedMovies} />
       </Section>
 
       <Section title="Bookmarked TV Series">
         <Gallery mediaToDisplay={bookmarkedSeries} />
-      </Section>
+      </Section> */}
     </Grid>
   );
 };

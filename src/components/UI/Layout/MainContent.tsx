@@ -22,7 +22,7 @@ const MainContent: React.FC<MainContentProps> = ({
       title={`Found ${filteredContent.length} result${
         filteredContent.length > 1 ? "s" : ""
       } for '${searchQuery}'`}
-      overflowX="hidden"
+      overflowX="scroll"
     >
       <Gallery mediaToDisplay={filteredContent} />
     </Section>
