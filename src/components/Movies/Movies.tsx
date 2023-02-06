@@ -4,34 +4,7 @@ import { usePageStore } from "../../data/appState";
 import { AnyShow, Movie, movies, Series } from "../../data/data";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
-
-interface MainContentProps {
-  mediaToDisplay: AnyShow[];
-  defaultContent: JSX.Element;
-}
-const MainContent: React.FC<MainContentProps> = ({
-  mediaToDisplay,
-  defaultContent,
-}) => {
-  const { searchQuery } = usePageStore();
-
-  const filteredContent = mediaToDisplay.filter((media) =>
-    media.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  return !!searchQuery ? (
-    <Section
-      title={`Found ${filteredContent.length} result${
-        filteredContent.length > 1 ? "s" : ""
-      } for '${searchQuery}'`}
-      overflowX="hidden"
-    >
-      <Gallery mediaToDisplay={filteredContent} />
-    </Section>
-  ) : (
-    defaultContent
-  );
-};
+import MainContent from "../UI/Layout/MainContent";
 
 const Movies = () => {
   const { setPageCategory } = usePageStore();
