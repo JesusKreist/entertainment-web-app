@@ -3,7 +3,7 @@ import React from "react";
 import { usePageStore } from "../../../data/appState";
 
 const SearchBar = () => {
-  const { searchBarPlaceHolder, setSearchQuery } = usePageStore();
+  const { searchBarPlaceHolder, setSearchQuery, searchQuery } = usePageStore();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -57,8 +57,9 @@ const SearchBar = () => {
           variant="unstyled"
           // border="none"
           // border="2px solid white"
+          value={searchQuery}
           borderRadius="0"
-          // borderBottom="1px solid transparent"
+          borderBottom="1px solid transparent"
           _focus={{ borderBottom: "1px solid #979797" }}
           placeholder={searchBarPlaceHolder}
           onChange={handleSearch}

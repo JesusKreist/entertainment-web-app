@@ -11,7 +11,12 @@ import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
 
 const Bookmarks = () => {
-  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  const { setPageCategory, setSearchQuery } = usePageStore();
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, [setSearchQuery]);
+
   useEffect(() => {
     setPageCategory("bookmarks");
   }, [setPageCategory]);

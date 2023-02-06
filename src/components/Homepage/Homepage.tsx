@@ -8,7 +8,12 @@ import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
 
 const Homepage = () => {
-  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  const { setPageCategory, setSearchQuery } = usePageStore();
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, [setSearchQuery]);
+
   useEffect(() => {
     setPageCategory("home");
   }, [setPageCategory]);

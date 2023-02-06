@@ -7,7 +7,11 @@ import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
 
 const Movies = () => {
-  const { setPageCategory } = usePageStore();
+  const { setPageCategory, setSearchQuery } = usePageStore();
+
+  useEffect(() => {
+    setSearchQuery("");
+  }, [setSearchQuery]);
 
   useEffect(() => {
     setPageCategory("movies");
