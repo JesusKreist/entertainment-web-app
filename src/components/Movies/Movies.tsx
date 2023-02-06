@@ -1,15 +1,50 @@
 import { Grid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
-import { movies } from "../../data/data";
+import { AnyShow, Movie, movies, Series } from "../../data/data";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 
+interface MainContentProps {
+  mediaToDisplay: AnyShow[];
+  defaultContent: JSX.Element;
+}
+const MainContent: React.FC<MainContentProps> = ({
+  mediaToDisplay,
+  defaultContent,
+}) => {
+  const { searchQuery } = usePageStore();
+
+  const filteredContent = mediaToDisplay.filter((media) =>
+    media.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return !!searchQuery ? (
+    <Section
+      title={`Found ${filteredContent.length} result${
+        filteredContent.length > 1 ? "s" : ""
+      } for '${searchQuery}'`}
+      overflowX="hidden"
+    >
+      <Gallery mediaToDisplay={filteredContent} />
+    </Section>
+  ) : (
+    defaultContent
+  );
+};
+
 const Movies = () => {
-  const setPageCategory = usePageStore((state) => state.setPageCategory);
+  const { setPageCategory } = usePageStore();
+
   useEffect(() => {
     setPageCategory("movies");
   }, [setPageCategory]);
+
+  const defaultContent = (
+    <Section title="Movies" overflowX="hidden">
+      <Gallery mediaToDisplay={movies} />
+    </Section>
+  );
 
   return (
     <Grid
@@ -28,27 +63,22 @@ const Movies = () => {
       paddingLeft={{ base: "1.25rem", lg: "3vw" }}
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
-      // overflowY="hidden"
     >
-      {/* <Section
-        title="Movies"
-        // paddingRight={{ base: "", md: "unset" }}
-        overflowX="scroll"
-        // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
-      >
-        <Carousel carouselItems={allTrendingMoviesAndShows} />
-      </Section> */}
-
-      <Section
-        title="Movies"
-        // paddingRight={{ base: "", md: "unset" }}
-        // overflowX="scroll"
-        overflowX="hidden"
-
-        // gridRow={{ lg: "4 / span 6", xl: "4 / span 9", "2xl": "4 / span 9" }}
-      >
-        <Gallery mediaToDisplay={movies} />
-      </Section>
+      <MainContent mediaToDisplay={movies} defaultContent={defaultContent} />
+      {/* {!!searchQuery ? (
+        <Section
+          title={`Found ${filteredMovies.length} result${
+            filteredMovies.length > 1 ? "s" : ""
+          } for '${searchQuery}'`}
+          overflowX="hidden"
+        >
+          <Gallery mediaToDisplay={filteredMovies} />
+        </Section>
+      ) : (
+        <Section title="Movies" overflowX="hidden">
+          <Gallery mediaToDisplay={movies} />
+        </Section>
+      )} */}
     </Grid>
   );
 };

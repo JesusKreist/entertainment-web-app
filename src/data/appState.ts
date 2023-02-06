@@ -14,6 +14,8 @@ interface PageState {
   searchBarPlaceHolder: string;
   setSearchBarPlaceHolder: (category: PageCategory) => void;
   setPageCategory: (category: PageCategory) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
 
 export const usePageStore = create<PageState>()(
@@ -37,9 +39,12 @@ export const usePageStore = create<PageState>()(
             break;
         }
       },
-
       setPageCategory: (category: PageCategory) => {
         set({ pageCategory: category });
+      },
+      searchQuery: "",
+      setSearchQuery: (query: string) => {
+        set({ searchQuery: query });
       },
     }),
     {

@@ -3,7 +3,12 @@ import React from "react";
 import { usePageStore } from "../../../data/appState";
 
 const SearchBar = () => {
-  const { searchBarPlaceHolder } = usePageStore();
+  const { searchBarPlaceHolder, setSearchQuery } = usePageStore();
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <Flex
       className="search-bar"
@@ -56,6 +61,7 @@ const SearchBar = () => {
           // borderBottom="1px solid transparent"
           _focus={{ borderBottom: "1px solid #979797" }}
           placeholder={searchBarPlaceHolder}
+          onChange={handleSearch}
         />
       </Box>
     </Flex>
