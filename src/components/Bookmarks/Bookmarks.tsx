@@ -51,18 +51,6 @@ const Bookmarks = () => {
         mediaToDisplay={allBookmarkedShows}
         defaultContent={defaultContent}
       />
-      {/* <MainContent
-        mediaToDisplay={bookmarkedSeries}
-        defaultContent={defaultContentForSeries}
-      /> */}
-
-      {/* <Section title="Bookmarked Movies">
-        <Gallery mediaToDisplay={bookmarkedMovies} />
-      </Section>
-
-      <Section title="Bookmarked TV Series">
-        <Gallery mediaToDisplay={bookmarkedSeries} />
-      </Section> */}
     </Grid>
   );
 };

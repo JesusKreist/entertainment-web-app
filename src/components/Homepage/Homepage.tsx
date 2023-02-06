@@ -5,12 +5,25 @@ import { allShows, trendingShows } from "../../data/data";
 import Carousel from "../Sections/Carousel/Carousel";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
+import MainContent from "../UI/Layout/MainContent";
 
 const Homepage = () => {
   const setPageCategory = usePageStore((state) => state.setPageCategory);
   useEffect(() => {
     setPageCategory("home");
   }, [setPageCategory]);
+
+  const defaultContent = (
+    <>
+      <Section title="Trending" overflowX="scroll">
+        <Carousel carouselItems={trendingShows} />
+      </Section>
+
+      <Section title="Recommended for you" overflowX="hidden">
+        <Gallery mediaToDisplay={allShows} />
+      </Section>
+    </>
+  );
   return (
     <Grid
       // border={{
@@ -29,13 +42,7 @@ const Homepage = () => {
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
     >
-      <Section title="Trending" overflowX="scroll">
-        <Carousel carouselItems={trendingShows} />
-      </Section>
-
-      <Section title="Recommended for you" overflowX="hidden">
-        <Gallery mediaToDisplay={allShows} />
-      </Section>
+      <MainContent mediaToDisplay={allShows} defaultContent={defaultContent} />
     </Grid>
   );
 };
