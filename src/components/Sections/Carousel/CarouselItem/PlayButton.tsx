@@ -6,16 +6,16 @@ import React from "react";
 const PlayButton = () => {
   return (
     <Grid
-      width="7vw"
+      width={{ base: "4.5rem", md: "7.31rem", "2xl": "7vw" }}
       sx={{ aspectRatio: "117/48" }}
       // border="1px solid yellow"
       gridColumn="1 / -1"
       gridRow="1 / -1"
       templateColumns="30% 1fr"
       alignItems="center"
-      gap="1.3vw"
-      paddingLeft="0.4vw"
-      borderRadius="2vw"
+      //   gap={{ base: "", lg: "0rem", "2xl": "1.3vw" }}
+      paddingLeft={{ base: "0.5rem", md: "0.5rem", "2xl": "0.4vw" }}
+      borderRadius={{ base: "2rem", md: "2rem", "2xl": "2vw" }}
       bgColor="rgb(151, 151, 151, 0.25)"
       //   border="1px solid red"
       justifySelf={"center"}
