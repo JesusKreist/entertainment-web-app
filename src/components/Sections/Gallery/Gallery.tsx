@@ -18,7 +18,7 @@ const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {
       gridTemplateColumns={{
         base: "repeat(2, 1fr)",
         md: "repeat(3, 1fr)",
-        lg: "repeat(4, 1fr)",
+        xl: "repeat(4, 1fr)",
       }}
       // border="1px solid white"
       // height="3vh"
