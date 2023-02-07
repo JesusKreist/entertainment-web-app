@@ -1,10 +1,10 @@
 import { Flex, Image, Box, Grid, Text } from "@chakra-ui/react";
 import React from "react";
-import { TrendingMovieOrShow } from "../../../data/data";
+import { TrendingShow } from "../../../data/data";
 import CarouselItem from "./CarouselItem/CarouselItem";
 
 interface CarouselProps {
-  carouselItems: TrendingMovieOrShow[];
+  carouselItems: TrendingShow[];
 }
 const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
   return (

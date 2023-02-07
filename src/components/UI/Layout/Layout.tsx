@@ -61,7 +61,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       bgColor="brand.darkBlue"
       color="white"
       alignItems="center"
-      // overflowY="scroll"
+      overflowY="hidden"
     >
       {children}
     </Grid>
