@@ -3,8 +3,14 @@ import React from "react";
 
 interface BookmarkButtonProps {
   isBookmarked: boolean;
+  gridRow: string;
+  gridColumn: string;
 }
-const BookmarkButton: React.FC<BookmarkButtonProps> = ({ isBookmarked }) => {
+const BookmarkButton: React.FC<BookmarkButtonProps> = ({
+  isBookmarked,
+  gridRow,
+  gridColumn,
+}) => {
   const iconToDisplay = isBookmarked
     ? "assets/icon-bookmark-full.svg"
     : "assets/figma-bookmark-icon.svg";
@@ -12,8 +18,8 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({ isBookmarked }) => {
   return (
     <Flex
       // border="1px solid white"
-      gridRow="2 / 6"
-      gridColumn="13 / 16"
+      gridRow={gridRow}
+      gridColumn={gridColumn}
       justifyContent="center"
       zIndex={1}
     >

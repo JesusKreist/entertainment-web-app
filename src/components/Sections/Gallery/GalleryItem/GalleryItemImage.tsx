@@ -1,7 +1,7 @@
 import { Box, Flex, Grid, Image } from "@chakra-ui/react";
 import PlayButton from "./PlayButton";
 import cssClasses from "./GalleryItem.module.css";
-import BookmarkButton from "./BookmarkButton";
+import BookmarkButton from "../../BookmarkButton";
 
 interface GalleryItemImageProps {
   src: string;
@@ -22,7 +22,11 @@ const GalleryItemImage: React.FC<GalleryItemImageProps> = ({
 
       // border="1px solid yellow"
     >
-      <BookmarkButton isBookmarked={isBookmarked} />
+      <BookmarkButton
+        isBookmarked={isBookmarked}
+        gridRow="2 / 6"
+        gridColumn="13 / 16"
+      />
       <PlayButton />
       <Image
         gridRow="1 / -1"
