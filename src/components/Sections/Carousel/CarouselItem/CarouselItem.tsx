@@ -3,6 +3,8 @@ import React from "react";
 import BookmarkButton from "./BookmarkButton";
 import CarouselItemImage from "./CarouselItemImage";
 import CarouselItemText from "./CarouselItemText/CarouselItemText";
+import PlayButton from "./PlayButton";
+import cssClasses from "./CarouselItemImage.module.css";
 
 interface CarouselItemProps {
   src: string;
@@ -22,7 +24,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 }) => {
   return (
     <Grid
-      className="carousel-image"
+      className={cssClasses.container}
       //   width="22.46vw"
       minW={{ base: "max(240px, 64vw)", md: "max(470px, 22.46vw)" }}
       sx={{
@@ -33,9 +35,9 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       // border="2px solid white"
       templateRows="repeat(16, minmax(0, 1fr))"
       templateColumns="repeat(16, minmax(0, 1fr))"
+      position="relative"
     >
       <BookmarkButton />
-      <Box className="play-button"></Box>
 
       <CarouselItemText
         year={year}
@@ -45,6 +47,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       />
 
       <CarouselItemImage src={src} title={title} />
+      <PlayButton />
     </Grid>
   );
 };

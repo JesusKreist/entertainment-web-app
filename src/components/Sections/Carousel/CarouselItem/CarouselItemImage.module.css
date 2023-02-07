@@ -1,0 +1,11 @@
+.container {
+  position: relative;
+}
+
+.container:hover .image {
+  opacity: 0.5;
+}
+
+.container:hover .play_button {
+  opacity: 1;
+}
