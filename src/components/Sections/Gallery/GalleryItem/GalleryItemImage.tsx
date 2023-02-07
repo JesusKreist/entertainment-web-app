@@ -1,12 +1,18 @@
 import { Box, Flex, Grid, Image } from "@chakra-ui/react";
 import PlayButton from "./PlayButton";
 import cssClasses from "./GalleryItem.module.css";
+import BookmarkButton from "./BookmarkButton";
 
 interface GalleryItemImageProps {
   src: string;
   title: string;
+  isBookmarked: boolean;
 }
-const GalleryItemImage: React.FC<GalleryItemImageProps> = ({ src, title }) => {
+const GalleryItemImage: React.FC<GalleryItemImageProps> = ({
+  src,
+  title,
+  isBookmarked,
+}) => {
   return (
     <Grid
       width="100%"
@@ -16,31 +22,7 @@ const GalleryItemImage: React.FC<GalleryItemImageProps> = ({ src, title }) => {
 
       // border="1px solid yellow"
     >
-      <Flex
-        // border="1px solid white"
-        gridRow="2 / 6"
-        gridColumn="13 / 16"
-        justifyContent="center"
-        zIndex={1}
-      >
-        <Box
-          as="button"
-          height={{ base: "2.5rem", md: "2.7rem", "2xl": "3vw" }}
-          // border="1px solid red"
-          sx={{
-            aspectRatio: "1",
-          }}
-          rounded="full"
-          bgColor="rgb(151, 151, 151, 0.5)"
-        >
-          <Image
-            src="assets/figma-bookmark-icon.svg"
-            alt="bookmark icon"
-            height="50%"
-            margin="0 auto"
-          />
-        </Box>
-      </Flex>
+      <BookmarkButton isBookmarked={isBookmarked} />
       <PlayButton />
       <Image
         gridRow="1 / -1"

@@ -35,6 +35,7 @@ const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {
             year={item.year}
             category={item.category === "Movie" ? "Movie" : "TV Series"}
             parentalRating={item.rating}
+            isBookmarked={item.isBookmarked}
           />
         );
       })}

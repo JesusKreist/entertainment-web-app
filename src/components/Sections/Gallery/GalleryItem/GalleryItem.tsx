@@ -8,6 +8,7 @@ interface GalleryItemProps {
   category: "Movie" | "TV Series";
   parentalRating: string;
   title: string;
+  isBookmarked: boolean;
 }
 
 const GalleryItem: React.FC<GalleryItemProps> = ({
@@ -16,6 +17,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
   category,
   parentalRating,
   title,
+  isBookmarked,
 }) => {
   return (
     <Grid
@@ -25,7 +27,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         aspectRatio: { base: "164/154", md: "280/226" },
       }}
     >
-      <GalleryItemImage src={src} title={title} />
+      <GalleryItemImage src={src} title={title} isBookmarked={isBookmarked} />
       <GalleryItemText
         year={year}
         category={category}
