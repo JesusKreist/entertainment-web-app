@@ -1,4 +1,4 @@
-import { Flex, Box, Image } from "@chakra-ui/react";
+import { Flex, Box, Image, Tooltip } from "@chakra-ui/react";
 import React from "react";
 
 interface BookmarkButtonProps {
@@ -23,23 +23,29 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
       justifyContent="center"
       zIndex={1}
     >
-      <Box
-        as="button"
-        height={{ base: "2.5rem", md: "2.7rem", "2xl": "3vw" }}
-        // border="1px solid red"
-        sx={{
-          aspectRatio: "1",
-        }}
-        rounded="full"
-        bgColor="rgb(151, 151, 151, 0.5)"
+      <Tooltip
+        label={isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"}
+        placement="top-end"
+        fontSize="md"
       >
-        <Image
-          src={iconToDisplay}
-          alt="bookmark icon"
-          height="50%"
-          margin="0 auto"
-        />
-      </Box>
+        <Box
+          as="button"
+          height={{ base: "2.5rem", md: "2.7rem", "2xl": "3vw" }}
+          // border="1px solid red"
+          sx={{
+            aspectRatio: "1",
+          }}
+          rounded="full"
+          bgColor="rgb(151, 151, 151, 0.5)"
+        >
+          <Image
+            src={iconToDisplay}
+            alt="bookmark icon"
+            height="50%"
+            margin="0 auto"
+          />
+        </Box>
+      </Tooltip>
     </Flex>
   );
 };
