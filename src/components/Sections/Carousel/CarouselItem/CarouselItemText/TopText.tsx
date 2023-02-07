@@ -30,7 +30,7 @@ const TopText: React.FC<TopTextProps> = ({
   return (
     <Flex
       // border="1px solid white"
-      gridRow="10 / span 2"
+      gridRow="11 / span 2"
       gridColumn="2 / -2"
       gap={{ base: "0.5rem", "2xl": "0.4vw" }}
       textStyle="paragraphMedium"

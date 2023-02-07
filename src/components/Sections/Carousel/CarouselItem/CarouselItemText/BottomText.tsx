@@ -8,7 +8,7 @@ const BottomText: React.FC<BottomTextProps> = ({ title }) => {
   return (
     <Box
       // border="1px solid white"
-      gridRow="12 / span 3"
+      gridRow="13 / span 3"
       gridColumn="2 / -2"
       zIndex={1}
     >

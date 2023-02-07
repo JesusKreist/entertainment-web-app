@@ -10,28 +10,12 @@ interface CarouselItemTextProps {
   title: string;
 }
 
-const CarouselItemTextDot = () => (
-  <Box
-    height="10%"
-    rounded="full"
-    sx={{
-      aspectRatio: "1",
-    }}
-    bgColor="white"
-  ></Box>
-);
-
 const CarouselItemText: React.FC<CarouselItemTextProps> = ({
   year,
   category,
   parentalRating,
   title,
 }) => {
-  const categoryIcon =
-    category === "Movie"
-      ? "assets/icon-category-movie.svg"
-      : "assets/icon-category-tv.svg";
-
   return (
     <>
       <TopText
