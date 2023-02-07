@@ -82,7 +82,7 @@ const textStyles = {
   },
 
   headingM: {
-    "font-size": { base: "1rem", md: "1.5rem", xl: "2vw" },
+    "font-size": { base: "1rem", md: "1.5rem", "2xl": "2vw" },
     fontWeight: "light",
     fontFamily: "Outfit",
     lineHeight: "auto",
@@ -90,7 +90,12 @@ const textStyles = {
     paragraphSpacing: "1px",
   },
   headingS: {
-    "font-size": { base: "0.9375rem", md: "1.5rem", lg: "1.5rem", xl: "1.4vw" },
+    "font-size": {
+      base: "0.9375rem",
+      md: "1.5rem",
+      lg: "1.5rem",
+      "2xl": "1.4vw",
+    },
 
     fontWeight: "medium",
     fontFamily: "Outfit",
@@ -100,7 +105,7 @@ const textStyles = {
   },
   headingXS: {
     // "font-size": "1.125rem",
-    "font-size": { base: "0.875rem", md: "1.125rem", xl: "1.05vw" },
+    "font-size": { base: "0.875rem", md: "1.125rem", "2xl": "1.05vw" },
     fontWeight: "medium",
     fontFamily: "Outfit",
     lineHeight: "auto",
