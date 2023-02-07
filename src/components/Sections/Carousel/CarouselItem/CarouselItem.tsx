@@ -1,14 +1,14 @@
 import { Grid, Flex, Image, Box, Text } from "@chakra-ui/react";
 import React from "react";
-import BookmarkButton from "./BookmarkButton";
 import CarouselItemImage from "./CarouselItemImage";
 import CarouselItemText from "./CarouselItemText/CarouselItemText";
 import PlayButton from "./PlayButton";
 import cssClasses from "./CarouselItemImage.module.css";
+import BookmarkButton from "../../BookmarkButton";
 
 interface CarouselItemProps {
   src: string;
-
+  isBookmarked: boolean;
   year: number;
   category: "Movie" | "TV Series";
   parentalRating: string;
@@ -21,6 +21,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
   category,
   parentalRating,
   title,
+  isBookmarked,
 }) => {
   return (
     <Grid
@@ -37,7 +38,12 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       templateColumns="repeat(16, minmax(0, 1fr))"
       position="relative"
     >
-      <BookmarkButton />
+      {/* <BookmarkButton /> */}
+      <BookmarkButton
+        isBookmarked={isBookmarked}
+        gridRow="2 / 5"
+        gridColumn="14 / 16"
+      />
 
       <CarouselItemText
         year={year}
