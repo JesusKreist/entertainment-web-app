@@ -15,7 +15,7 @@ const Login = () => {
       bgColor="brand.darkBlue"
       direction="column"
       alignItems="center"
-      paddingTop="7.4vh"
+      paddingTop={{ base: "4.8rem", "2xl": "7.4vh" }}
       // justifyContent="center"
       border={{
         base: "2px solid purple",
