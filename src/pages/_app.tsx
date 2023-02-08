@@ -19,11 +19,7 @@ import SearchBar from "../components/Sections/SearchBar/SearchBar";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <Layout>
-        <NavBar />
-        <SearchBar />
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </ChakraProvider>
   );
 }
