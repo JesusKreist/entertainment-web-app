@@ -85,7 +85,11 @@ const LoginForm = () => {
         gap={{ base: "3rem", md: "3rem", "2xl": "5vh" }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <FormControl isInvalid={false}>
+        <FormControl
+          isInvalid={!!errors.email}
+          position="relative"
+          // border="2px solid white"
+        >
           <Input
             type="email"
             id="email"
@@ -93,7 +97,10 @@ const LoginForm = () => {
             textStyle="paragraphMedium"
             autoComplete="email"
             placeholder="Email address"
-            variant="flushed"
+            // variant="flushed"
+            variant="unstyled"
+            borderRadius="0"
+            borderBottomWidth="1px"
             borderBottomColor="brand.greyishBlue"
             {...register("email")}
             // borderBottomWidth="2px"
@@ -101,14 +108,19 @@ const LoginForm = () => {
             paddingLeft={{ base: "1rem", "2xl": "1vw" }}
             // {...register("name")}
           />
-          {/* {nameIsInvalid && (
-            <FormErrorMessage paddingLeft="1rem">
-              {nameErrorMessage}
-            </FormErrorMessage>
-          )} */}
+
+          <FormErrorMessage
+            paddingLeft="1rem"
+            textStyle="paragraphSmall"
+            position="absolute"
+            right="0"
+            bottom="25%"
+          >
+            {errors.email?.message}
+          </FormErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={false}>
+        <FormControl isInvalid={!!errors.password}>
           <Input
             type="password"
             id="password"
@@ -117,17 +129,26 @@ const LoginForm = () => {
             // fontSize={{ base: "0.75rem", md: "0.875rem", "2xl": "3vh" }}
             // autoComplete="password"
             placeholder="Password"
-            variant="flushed"
+            variant="unstyled"
+            borderRadius="0"
+            borderBottomWidth="1px"
             borderBottomColor="brand.greyishBlue"
-            paddingLeft={{ base: "1rem", "2xl": "1vw" }}
             {...register("password")}
+            // borderBottomWidth="2px"
+
+            paddingLeft={{ base: "1rem", "2xl": "1vw" }}
             // {...register("name")}
           />
-          {/* {nameIsInvalid && (
-            <FormErrorMessage paddingLeft="1rem">
-              {nameErrorMessage}
-            </FormErrorMessage>
-          )} */}
+
+          <FormErrorMessage
+            paddingLeft="1rem"
+            textStyle="paragraphSmall"
+            position="absolute"
+            right="0"
+            bottom="25%"
+          >
+            {errors.password?.message}
+          </FormErrorMessage>
         </FormControl>
 
         <Grid
