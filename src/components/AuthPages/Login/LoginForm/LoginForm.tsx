@@ -7,6 +7,7 @@ import {
   Button,
   Box,
   Grid,
+  background,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
@@ -41,7 +42,7 @@ const LoginForm = () => {
         // justifyContent={nameIsInvalid ? "center" : "end"}
         direction="column"
         as="form"
-        gap={{ base: "1.5625rem", md: "3rem", "2xl": "5vh" }}
+        gap={{ base: "2.3rem", md: "3rem", "2xl": "5vh" }}
         onSubmit={handleSubmit}
       >
         <FormControl isInvalid={false}>
@@ -70,7 +71,7 @@ const LoginForm = () => {
           <Input
             type="password"
             id="password"
-            height={{ base: "1.5625rem", md: "2.3rem", "2xl": "4.56vh" }}
+            height={{ base: "2.3rem", md: "2.3rem", "2xl": "4.56vh" }}
             textStyle="paragraphMedium"
             // fontSize={{ base: "0.75rem", md: "0.875rem", "2xl": "3vh" }}
             autoComplete="password"
@@ -93,7 +94,11 @@ const LoginForm = () => {
           textStyle="paragraphMedium"
           color="white"
           bgColor="brand.red"
-          height={{ base: "1.5625rem", md: "3rem", "2xl": "6vh" }}
+          height={{ base: "3rem", "2xl": "6vh" }}
+          _hover={{
+            color: "brand.semiDarkBlue",
+            bgColor: "white",
+          }}
         >
           Login to your account
         </Grid>
@@ -101,7 +106,7 @@ const LoginForm = () => {
 
       <Flex
         alignSelf="center"
-        gap={{ base: "1.5625rem", md: "0.6rem", "2xl": "0.6vw" }}
+        gap={{ base: "0.6rem", "2xl": "0.6vw" }}
         textStyle="paragraphMedium"
       >
         <Text>Don&apos;t have an account?</Text>
