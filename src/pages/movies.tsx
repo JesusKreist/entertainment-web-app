@@ -5,12 +5,13 @@ import SearchBar from "../components/Sections/SearchBar/SearchBar";
 import Layout from "../components/UI/Layout/Layout";
 
 const MoviesPage = () => {
-  return;
-  <Layout>
-    <NavBar />
-    <SearchBar />
-    <Movies />
-  </Layout>;
+  return (
+    <Layout>
+      <NavBar />
+      <SearchBar />
+      <Movies />
+    </Layout>
+  );
 };
 
 export default MoviesPage;
