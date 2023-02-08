@@ -71,7 +71,7 @@ const LoginForm = () => {
       direction="column"
       padding={{ base: "1.5625rem", md: "1.25rem", "2xl": "2vw" }}
       marginTop={{ base: "4.8rem", "2xl": "7.4vh" }}
-      gap={{ base: "3rem", "2xl": "3vh" }}
+      gap={{ base: "2rem", "2xl": "3vh" }}
       borderRadius={{ base: "1.5625rem", md: "1.25rem", "2xl": "1.25vw" }}
 
       //   border="1px solid white"
@@ -82,7 +82,7 @@ const LoginForm = () => {
         // justifyContent={nameIsInvalid ? "center" : "end"}
         direction="column"
         as="form"
-        gap={{ base: "3rem", md: "3rem", "2xl": "5vh" }}
+        gap={{ base: "2rem", "2xl": "5vh" }}
         onSubmit={handleSubmit(onSubmit)}
       >
         <FormControl
@@ -97,11 +97,12 @@ const LoginForm = () => {
             textStyle="paragraphMedium"
             autoComplete="email"
             placeholder="Email address"
-            // variant="flushed"
-            variant="unstyled"
-            borderRadius="0"
+            variant="flushed"
             borderBottomWidth="1px"
             borderBottomColor="brand.greyishBlue"
+            _invalid={{
+              borderColor: "brand.red",
+            }}
             {...register("email")}
             // borderBottomWidth="2px"
 
@@ -113,8 +114,10 @@ const LoginForm = () => {
             paddingLeft="1rem"
             textStyle="paragraphSmall"
             position="absolute"
-            right="0"
+            // right="0"
+            right={{ base: "1rem", "2xl": "1vw" }}
             bottom="25%"
+            // paddingLeft=
           >
             {errors.email?.message}
           </FormErrorMessage>
@@ -126,13 +129,13 @@ const LoginForm = () => {
             id="password"
             height={{ base: "2.3rem", md: "2.3rem", "2xl": "4.56vh" }}
             textStyle="paragraphMedium"
-            // fontSize={{ base: "0.75rem", md: "0.875rem", "2xl": "3vh" }}
-            // autoComplete="password"
             placeholder="Password"
-            variant="unstyled"
-            borderRadius="0"
+            variant="flushed"
             borderBottomWidth="1px"
             borderBottomColor="brand.greyishBlue"
+            _invalid={{
+              borderColor: "brand.red",
+            }}
             {...register("password")}
             // borderBottomWidth="2px"
 
@@ -144,7 +147,7 @@ const LoginForm = () => {
             paddingLeft="1rem"
             textStyle="paragraphSmall"
             position="absolute"
-            right="0"
+            right={{ base: "1rem", "2xl": "1vw" }}
             bottom="25%"
           >
             {errors.password?.message}
