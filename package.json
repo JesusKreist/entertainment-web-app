@@ -33,6 +33,7 @@
     "zustand": "^4.3.1"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "^2.3.0"
+    "@chakra-ui/cli": "^2.3.0",
+    "prisma": "^4.10.1"
   }
 }

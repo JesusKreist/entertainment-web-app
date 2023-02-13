@@ -1,7 +1,7 @@
 import { Grid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
-import { AnyShow, Movie, movies, Series } from "../../data/data";
+import { movies } from "../../data/data";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
