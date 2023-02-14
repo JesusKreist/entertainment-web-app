@@ -2,6 +2,7 @@ import { Grid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
 import { movies } from "../../data/data";
+import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
@@ -40,6 +41,7 @@ const Movies = () => {
       paddingLeft={{ base: "1.25rem", lg: "3vw" }}
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
+      sx={scrollBarReset}
     >
       <MainContent mediaToDisplay={movies} defaultContent={defaultContent} />
       {/* {!!searchQuery ? (

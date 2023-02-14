@@ -2,6 +2,7 @@ import { Box, Grid } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
 import { allShows, trendingShows } from "../../data/data";
+import { scrollBarReset } from "../misc";
 import Carousel from "../Sections/Carousel/Carousel";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
@@ -65,6 +66,7 @@ const Homepage = () => {
       paddingLeft={{ base: "1.25rem", lg: "3vw" }}
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
+      sx={scrollBarReset}
     >
       <MainContent mediaToDisplay={allShows} defaultContent={defaultContent} />
     </Grid>

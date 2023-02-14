@@ -11,10 +11,6 @@ import "@fontsource/outfit/900.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import theme from "../styles/theme";
-import Layout from "../components/UI/Layout/Layout";
-import NavBar from "../components/NavBar/NavBar";
-import MainContent from "../components/UI/Layout/MainContent";
-import SearchBar from "../components/Sections/SearchBar/SearchBar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

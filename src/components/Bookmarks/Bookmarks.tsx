@@ -6,6 +6,7 @@ import {
   bookmarkedMovies,
   bookmarkedSeries,
 } from "../../data/data";
+import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
@@ -50,7 +51,7 @@ const Bookmarks = () => {
       paddingLeft={{ base: "1.25rem", lg: "3vw" }}
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
-      // overflowY="hidden"
+      sx={scrollBarReset}
     >
       <MainContent
         mediaToDisplay={allBookmarkedShows}
