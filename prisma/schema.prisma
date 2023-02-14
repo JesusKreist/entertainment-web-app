@@ -24,7 +24,7 @@ model User {
 model Show {
   id           String          @id @default(cuid())
   title        String
-  year         String
+  year         Int
   thumbnail    Json
   category     String
   rating       String

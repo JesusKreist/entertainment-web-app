@@ -17,6 +17,7 @@
     "@fontsource/outfit": "^4.5.11",
     "@hookform/resolvers": "^2.9.11",
     "@next/font": "13.1.4",
+    "@prisma/client": "^4.10.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
@@ -34,6 +35,10 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.3.0",
+    "@faker-js/faker": "^7.6.0",
     "prisma": "^4.10.1"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
