@@ -20,7 +20,26 @@ const Homepage = () => {
 
   const defaultContent = (
     <>
-      <Section title="Trending" overflowX="scroll">
+      <Section
+        title="Trending"
+        overflowX="scroll"
+        css={{
+          "&::-webkit-scrollbar": {
+            width: "4px",
+            display: "none",
+          },
+          "&::-webkit-scrollbar-track": {
+            width: "6px",
+            display: "none",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "red",
+            borderRadius: "24px",
+            display: "none",
+          },
+          "scrollbar-width": "none" /* Firefox */,
+        }}
+      >
         <Carousel carouselItems={trendingShows} />
       </Section>
 

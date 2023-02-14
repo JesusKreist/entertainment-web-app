@@ -1,4 +1,4 @@
-export interface ShowTemplate {
+export type ShowTemplate = {
   title: string;
   year: number;
   category: string;
@@ -7,7 +7,7 @@ export interface ShowTemplate {
   isTrending: boolean;
 }
 
-export interface TrendingShow extends ShowTemplate {
+export type TrendingShow  = ShowTemplate & {
   thumbnail: {
     trending: {
       small: string;
@@ -21,7 +21,7 @@ export interface TrendingShow extends ShowTemplate {
   };
 }
 
-export interface AnyShow extends ShowTemplate {
+export type AnyShow  = ShowTemplate & {
   thumbnail:
     | {
         trending: {
@@ -43,15 +43,15 @@ export interface AnyShow extends ShowTemplate {
       };
 }
 
-export interface Movie extends AnyShow {
+export type Movie = AnyShow & {
   category: "Movie";
 }
 
-export interface Series extends AnyShow {
+export type Series = AnyShow & {
   category: "TV Series";
 }
 
-export interface BookmarkedShow extends AnyShow {
+export type BookmarkedShow  = AnyShow & {
   isBookmarked: true;
 }
 
@@ -546,3 +546,22 @@ export const bookmarkedMovies: Movie[] = allShows.filter(
 export const bookmarkedSeries: Series[] = allShows.filter(
   (m) => m.isBookmarked && m.category === "TV Series"
 ) as Series[];
+
+
+// model Post {
+//   id        String  @id @default(cuid())
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   author    User?   @relation(fields: [authorId], references: [id])
+//   authorId  String?
+// }
+
+// model Post {
+//   id        String  @id @default(cuid())
+//   title     String
+//   content   String?
+//   published Boolean @default(false)
+//   author    User?   @relation(fields: [authorId], references: [id])
+//   authorId  String?
+// }
