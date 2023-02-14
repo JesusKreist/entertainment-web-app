@@ -1,16 +1,13 @@
 export const scrollBarReset = {
   "&::-webkit-scrollbar": {
-    width: "0.5rem",
-    // display: "none",
+    width: { base: "0.2rem", md: "0.5rem" },
   },
   "&::-webkit-scrollbar-track": {
-    width: "0.5rem",
-    // display: "none",
+    width: { base: "0.2rem", md: "0.5rem" },
   },
   "&::-webkit-scrollbar-thumb": {
     background: "brand.red",
     borderRadius: "24px",
-    // display: "none",
   },
   "scrollbar-color": "red #10141E" /* Firefox */,
 };

@@ -18,7 +18,7 @@ const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {
       }}
       // border="1px solid white"
 
-      marginRight={{ base: "1.25rem", lg: "3vw" }}
+      marginRight={{ base: "1rem", lg: "2.5vw" }}
     >
       {mediaToDisplay.map((item) => {
         return (
