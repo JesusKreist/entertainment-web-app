@@ -1,6 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import { allShows } from "../src/data/data";
 import { faker } from "@faker-js/faker";
+<<<<<<< HEAD
+=======
+import { hashPassword } from "../src/pages/api/auth/databaseFunctions";
+>>>>>>> auth
 
 const prisma = new PrismaClient();
 
@@ -40,10 +44,38 @@ const addShowsToUser = async () => {
   });
 };
 
+<<<<<<< HEAD
 const main = async () => {
   //   generateShows().then(() => console.log("Done"));
 
   addShowsToUser().then(() => console.log("Done"));
+=======
+const updateUserPassword = async (userId: string, password: string) => {
+  const user = await prisma.user.findFirst();
+  if (!user) {
+    throw new Error("No user found");
+  }
+
+  const passwordHash = await hashPassword(password);
+
+  await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      passwordHash: passwordHash,
+    },
+  });
+};
+
+const main = async () => {
+  //   generateShows().then(() => console.log("Done"));
+
+  // addShowsToUser().then(() => console.log("Done"));
+  updateUserPassword("cle3ew4vh0000sb66upye93y3", "password").then(() =>
+    console.log("Done")
+  );
+>>>>>>> auth
 };
 
 main()

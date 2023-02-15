@@ -7,7 +7,11 @@ import {
 } from "@chakra-ui/react";
 import LoginForm from "./LoginForm/LoginForm";
 
-const Login = () => {
+type LoginProps = {
+  csrfToken: string | undefined;
+};
+
+const Login: React.FC<LoginProps> = ({ csrfToken }) => {
   return (
     <Flex
       height="100vh"
@@ -43,7 +47,7 @@ const Login = () => {
           margin="0 auto"
         />
       </Box>
-      <LoginForm />
+      <LoginForm csrfToken={csrfToken} />
     </Flex>
   );
 };
