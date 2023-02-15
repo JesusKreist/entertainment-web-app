@@ -56,7 +56,18 @@ const options = {
     signIn: "/login",
   },
   adapter: PrismaAdapter(prisma),
-  secret: process.env.SECRET,
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async session({ session, token }: { session: any; token: any }) {
+      session.address = token.sub;
+      session.user.name = token.sub;
+      session.user.image = "https://www.fillmurray.com/128/128";
+      return session;
+    },
+  },
 };
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
