@@ -16,16 +16,15 @@ const SignUp = () => {
       direction="column"
       alignItems="center"
       paddingTop={{ base: "4.8rem", "2xl": "7.4vh" }}
-      // justifyContent="center"
-      border={{
-        base: "2px solid purple",
-        sm: "2px solid pink",
+      // border={{
+      //   base: "2px solid purple",
+      //   sm: "2px solid pink",
 
-        md: "2px solid yellow",
-        lg: "2px solid red",
-        xl: "2px solid blue",
-        "2xl": "2px solid green",
-      }}
+      //   md: "2px solid yellow",
+      //   lg: "2px solid red",
+      //   xl: "2px solid blue",
+      //   "2xl": "2px solid green",
+      // }}
     >
       <Box
         className="logo"

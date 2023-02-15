@@ -15,8 +15,14 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormInput, validationSchema } from "./validationSchema";
 import { useEffect } from "react";
+import { GetServerSidePropsContext } from "next";
+import { getCsrfToken } from "next-auth/react";
 
-const LoginForm = () => {
+type LoginFormProps = {
+  csrfToken: string | undefined;
+};
+
+const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
   const {
     register,
     handleSubmit,
@@ -57,6 +63,8 @@ const LoginForm = () => {
     }
   }, [isSubmitSuccessful, reset, toast]);
 
+  console.log("csrfToken", csrfToken);
+
   return (
     <Flex
       // width={{ base: "20.44rem", md: "25rem", "2xl": "28vw" }}
@@ -85,6 +93,7 @@ const LoginForm = () => {
         gap={{ base: "2rem", "2xl": "5vh" }}
         onSubmit={handleSubmit(onSubmit)}
       >
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <FormControl
           isInvalid={!!errors.email}
           position="relative"

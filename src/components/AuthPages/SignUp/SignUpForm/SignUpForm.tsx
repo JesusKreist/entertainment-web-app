@@ -4,17 +4,15 @@ import {
   Input,
   FormErrorMessage,
   Text,
-  Button,
-  Box,
   Grid,
-  background,
   useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SignUpFormInput, validationSchema } from "./validationSchema";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios, { AxiosError } from "axios";
 
 const SignUpForm = () => {
   const {
@@ -25,42 +23,64 @@ const SignUpForm = () => {
   } = useForm<SignUpFormInput>({
     resolver: yupResolver(validationSchema),
     mode: "onSubmit",
+    defaultValues: {
+      email: "sally@gmail.com",
+      password: "sally@gmail.com",
+      passwordConfirmation: "sally@gmail.com",
+    },
   });
+
+  const [signUpSuccessful, setSignUpSuccessful] = useState(false);
+  const [signUpErrorMessage, setSignUpErrorMessage] = useState("");
 
   const toast = useToast();
 
-  const onSubmit: SubmitHandler<SignUpFormInput> = (data) => {
-    console.log("submitted");
-    console.log(data);
+  const onSubmit: SubmitHandler<SignUpFormInput> = async (data) => {
+    try {
+      await axios.post("/api/auth/signup", {
+        email: data.email,
+        password: data.password,
+        passwordConfirmation: data.passwordConfirmation,
+      });
+      setSignUpSuccessful(true);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        setSignUpSuccessful(false);
+        setSignUpErrorMessage(error.response?.data.message);
+      }
+    }
   };
 
   useEffect(() => {
-    console.log("isSubmitSuccessful", isSubmitSuccessful);
-    console.log("errors", errors);
-  }, [isSubmitSuccessful, errors]);
-
-  useEffect(() => {
     if (isSubmitSuccessful) {
-      reset({
-        password: "",
-        email: "",
-        passwordConfirmation: "",
-      });
+      if (signUpSuccessful) {
+        toast({
+          title: "User created successfully.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+          position: "top",
+        });
 
-      toast({
-        title: "User created successfully.",
-        // description: "We've made your reservation.",
-        status: "success",
-        duration: 4000,
-        isClosable: true,
-        position: "top",
-      });
+        reset({
+          password: "",
+          email: "",
+          passwordConfirmation: "",
+        });
+      } else if (!signUpSuccessful) {
+        toast({
+          title: signUpErrorMessage,
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+          position: "top",
+        });
+      }
     }
-  }, [isSubmitSuccessful, reset, toast]);
+  }, [signUpSuccessful, signUpErrorMessage, toast, isSubmitSuccessful, reset]);
 
   return (
     <Flex
-      // width={{ base: "20.44rem", md: "25rem", "2xl": "28vw" }}
       width={{
         base: "87vw",
         sm: "min(87vw, 400px)",
@@ -74,13 +94,10 @@ const SignUpForm = () => {
       marginTop={{ base: "4.8rem", "2xl": "7.4vh" }}
       gap={{ base: "2rem", "2xl": "3vh" }}
       borderRadius={{ base: "1.5625rem", md: "1.25rem", "2xl": "1.25vw" }}
-
-      //   border="1px solid white"
     >
       <Text textStyle="headingL">Sign Up</Text>
 
       <Flex
-        // justifyContent={nameIsInvalid ? "center" : "end"}
         direction="column"
         as="form"
         gap={{ base: "2rem", "2xl": "5vh" }}
@@ -101,10 +118,7 @@ const SignUpForm = () => {
               borderColor: "brand.red",
             }}
             {...register("email")}
-            // borderBottomWidth="2px"
-
             paddingLeft={{ base: "1rem", "2xl": "1vw" }}
-            // {...register("name")}
           />
 
           <FormErrorMessage
@@ -125,7 +139,7 @@ const SignUpForm = () => {
             height={{ base: "2.3rem", md: "2.3rem", "2xl": "4.56vh" }}
             textStyle="paragraphMedium"
             // fontSize={{ base: "0.75rem", md: "0.875rem", "2xl": "3vh" }}
-            // autoComplete="password"
+            autoComplete="newpassword"
             placeholder="Password"
             variant="flushed"
             borderBottomWidth="1px"
