@@ -4,29 +4,12 @@ import React, { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
 import NavLinkButton from "../Icons/NavLinkButton";
 
-const NavLinks = () => {
-  const currentPageCategory = usePageStore((state) => state.pageCategory);
-  // const setPageCategory = usePageStore((state) => state.setPageCategory);
-  // const { pathname } = useRouter();
+type NavLinksProps = {
+  isLoggedin: boolean;
+};
 
-  // useEffect(() => {
-  //   switch (pathname) {
-  //     case "/":
-  //       setPageCategory("home");
-  //       break;
-  //     case "/movies":
-  //       setPageCategory("movies");
-  //       break;
-  //     case "/tv-series":
-  //       setPageCategory("series");
-  //       break;
-  //     case "/bookmarks":
-  //       setPageCategory("bookmarks");
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }, [pathname, setPageCategory]);
+const NavLinks: React.FC<NavLinksProps> = ({ isLoggedin }) => {
+  const currentPageCategory = usePageStore((state) => state.pageCategory);
 
   return (
     <Grid
@@ -59,13 +42,16 @@ const NavLinks = () => {
         pageCategory="series"
         currentPageCategory={currentPageCategory}
       />
-      <NavLinkButton
-        imageName="icon-nav-bookmark.svg"
-        altText="bookmark icon"
-        linkLocation="bookmarks"
-        pageCategory="bookmarks"
-        currentPageCategory={currentPageCategory}
-      />
+
+      {isLoggedin && (
+        <NavLinkButton
+          imageName="icon-nav-bookmark.svg"
+          altText="bookmark icon"
+          linkLocation="bookmarks"
+          pageCategory="bookmarks"
+          currentPageCategory={currentPageCategory}
+        />
+      )}
     </Grid>
   );
 };

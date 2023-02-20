@@ -1,4 +1,5 @@
 import { Grid, IconButton, Image } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import NavLinkButton from "../Icons/NavLinkButton";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
