@@ -6,6 +6,10 @@ import NavLinks from "./NavLinks";
 import ProfileAvatar from "./ProfileAvatar";
 
 const NavBar = () => {
+  const { data: session } = useSession();
+
+  console.log("session :>>", session);
+
   return (
     <Grid
       as="nav"
@@ -30,7 +34,7 @@ const NavBar = () => {
       margin={{ base: "0 auto", lg: "unset" }}
     >
       <Logo />
-      <NavLinks />
+      <NavLinks isLoggedin={Boolean(session)} />
       <ProfileAvatar />
     </Grid>
   );

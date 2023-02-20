@@ -1,5 +1,6 @@
 import { Box, Image } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState } from "react";
 import { PageCategory, usePageStore } from "../../data/appState";
 
 interface NavLinkButtonProps {
@@ -17,21 +18,30 @@ const NavLinkButton: React.FC<NavLinkButtonProps> = ({
   pageCategory,
   currentPageCategory,
 }) => {
-  const src =
-    pageCategory === currentPageCategory
-      ? `/assets/icon-category-${pageCategory}.svg`
-      : `/assets/${imageName}`;
+  const [isHovered, setIsHovered] = useState(false);
+
+  const src = () => {
+    if (pageCategory === currentPageCategory) {
+      return `/assets/icon-category-${pageCategory}.svg`;
+    } else if (isHovered) {
+      return `/assets/icon-category-${pageCategory}-red.svg`;
+    } else {
+      return `/assets/${imageName}`;
+    }
+  };
 
   return (
     <Box
       as={Link}
       href={linkLocation}
       width={{ base: "1rem", md: "1.25rem", lg: "100%" }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
 
       // border="1px solid white"
     >
       <Image
-        src={src}
+        src={src()}
         alt={altText}
         objectFit="cover"
         height="50%"
