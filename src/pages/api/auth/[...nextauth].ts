@@ -31,8 +31,8 @@ const authHandler: NextApiHandler = async (req, res) => {
           // e.g. domain, username, password, 2FA token, etc.
           // You can pass any HTML attribute to the <input> tag through the object.
           credentials: {
-            username: {
-              label: "Username",
+            email: {
+              label: "email",
               type: "text",
               placeholder: "jsmith",
             },
@@ -40,23 +40,19 @@ const authHandler: NextApiHandler = async (req, res) => {
           },
           async authorize(credentials, req) {
             // console.log("credentials :>>", credentials);
-            console.log("####################################################");
+            // console.log("####################################################");
             // console.log("req :>>", req);
 
             // return null;
-            if (
-              !credentials ||
-              !credentials.username ||
-              !credentials.password
-            ) {
-              return null;
+            if (!credentials || !credentials.email || !credentials.password) {
+              throw new Error("Missing login parameters");
             }
 
-            const user = await checkIfUserExists(credentials.username);
+            const user = await checkIfUserExists(credentials.email);
             if (!user || !user.passwordHash) {
-              return null;
+              throw new Error("Invalid login parameters");
             }
-            console.log("user :>>", user);
+            // console.log("user :>>", user);
 
             const isPasswordCorrect = await comparePassword(
               credentials.password,
@@ -64,7 +60,7 @@ const authHandler: NextApiHandler = async (req, res) => {
             );
 
             if (!isPasswordCorrect) {
-              return null;
+              throw new Error("Invalid login parameters");
             }
 
             return {
@@ -75,13 +71,13 @@ const authHandler: NextApiHandler = async (req, res) => {
           },
         }),
       ],
-      // pages: {
-      //   signIn: "/login",
-      // },
+      pages: {
+        signIn: "/login",
+      },
       adapter: adapter,
       secret: process.env.NEXTAUTH_SECRET,
       callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user }) {
           // Check if this sign in callback is being called in the credentials authentication flow. If so, use the next-auth adapter to create a session entry in the database (SignIn is called after authorize so we can safely assume the user is valid and already authenticated).
           if (
             req.query.nextauth?.includes("callback") &&
@@ -120,8 +116,6 @@ const authHandler: NextApiHandler = async (req, res) => {
             const cookie = getCookie("next-auth.session-token", {
               req: req,
             }) as string;
-
-            console.log("cookie :>>", cookie);
 
             if (cookie) return cookie;
             else return "";

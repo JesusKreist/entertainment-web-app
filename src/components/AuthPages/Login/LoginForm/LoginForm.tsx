@@ -14,9 +14,11 @@ import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormInput, validationSchema } from "./validationSchema";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GetServerSidePropsContext } from "next";
-import { getCsrfToken } from "next-auth/react";
+import { getCsrfToken, signIn } from "next-auth/react";
+import axios, { AxiosError } from "axios";
+import { useRouter } from "next/router";
 
 type LoginFormProps = {
   csrfToken: string | undefined;
@@ -26,44 +28,58 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isSubmitSuccessful },
   } = useForm<LoginFormInput>({
     resolver: yupResolver(validationSchema),
     mode: "onSubmit",
+    defaultValues: {
+      email: "DarlaKossSr@mailforspam.com",
+      password: "password",
+    },
   });
+
+  const [signInSuccessful, setSignInSuccessful] = useState(false);
+  const [signInErrorMessage, setSignInErrorMessage] = useState("");
 
   const toast = useToast();
 
-  const onSubmit: SubmitHandler<LoginFormInput> = (data) => {
-    console.log("submitted");
-    console.log(data);
+  const router = useRouter();
+  const navigateToHomepage = () => {
+    router.push("/");
+  };
+  const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
+    try {
+      const response = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+
+      if (response?.error) {
+        throw new Error(response.error);
+      }
+      setSignInSuccessful(true);
+      navigateToHomepage();
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+        setSignInErrorMessage(error.message);
+        setSignInSuccessful(false);
+      }
+    }
   };
 
   useEffect(() => {
-    console.log("isSubmitSuccessful", isSubmitSuccessful);
-    console.log("errors", errors);
-  }, [isSubmitSuccessful, errors]);
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset({
-        password: "",
-        email: "",
-      });
-
+    if (isSubmitSuccessful && !signInSuccessful && signInErrorMessage) {
       toast({
-        title: "Login successful.",
-        // description: "We've made your reservation.",
-        status: "success",
+        title: signInErrorMessage,
+        status: "error",
         duration: 4000,
         isClosable: true,
         position: "top",
       });
     }
-  }, [isSubmitSuccessful, reset, toast]);
-
-  console.log("csrfToken", csrfToken);
+  }, [signInSuccessful, signInErrorMessage, toast, isSubmitSuccessful]);
 
   return (
     <Flex
@@ -91,6 +107,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
         direction="column"
         as="form"
         gap={{ base: "2rem", "2xl": "5vh" }}
+        method="post"
+        // action="/api/auth/callback/credentials"
+
         onSubmit={handleSubmit(onSubmit)}
       >
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />

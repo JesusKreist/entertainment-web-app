@@ -6,6 +6,11 @@ export type SignUpFormInput = {
   passwordConfirmation: string;
 };
 
+export type SignInFormInput = {
+  password: string;
+  email: string;
+};
+
 export const validationSchema = yup.object().shape({
   password: yup
     .string()

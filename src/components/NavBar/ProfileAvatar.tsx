@@ -5,6 +5,7 @@ import { FiLogIn, FiLogOut } from "react-icons/fi";
 type ProfileAvatarProps = {
   isLoggedIn: boolean;
 };
+
 const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
   const authUrl = isLoggedIn ? "/logout" : "/login";
   // isLoggedIn = true;

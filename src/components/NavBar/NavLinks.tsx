@@ -5,10 +5,10 @@ import { usePageStore } from "../../data/appState";
 import NavLinkButton from "../Icons/NavLinkButton";
 
 type NavLinksProps = {
-  isLoggedin: boolean;
+  isLoggedIn: boolean;
 };
 
-const NavLinks: React.FC<NavLinksProps> = ({ isLoggedin }) => {
+const NavLinks: React.FC<NavLinksProps> = ({ isLoggedIn }) => {
   const currentPageCategory = usePageStore((state) => state.pageCategory);
 
   return (
@@ -43,7 +43,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ isLoggedin }) => {
         currentPageCategory={currentPageCategory}
       />
 
-      {isLoggedin && (
+      {isLoggedIn && (
         <NavLinkButton
           imageName="icon-nav-bookmark.svg"
           altText="bookmark icon"

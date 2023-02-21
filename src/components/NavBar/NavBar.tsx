@@ -33,8 +33,8 @@ const NavBar = () => {
       margin={{ base: "0 auto", lg: "unset" }}
     >
       <Logo />
-      <NavLinks isLoggedin={Boolean(session)} />
-      <ProfileAvatar isLoggedin={Boolean(session)} />
+      <NavLinks isLoggedIn={Boolean(session)} />
+      <ProfileAvatar isLoggedIn={Boolean(session)} />
     </Grid>
   );
 };
