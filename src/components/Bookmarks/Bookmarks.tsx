@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Flex, Grid } from "@chakra-ui/react";
 import { Show } from "@prisma/client";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -15,6 +15,7 @@ import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
 import useSWR from "swr";
+import { InfinitySpin } from "react-loader-spinner";
 
 const Bookmarks = () => {
   const { setPageCategory, setSearchQuery } = usePageStore();
@@ -58,21 +59,35 @@ const Bookmarks = () => {
     }
   }, [userBookmarks]);
 
-  const defaultContent = (
-    <>
-      {bookmarkedMovies.length > 0 && (
-        <Section title="Bookmarked Movies">
-          <Gallery mediaToDisplay={bookmarkedMovies} />
-        </Section>
-      )}
+  let defaultContent: JSX.Element;
+  if (isLoading) {
+    defaultContent = (
+      <Flex
+        height="100%"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <InfinitySpin width="200" color="#FC4747" />
+      </Flex>
+    );
+  } else {
+    defaultContent = (
+      <>
+        {bookmarkedMovies.length > 0 && (
+          <Section title="Bookmarked Movies">
+            <Gallery mediaToDisplay={bookmarkedMovies} />
+          </Section>
+        )}
 
-      {bookmarkedSeries.length > 0 && (
-        <Section title="Bookmarked Series">
-          <Gallery mediaToDisplay={bookmarkedSeries} />
-        </Section>
-      )}
-    </>
-  );
+        {bookmarkedSeries.length > 0 && (
+          <Section title="Bookmarked Series">
+            <Gallery mediaToDisplay={bookmarkedSeries} />
+          </Section>
+        )}
+      </>
+    );
+  }
 
   return (
     <Grid
@@ -86,9 +101,12 @@ const Bookmarks = () => {
       gridColumn={{ lg: "2" }}
       gridRow={{ lg: "6 / -1" }}
       height="100%"
-      alignContent="start"
+      alignContent={isLoading ? "unset" : "start"}
       alignItems="start"
-      paddingLeft={{ base: "1.25rem", lg: "3vw" }}
+      paddingLeft={{
+        base: isLoading ? "unset" : "1.25rem",
+        lg: isLoading ? "unset" : "3vw",
+      }}
       rowGap={{ base: "1rem", md: "1rem", lg: "2vw" }}
       overflowY="scroll"
       sx={scrollBarReset}
