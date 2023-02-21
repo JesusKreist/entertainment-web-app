@@ -1,13 +1,16 @@
 import { Grid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
-import { series } from "../../data/data";
+import { Series } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
 
-const TVSeries = () => {
+type TVSeriesProps = {
+  tvSeriesToDisplay: Series[];
+};
+const TVSeries: React.FC<TVSeriesProps> = ({ tvSeriesToDisplay }) => {
   const { setPageCategory, setSearchQuery } = usePageStore();
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const TVSeries = () => {
 
   const defaultContent = (
     <Section title="TV Series" overflowX="hidden">
-      <Gallery mediaToDisplay={series} />
+      <Gallery mediaToDisplay={tvSeriesToDisplay} />
     </Section>
   );
 
@@ -43,7 +46,10 @@ const TVSeries = () => {
       overflowY="scroll"
       sx={scrollBarReset}
     >
-      <MainContent mediaToDisplay={series} defaultContent={defaultContent} />
+      <MainContent
+        mediaToDisplay={tvSeriesToDisplay}
+        defaultContent={defaultContent}
+      />
     </Grid>
   );
 };

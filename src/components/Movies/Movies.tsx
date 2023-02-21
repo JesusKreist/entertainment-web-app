@@ -1,13 +1,16 @@
 import { Grid } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { usePageStore } from "../../data/appState";
-import { movies } from "../../data/data";
+import { Movie } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
 
-const Movies = () => {
+type MoviesProps = {
+  moviesToDisplay: Movie[];
+};
+const Movies: React.FC<MoviesProps> = ({ moviesToDisplay }) => {
   const { setPageCategory, setSearchQuery } = usePageStore();
 
   useEffect(() => {
@@ -20,9 +23,11 @@ const Movies = () => {
 
   const defaultContent = (
     <Section title="Movies" overflowX="hidden">
-      <Gallery mediaToDisplay={movies} />
+      <Gallery mediaToDisplay={moviesToDisplay} />
     </Section>
   );
+
+  // const allMovies =
 
   return (
     <Grid
@@ -43,7 +48,10 @@ const Movies = () => {
       overflowY="scroll"
       sx={scrollBarReset}
     >
-      <MainContent mediaToDisplay={movies} defaultContent={defaultContent} />
+      <MainContent
+        mediaToDisplay={moviesToDisplay}
+        defaultContent={defaultContent}
+      />
       {/* {!!searchQuery ? (
         <Section
           title={`Found ${filteredMovies.length} result${

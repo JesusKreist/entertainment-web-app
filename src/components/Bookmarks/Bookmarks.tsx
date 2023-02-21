@@ -1,18 +1,37 @@
 import { Grid } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Show } from "@prisma/client";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
 import {
   allBookmarkedShows,
   bookmarkedMovies,
   bookmarkedSeries,
+  BookmarkedShow,
 } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
+import useSWR from "swr";
 
 const Bookmarks = () => {
   const { setPageCategory, setSearchQuery } = usePageStore();
+  const { data: session } = useSession();
+  const [userBookmarks, setUserBookmarks] = useState<BookmarkedShow[]>([]);
+  const [bookmarkedMovies, setBookmarkedMovies] = useState<BookmarkedShow[]>(
+    []
+  );
+  const [bookmarkedSeries, setBookmarkedSeries] = useState<BookmarkedShow[]>(
+    []
+  );
+
+  const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+  const { data, error, isLoading } = useSWR(
+    "http://localhost:3000/api/shows/bookmarks",
+    fetcher
+  );
 
   useEffect(() => {
     setSearchQuery("");
@@ -22,15 +41,36 @@ const Bookmarks = () => {
     setPageCategory("bookmarks");
   }, [setPageCategory]);
 
+  useEffect(() => {
+    if (session) {
+      setUserBookmarks(data.map((b: { show: Show }) => b.show));
+    }
+  }, [setUserBookmarks, session, data]);
+
+  useEffect(() => {
+    if (userBookmarks.length > 0) {
+      setBookmarkedMovies(
+        userBookmarks.filter((show) => show.category === "Movie")
+      );
+      setBookmarkedSeries(
+        userBookmarks.filter((show) => show.category === "TV Series")
+      );
+    }
+  }, [userBookmarks]);
+
   const defaultContent = (
     <>
-      <Section title="Bookmarked Movies">
-        <Gallery mediaToDisplay={bookmarkedMovies} />
-      </Section>
+      {bookmarkedMovies.length > 0 && (
+        <Section title="Bookmarked Movies">
+          <Gallery mediaToDisplay={bookmarkedMovies} />
+        </Section>
+      )}
 
-      <Section title="Bookmarked TV Series">
-        <Gallery mediaToDisplay={bookmarkedSeries} />
-      </Section>
+      {bookmarkedSeries.length > 0 && (
+        <Section title="Bookmarked Series">
+          <Gallery mediaToDisplay={bookmarkedSeries} />
+        </Section>
+      )}
     </>
   );
 
@@ -54,7 +94,7 @@ const Bookmarks = () => {
       sx={scrollBarReset}
     >
       <MainContent
-        mediaToDisplay={allBookmarkedShows}
+        mediaToDisplay={userBookmarks}
         defaultContent={defaultContent}
       />
     </Grid>
