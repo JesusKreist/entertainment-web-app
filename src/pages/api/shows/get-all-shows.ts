@@ -1,22 +1,41 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../../lib/prisma";
 
+type ListAllShowsQuery = {
+  category: "Movie" | "TV Series" | null;
+  isTrending: boolean | null;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   switch (req.method) {
-    case "GET":
+    case "GET": {
+      const { category, isTrending } =
+        req.query as unknown as ListAllShowsQuery;
+
       try {
-        const allShows = await prisma.show.findMany();
-        return res.json(allShows);
+        if (category) {
+          const showsInCategory = await prisma.show.findMany({
+            where: { category },
+          });
+          res.status(200).json(showsInCategory);
+          break;
+        }
+
+        if (isTrending) {
+          const trendingShows = await prisma.show.findMany({
+            where: { isTrending },
+          });
+          res.status(200).json(trendingShows);
+          break;
+        }
       } catch (error) {
         console.log(error);
         return res.status(500).json({ message: "Error getting all shows" });
-        
       }
-
-
+    }
     default:
       res.setHeader("Allow", ["POST"]);
       res.status(405).json({
