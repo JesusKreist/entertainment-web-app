@@ -29,7 +29,6 @@ model Show {
   thumbnail    Json
   category     String
   rating       String
-  isBookmarked Boolean
   isTrending   Boolean
   bookmarkedBy UserBookmarks[]
 }
