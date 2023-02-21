@@ -1,4 +1,6 @@
 import { AspectRatio, Box, Flex, Image, Icon } from "@chakra-ui/react";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
 import { IconContext } from "react-icons";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 
@@ -7,8 +9,6 @@ type ProfileAvatarProps = {
 };
 
 const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
-  const authUrl = isLoggedIn ? "/logout" : "/login";
-  // isLoggedIn = true;
   return (
     <Flex
       className="profile-avatar"
@@ -38,6 +38,9 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
           <Box
             alignSelf="center"
             width="25%"
+            onClick={() => {
+              signOut({ redirect: false });
+            }}
             _hover={{
               color: "brand.red",
             }}
@@ -52,6 +55,8 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
 
       {!isLoggedIn && (
         <Box
+          as={Link}
+          href="/login"
           alignSelf="center"
           width="25%"
           _hover={{
