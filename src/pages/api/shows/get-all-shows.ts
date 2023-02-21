@@ -12,10 +12,10 @@ export default async function handler(
         return res.json(allShows);
       } catch (error) {
         console.log(error);
-        return res.json({ message: "Error getting all shows" });
+        return res.status(500).json({ message: "Error getting all shows" });
+        
       }
 
-    // res.json({ message: "This is all the shows!" });
 
     default:
       res.setHeader("Allow", ["POST"]);
