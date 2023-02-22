@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Text, Image } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { AnyShow } from "../../../data/data";
 import GalleryItem from "./GalleryItem/GalleryItem";
 
@@ -23,7 +23,7 @@ const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {
       {mediaToDisplay.map((item) => {
         return (
           <GalleryItem
-            key={item.title}
+            key={item.id}
             src={item.thumbnail.regular.large}
             title={item.title}
             year={item.year}

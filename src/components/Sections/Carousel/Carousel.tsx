@@ -19,7 +19,7 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
       {carouselItems.map((item) => {
         return (
           <CarouselItem
-            key={item.title}
+            key={item.id}
             src={item.thumbnail.trending.large}
             title={item.title}
             year={item.year}
