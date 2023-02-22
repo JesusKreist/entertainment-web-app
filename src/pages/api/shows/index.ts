@@ -31,6 +31,10 @@ export default async function handler(
           res.status(200).json(trendingShows);
           break;
         }
+
+        const shows = await prisma.show.findMany();
+        res.status(200).json(shows);
+        break;
       } catch (error) {
         console.log(error);
         return res.status(500).json({ message: "Error getting all shows" });
