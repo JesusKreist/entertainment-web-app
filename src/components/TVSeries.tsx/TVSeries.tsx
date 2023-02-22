@@ -31,7 +31,7 @@ const TVSeries: React.FC = () => {
     if (data) {
       setTVSeriesToDisplay(data);
     }
-  }, [setTVSeriesToDisplay, data]);
+  }, [data]);
 
   let defaultContent: JSX.Element;
   if (isLoading) {

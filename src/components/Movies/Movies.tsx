@@ -27,7 +27,7 @@ const Movies = () => {
     if (data) {
       setMoviesToDisplay(data);
     }
-  }, [setMoviesToDisplay, data]);
+  }, [data]);
 
   let defaultContent: JSX.Element;
   if (isLoading) {

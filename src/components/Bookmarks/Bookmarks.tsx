@@ -39,7 +39,7 @@ const Bookmarks = () => {
     if (session && data) {
       setUserBookmarks(data);
     }
-  }, [setUserBookmarks, session, data]);
+  }, [session, data]);
 
   useEffect(() => {
     if (userBookmarks.length > 0) {

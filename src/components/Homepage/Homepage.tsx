@@ -1,15 +1,28 @@
-import { Box, Grid } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import { Box, Flex, Grid } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { allShows, trendingShows } from "../../data/data";
+import { AnyShow, dataFetcher, TrendingShow } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Carousel from "../Sections/Carousel/Carousel";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
+import useSWR from "swr";
+import { InfinitySpin } from "react-loader-spinner";
 
 const Homepage = () => {
   const { setPageCategory, setSearchQuery } = usePageStore();
+
+  const { data: trendingShowsResponse, isLoading: isTrendingShowsLoading } =
+    useSWR("/api/shows?isTrending=true", dataFetcher);
+
+  const { data: allShowsResponse, isLoading: isAllShowsLoading } = useSWR(
+    "/api/shows",
+    dataFetcher
+  );
+
+  const [trendingShows, setTrendingShows] = useState<TrendingShow[]>([]);
+  const [allShows, setAllShows] = useState<AnyShow[]>([]);
 
   useEffect(() => {
     setSearchQuery("");
@@ -19,36 +32,63 @@ const Homepage = () => {
     setPageCategory("home");
   }, [setPageCategory]);
 
-  const defaultContent = (
-    <>
-      <Section
-        title="Trending"
-        overflowX="scroll"
-        css={{
-          "&::-webkit-scrollbar": {
-            width: "4px",
-            display: "none",
-          },
-          "&::-webkit-scrollbar-track": {
-            width: "6px",
-            display: "none",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            background: "red",
-            borderRadius: "24px",
-            display: "none",
-          },
-          "scrollbar-width": "none" /* Firefox */,
-        }}
-      >
-        <Carousel carouselItems={trendingShows} />
-      </Section>
+  useEffect(() => {
+    if (trendingShowsResponse) {
+      setTrendingShows(trendingShowsResponse);
+    }
+  }, [trendingShowsResponse]);
 
-      <Section title="Recommended for you" overflowX="hidden">
-        <Gallery mediaToDisplay={allShows} />
-      </Section>
-    </>
-  );
+  useEffect(() => {
+    if (allShowsResponse) {
+      setAllShows(allShowsResponse);
+    }
+  }, [allShowsResponse]);
+
+  let defaultContent: JSX.Element;
+  if (isTrendingShowsLoading || isAllShowsLoading) {
+    defaultContent = (
+      <Flex
+        height="100%"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <InfinitySpin width="200" color="#FC4747" />
+      </Flex>
+    );
+  } else {
+    defaultContent = (
+      <>
+        <Section
+          title="Trending"
+          overflowX="scroll"
+          css={{
+            "&::-webkit-scrollbar": {
+              width: "4px",
+              display: "none",
+            },
+            "&::-webkit-scrollbar-track": {
+              width: "6px",
+              display: "none",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              background: "red",
+              borderRadius: "24px",
+              display: "none",
+            },
+            "scrollbar-width": "none" /* Firefox */,
+          }}
+        >
+          <Carousel carouselItems={trendingShows} />
+        </Section>
+
+        <Section title="Recommended for you" overflowX="hidden">
+          <Gallery mediaToDisplay={allShows} />
+        </Section>
+      </>
+    );
+  }
+
   return (
     <Grid
       // border={{
