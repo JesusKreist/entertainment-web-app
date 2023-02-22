@@ -4,6 +4,7 @@ import prisma from "../../../../lib/prisma";
 type ListAllShowsQuery = {
   category: "Movie" | "TV Series" | null;
   isTrending: string | null;
+  isBookmarked: string | null;
 };
 
 export default async function handler(
@@ -12,7 +13,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "GET": {
-      const { category, isTrending } =
+      const { category, isTrending, isBookmarked } =
         req.query as unknown as ListAllShowsQuery;
       const sessionToken = req.cookies["next-auth.session-token"];
       try {
@@ -28,6 +29,13 @@ export default async function handler(
           );
         }
 
+        if (!sessionToken && isBookmarked) {
+          res.status(403).json({
+            message: "Invalid user parameters",
+          });
+          break;
+        }
+
         if (!sessionToken) {
           res.status(200).json(shows);
           break;
@@ -36,6 +44,13 @@ export default async function handler(
         const session = await prisma.session.findUnique({
           where: { sessionToken },
         });
+
+        if (!session && isBookmarked) {
+          res.status(403).json({
+            message: "Invalid user parameters",
+          });
+          break;
+        }
 
         if (!session) {
           res.status(200).json(shows);
@@ -68,6 +83,12 @@ export default async function handler(
           );
           return { ...show, isBookmarked: bookmark ? true : false };
         });
+
+        if (isBookmarked && isBookmarked.toLowerCase() === "true") {
+          return res
+            .status(200)
+            .json(showsWithAddedBookmarks.filter((show) => show.isBookmarked));
+        }
 
         return res.status(200).json(showsWithAddedBookmarks);
       } catch (error) {
