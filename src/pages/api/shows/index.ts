@@ -14,27 +14,62 @@ export default async function handler(
     case "GET": {
       const { category, isTrending } =
         req.query as unknown as ListAllShowsQuery;
-
+      const sessionToken = req.cookies["next-auth.session-token"];
       try {
+        let shows = await prisma.show.findMany();
+
         if (category) {
-          const showsInCategory = await prisma.show.findMany({
-            where: { category },
-          });
-          res.status(200).json(showsInCategory);
-          break;
+          shows = shows.filter((show) => show.category === category);
         }
 
         if (isTrending) {
-          const trendingShows = await prisma.show.findMany({
-            where: { isTrending: isTrending.toLowerCase() === "true" },
-          });
-          res.status(200).json(trendingShows);
+          shows = shows.filter(
+            (show) => show.isTrending === (isTrending.toLowerCase() === "true")
+          );
+        }
+
+        if (!sessionToken) {
+          res.status(200).json(shows);
           break;
         }
 
-        const shows = await prisma.show.findMany();
-        res.status(200).json(shows);
-        break;
+        const session = await prisma.session.findUnique({
+          where: { sessionToken },
+        });
+
+        if (!session) {
+          res.status(200).json(shows);
+          break;
+        }
+
+        const user = await prisma.user.findUnique({
+          where: { id: session.userId },
+        });
+
+        if (!user) {
+          res.status(200).json(shows);
+          break;
+        }
+
+        const userBookmarks = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: {
+            bookmarkedShows: {
+              select: {
+                showId: true,
+              },
+            },
+          },
+        });
+
+        const showsWithAddedBookmarks = shows.map((show) => {
+          const bookmark = userBookmarks?.bookmarkedShows.find(
+            (bookmark) => bookmark.showId === show.id
+          );
+          return { ...show, isBookmarked: bookmark ? true : false };
+        });
+
+        return res.status(200).json(showsWithAddedBookmarks);
       } catch (error) {
         console.log(error);
         return res.status(500).json({ message: "Error getting all shows" });
