@@ -1,17 +1,19 @@
-import { Grid } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Flex, Grid } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { Movie } from "../../data/data";
+import { dataFetcher, Movie } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
+import useSWR from "swr";
+import { InfinitySpin } from "react-loader-spinner";
 
-type MoviesProps = {
-  moviesToDisplay: Movie[];
-};
-const Movies: React.FC<MoviesProps> = ({ moviesToDisplay }) => {
+const Movies = () => {
   const { setPageCategory, setSearchQuery } = usePageStore();
+  const [moviesToDisplay, setMoviesToDisplay] = useState<Movie[]>([]);
+
+  const { data, isLoading } = useSWR("/api/shows?category=Movie", dataFetcher);
 
   useEffect(() => {
     setSearchQuery("");
@@ -21,13 +23,31 @@ const Movies: React.FC<MoviesProps> = ({ moviesToDisplay }) => {
     setPageCategory("movies");
   }, [setPageCategory]);
 
-  const defaultContent = (
-    <Section title="Movies" overflowX="hidden">
-      <Gallery mediaToDisplay={moviesToDisplay} />
-    </Section>
-  );
+  useEffect(() => {
+    if (data) {
+      setMoviesToDisplay(data);
+    }
+  }, [setMoviesToDisplay, data]);
 
-  // const allMovies =
+  let defaultContent: JSX.Element;
+  if (isLoading) {
+    defaultContent = (
+      <Flex
+        height="100%"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <InfinitySpin width="200" color="#FC4747" />
+      </Flex>
+    );
+  } else {
+    defaultContent = (
+      <Section title="Movies" overflowX="hidden">
+        <Gallery mediaToDisplay={moviesToDisplay} />
+      </Section>
+    );
+  }
 
   return (
     <Grid

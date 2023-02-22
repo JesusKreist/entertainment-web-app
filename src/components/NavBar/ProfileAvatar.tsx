@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Flex, Image, Icon } from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { IconContext } from "react-icons";
@@ -46,9 +46,6 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
             _hover={{
               color: "brand.red",
             }}
-            // sx={{
-            //   aspectRatio: "1/1",
-            // }}
           >
             <FiLogOut size="100%" />
           </Box>
@@ -64,9 +61,6 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
           _hover={{
             color: "brand.red",
           }}
-          // sx={{
-          //   aspectRatio: "1/1",
-          // }}
         >
           <FiLogIn size="100%" />
         </Box>

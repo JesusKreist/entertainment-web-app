@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export type ShowTemplate = {
   title: string;
   year: number;
@@ -5,9 +7,9 @@ export type ShowTemplate = {
   rating: string;
   isBookmarked: boolean;
   isTrending: boolean;
-}
+};
 
-export type TrendingShow  = ShowTemplate & {
+export type TrendingShow = ShowTemplate & {
   thumbnail: {
     trending: {
       small: string;
@@ -19,9 +21,9 @@ export type TrendingShow  = ShowTemplate & {
       large: string;
     };
   };
-}
+};
 
-export type AnyShow  = ShowTemplate & {
+export type AnyShow = ShowTemplate & {
   thumbnail:
     | {
         trending: {
@@ -41,19 +43,19 @@ export type AnyShow  = ShowTemplate & {
           large: string;
         };
       };
-}
+};
 
 export type Movie = AnyShow & {
   category: "Movie";
-}
+};
 
 export type Series = AnyShow & {
   category: "TV Series";
-}
+};
 
-export type BookmarkedShow  = AnyShow & {
+export type BookmarkedShow = AnyShow & {
   isBookmarked: true;
-}
+};
 
 export const allShows: AnyShow[] = [
   {
@@ -547,6 +549,8 @@ export const bookmarkedSeries: Series[] = allShows.filter(
   (m) => m.isBookmarked && m.category === "TV Series"
 ) as Series[];
 
+export const dataFetcher = (url: string) =>
+  axios.get(url).then((res) => res.data);
 
 // model Post {
 //   id        String  @id @default(cuid())

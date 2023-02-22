@@ -7,15 +7,12 @@ import Layout from "../components/UI/Layout/Layout";
 import { Movie } from "../data/data";
 import axios from "axios";
 
-type MoviesPageProps = {
-  moviesToDisplay: Movie[];
-};
-const MoviesPage: React.FC<MoviesPageProps> = ({ moviesToDisplay }) => {
+const MoviesPage: React.FC = () => {
   return (
     <Layout>
       <NavBar />
       <SearchBar />
-      <Movies moviesToDisplay={moviesToDisplay} />
+      <Movies />
     </Layout>
   );
 };

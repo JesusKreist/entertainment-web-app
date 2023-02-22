@@ -1,5 +1,3 @@
-import axios from "axios";
-import { GetStaticProps } from "next";
 import React from "react";
 import Bookmarks from "../components/Bookmarks/Bookmarks";
 import NavBar from "../components/NavBar/NavBar";
