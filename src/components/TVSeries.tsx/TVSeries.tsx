@@ -1,17 +1,23 @@
-import { Grid } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Flex, Grid } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { Series } from "../../data/data";
+import { dataFetcher, Series } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
+import useSWR from "swr";
+import { InfinitySpin } from "react-loader-spinner";
 
-type TVSeriesProps = {
-  tvSeriesToDisplay: Series[];
-};
-const TVSeries: React.FC<TVSeriesProps> = ({ tvSeriesToDisplay }) => {
+const TVSeries: React.FC = () => {
   const { setPageCategory, setSearchQuery } = usePageStore();
+
+  const [tvSeriesToDisplay, setTVSeriesToDisplay] = useState<Series[]>([]);
+
+  const { data, isLoading } = useSWR(
+    "/api/shows?category=TV Series",
+    dataFetcher
+  );
 
   useEffect(() => {
     setSearchQuery("");
@@ -21,11 +27,31 @@ const TVSeries: React.FC<TVSeriesProps> = ({ tvSeriesToDisplay }) => {
     setPageCategory("series");
   }, [setPageCategory]);
 
-  const defaultContent = (
-    <Section title="TV Series" overflowX="hidden">
-      <Gallery mediaToDisplay={tvSeriesToDisplay} />
-    </Section>
-  );
+  useEffect(() => {
+    if (data) {
+      setTVSeriesToDisplay(data);
+    }
+  }, [setTVSeriesToDisplay, data]);
+
+  let defaultContent: JSX.Element;
+  if (isLoading) {
+    defaultContent = (
+      <Flex
+        height="100%"
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <InfinitySpin width="200" color="#FC4747" />
+      </Flex>
+    );
+  } else {
+    defaultContent = (
+      <Section title="TV Series" overflowX="hidden">
+        <Gallery mediaToDisplay={tvSeriesToDisplay} />
+      </Section>
+    );
+  }
 
   return (
     <Grid
