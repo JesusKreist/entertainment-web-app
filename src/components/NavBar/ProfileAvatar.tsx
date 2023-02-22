@@ -19,16 +19,18 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
         base: "space-between",
         lg: `${isLoggedIn ? "space-between" : "end"}`,
       }}
-      width={{ base: "2.5rem", md: "2.5rem", lg: "100%" }}
-      direction="column"
+      width={{ lg: "100%" }}
+      direction={{ lg: "column" }}
+      gap={{ base: "0.8rem", md: "1rem", lg: "unset" }}
     >
       {isLoggedIn && (
         <>
           <Image
             src="/assets/image-avatar.png"
-            alt="logo"
+            alt="profile avatar"
             objectFit={{ base: "contain", lg: "cover" }}
             // width={{ lg: "40%" }}
+            width={{ base: "2.5rem", md: "2.5rem", lg: "unset" }}
             height={{ lg: "50%" }}
             margin="0 auto"
             border="2px solid white"
@@ -37,16 +39,16 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
 
           <Box
             alignSelf="center"
-            width="25%"
+            width={{ base: "1.5rem", lg: "25%" }}
             onClick={() => {
               signOut({ redirect: false });
             }}
             _hover={{
               color: "brand.red",
             }}
-            sx={{
-              aspectRatio: "1/1",
-            }}
+            // sx={{
+            //   aspectRatio: "1/1",
+            // }}
           >
             <FiLogOut size="100%" />
           </Box>
@@ -58,13 +60,13 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
           as={Link}
           href="/login"
           alignSelf="center"
-          width="25%"
+          width={{ base: "1.5rem", lg: "25%" }}
           _hover={{
             color: "brand.red",
           }}
-          sx={{
-            aspectRatio: "1/1",
-          }}
+          // sx={{
+          //   aspectRatio: "1/1",
+          // }}
         >
           <FiLogIn size="100%" />
         </Box>

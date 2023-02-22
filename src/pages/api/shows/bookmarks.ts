@@ -36,7 +36,15 @@ export default async function handler(
           where: { userId: session.userId },
           select: { show: true },
         });
+
+        // await setTimeout(() => {}, 1000);
+        // res.status(200).json(allShows);
+
+        // await new Promise((resolve) => {
+        //   return setTimeout(resolve, 5000);
+        // });
         res.status(200).json(allShows);
+        // console.log("Waiting for 5 seconds...");
       } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error getting all bookmarks" });

@@ -4,12 +4,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import {
-  allBookmarkedShows,
-  bookmarkedMovies,
-  bookmarkedSeries,
-  BookmarkedShow,
-} from "../../data/data";
+import { BookmarkedShow } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
@@ -43,7 +38,7 @@ const Bookmarks = () => {
   }, [setPageCategory]);
 
   useEffect(() => {
-    if (session) {
+    if (session && data) {
       setUserBookmarks(data.map((b: { show: Show }) => b.show));
     }
   }, [setUserBookmarks, session, data]);
