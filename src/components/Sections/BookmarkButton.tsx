@@ -1,4 +1,4 @@
-import { Flex, Box, Image, Tooltip } from "@chakra-ui/react";
+import { Flex, Box, Image, Tooltip, useToast } from "@chakra-ui/react";
 import { usePageStore } from "../../data/appState";
 import {
   addShowToUserBookmarks,
@@ -22,12 +22,21 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
     (state) => state.updateOneShowBookmarkState
   );
 
+  const toast = useToast();
+
   const handleAddBookmark = async () => {
     const isSuccess = await addShowToUserBookmarks(showId);
     console.log("Adding show to bookmarks", showId);
     if (isSuccess) {
       updateShowBookmarkedState(showId, true);
     }
+    toast({
+      title: "Show added to bookmarks.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
   };
 
   const handleRemoveBookmark = async () => {
@@ -36,6 +45,14 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
     if (isSuccess) {
       updateShowBookmarkedState(showId, false);
     }
+
+    toast({
+      title: "Show removed from bookmarks.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
   };
   const iconToDisplay = isBookmarked
     ? "assets/icon-bookmark-full.svg"
