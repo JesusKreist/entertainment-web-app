@@ -6,12 +6,12 @@ import BookmarkButton from "../../BookmarkButton";
 interface GalleryItemImageProps {
   src: string;
   title: string;
-  isBookmarked: boolean;
+  showId: string;
 }
 const GalleryItemImage: React.FC<GalleryItemImageProps> = ({
   src,
   title,
-  isBookmarked,
+  showId,
 }) => {
   return (
     <Grid
@@ -22,11 +22,7 @@ const GalleryItemImage: React.FC<GalleryItemImageProps> = ({
 
       // border="1px solid yellow"
     >
-      <BookmarkButton
-        isBookmarked={isBookmarked}
-        gridRow="2 / 6"
-        gridColumn="13 / 16"
-      />
+      <BookmarkButton showId={showId} gridRow="2 / 6" gridColumn="13 / 16" />
       <PlayButton />
       <Image
         gridRow="1 / -1"

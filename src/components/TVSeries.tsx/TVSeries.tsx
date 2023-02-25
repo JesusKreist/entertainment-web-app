@@ -1,7 +1,11 @@
 import { Flex, Grid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { dataFetcher, Series } from "../../data/data";
+import {
+  dataFetcher,
+  mapShowArrayToIsBookmarkedObject,
+  Series,
+} from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
@@ -10,11 +14,12 @@ import useSWR from "swr";
 import { InfinitySpin } from "react-loader-spinner";
 
 const TVSeries: React.FC = () => {
-  const { setPageCategory, setSearchQuery } = usePageStore();
+  const { setPageCategory, setSearchQuery, updateShowBookmarksState } =
+    usePageStore();
 
   const [tvSeriesToDisplay, setTVSeriesToDisplay] = useState<Series[]>([]);
 
-  const { data, isLoading } = useSWR(
+  const { data, isLoading } = useSWR<Series[]>(
     "/api/shows?category=TV Series",
     dataFetcher
   );
@@ -30,8 +35,9 @@ const TVSeries: React.FC = () => {
   useEffect(() => {
     if (data) {
       setTVSeriesToDisplay(data);
+      updateShowBookmarksState(mapShowArrayToIsBookmarkedObject(data));
     }
-  }, [data]);
+  }, [data, updateShowBookmarksState]);
 
   let defaultContent: JSX.Element;
   if (isLoading) {

@@ -3,7 +3,11 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { BookmarkedShow, dataFetcher } from "../../data/data";
+import {
+  BookmarkedShow,
+  dataFetcher,
+  mapShowArrayToIsBookmarkedObject,
+} from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
@@ -12,7 +16,8 @@ import useSWR from "swr";
 import { InfinitySpin } from "react-loader-spinner";
 
 const Bookmarks = () => {
-  const { setPageCategory, setSearchQuery } = usePageStore();
+  const { setPageCategory, setSearchQuery, updateShowBookmarksState } =
+    usePageStore();
   const { data: session } = useSession();
   const [userBookmarks, setUserBookmarks] = useState<BookmarkedShow[]>([]);
   const [bookmarkedMovies, setBookmarkedMovies] = useState<BookmarkedShow[]>(
@@ -22,7 +27,7 @@ const Bookmarks = () => {
     []
   );
 
-  const { data, error, isLoading } = useSWR(
+  const { data, isLoading } = useSWR<BookmarkedShow[]>(
     "/api/shows?isBookmarked=true",
     dataFetcher
   );
@@ -38,8 +43,9 @@ const Bookmarks = () => {
   useEffect(() => {
     if (session && data) {
       setUserBookmarks(data);
+      updateShowBookmarksState(mapShowArrayToIsBookmarkedObject(data));
     }
-  }, [session, data]);
+  }, [session, data, updateShowBookmarksState]);
 
   useEffect(() => {
     if (userBookmarks.length > 0) {

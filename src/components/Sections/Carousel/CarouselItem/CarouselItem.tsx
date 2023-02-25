@@ -8,7 +8,7 @@ import BookmarkButton from "../../BookmarkButton";
 
 interface CarouselItemProps {
   src: string;
-  isBookmarked: boolean;
+  showId: string;
   year: number;
   category: "Movie" | "TV Series";
   parentalRating: string;
@@ -21,7 +21,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
   category,
   parentalRating,
   title,
-  isBookmarked,
+  showId,
 }) => {
   return (
     <Grid
@@ -39,11 +39,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       position="relative"
     >
       {/* <BookmarkButton /> */}
-      <BookmarkButton
-        isBookmarked={isBookmarked}
-        gridRow="2 / 5"
-        gridColumn="14 / 16"
-      />
+      <BookmarkButton showId={showId} gridRow="2 / 5" gridColumn="14 / 16" />
 
       <CarouselItemText
         year={year}

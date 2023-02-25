@@ -1,16 +1,28 @@
 import { Flex, Box, Image, Tooltip } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import { usePageStore } from "../../data/appState";
+import { addShowToUserBookmarks } from "../../data/data";
 
 interface BookmarkButtonProps {
-  isBookmarked: boolean;
+  showId: string;
   gridRow: string;
   gridColumn: string;
 }
 const BookmarkButton: React.FC<BookmarkButtonProps> = ({
-  isBookmarked,
+  showId,
   gridRow,
   gridColumn,
 }) => {
+  const isBookmarked = usePageStore(
+    (state) => state.showBookmarksState[showId] || false
+  );
+
+  const handleAddBookmark = async () => {
+    const addBookmarkToDb = await addShowToUserBookmarks(showId);
+    console.log("Adding show to bookmarks", showId);
+    console.log(addBookmarkToDb);
+  };
+
   const iconToDisplay = isBookmarked
     ? "assets/icon-bookmark-full.svg"
     : "assets/figma-bookmark-icon.svg";
@@ -22,6 +34,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
       gridColumn={gridColumn}
       justifyContent="center"
       zIndex={1}
+      onClick={handleAddBookmark}
     >
       <Tooltip
         label={isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"}

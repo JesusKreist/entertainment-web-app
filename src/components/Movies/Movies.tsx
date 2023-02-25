@@ -1,7 +1,11 @@
 import { Flex, Grid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { dataFetcher, Movie } from "../../data/data";
+import {
+  dataFetcher,
+  mapShowArrayToIsBookmarkedObject,
+  Movie,
+} from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Gallery from "../Sections/Gallery/Gallery";
 import Section from "../Sections/Section/Section";
@@ -10,10 +14,14 @@ import useSWR from "swr";
 import { InfinitySpin } from "react-loader-spinner";
 
 const Movies = () => {
-  const { setPageCategory, setSearchQuery } = usePageStore();
+  const { setPageCategory, setSearchQuery, updateShowBookmarksState } =
+    usePageStore();
   const [moviesToDisplay, setMoviesToDisplay] = useState<Movie[]>([]);
 
-  const { data, isLoading } = useSWR("/api/shows?category=Movie", dataFetcher);
+  const { data, isLoading } = useSWR<Movie[]>(
+    "/api/shows?category=Movie",
+    dataFetcher
+  );
 
   useEffect(() => {
     setSearchQuery("");
@@ -26,8 +34,9 @@ const Movies = () => {
   useEffect(() => {
     if (data) {
       setMoviesToDisplay(data);
+      updateShowBookmarksState(mapShowArrayToIsBookmarkedObject(data));
     }
-  }, [data]);
+  }, [data, updateShowBookmarksState]);
 
   let defaultContent: JSX.Element;
   if (isLoading) {

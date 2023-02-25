@@ -20,12 +20,12 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
         return (
           <CarouselItem
             key={item.id}
+            showId={item.id}
             src={item.thumbnail.trending.large}
             title={item.title}
             year={item.year}
             category={item.category === "Movie" ? "Movie" : "TV Series"}
             parentalRating={item.rating}
-            isBookmarked={item.isBookmarked}
           />
         );
       })}

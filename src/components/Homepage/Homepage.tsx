@@ -1,7 +1,7 @@
 import { Box, Flex, Grid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { AnyShow, dataFetcher, TrendingShow } from "../../data/data";
+import { AnyShow, dataFetcher, mapShowArrayToIsBookmarkedObject, TrendingShow } from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Carousel from "../Sections/Carousel/Carousel";
 import Gallery from "../Sections/Gallery/Gallery";
@@ -11,12 +11,12 @@ import useSWR from "swr";
 import { InfinitySpin } from "react-loader-spinner";
 
 const Homepage = () => {
-  const { setPageCategory, setSearchQuery } = usePageStore();
+  const { setPageCategory, setSearchQuery, updateShowBookmarksState } = usePageStore();
 
   const { data: trendingShowsResponse, isLoading: isTrendingShowsLoading } =
-    useSWR("/api/shows?isTrending=true", dataFetcher);
+    useSWR<TrendingShow[]>("/api/shows?isTrending=true", dataFetcher);
 
-  const { data: allShowsResponse, isLoading: isAllShowsLoading } = useSWR(
+  const { data: allShowsResponse, isLoading: isAllShowsLoading } = useSWR<AnyShow[]>(
     "/api/shows",
     dataFetcher
   );
@@ -35,14 +35,17 @@ const Homepage = () => {
   useEffect(() => {
     if (trendingShowsResponse) {
       setTrendingShows(trendingShowsResponse);
+      updateShowBookmarksState(mapShowArrayToIsBookmarkedObject(trendingShowsResponse));
     }
-  }, [trendingShowsResponse]);
+  }, [trendingShowsResponse, updateShowBookmarksState]);
 
   useEffect(() => {
     if (allShowsResponse) {
       setAllShows(allShowsResponse);
+      updateShowBookmarksState(mapShowArrayToIsBookmarkedObject(allShowsResponse));
     }
-  }, [allShowsResponse]);
+    
+  }, [allShowsResponse, updateShowBookmarksState]);
 
   let defaultContent: JSX.Element;
   if (isTrendingShowsLoading || isAllShowsLoading) {

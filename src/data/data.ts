@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export type ShowTemplate = {
   id: string;
@@ -60,3 +60,30 @@ export type BookmarkedShow = AnyShow & {
 
 export const dataFetcher = (url: string) =>
   axios.get(url).then((res) => res.data);
+
+export const mapShowArrayToIsBookmarkedObject = (shows: AnyShow[]) => {
+  const isBookmarkedObject: { [key: string]: boolean } = {};
+  shows.forEach((show) => {
+    isBookmarkedObject[show.id] = show.isBookmarked;
+  });
+  return isBookmarkedObject;
+};
+
+export const addShowToUserBookmarks = async (
+  showId: string
+): Promise<{ isSuccess: boolean }> => {
+  let isSuccess = false;
+
+  try {
+    await axios.post("/api/shows/bookmarks", { showId });
+    isSuccess = true;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.response?.statusText);
+    } else {
+      console.log(error);
+    }
+  }
+
+  return { isSuccess };
+};

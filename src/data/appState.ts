@@ -9,6 +9,10 @@ export type PageCategory =
   | "bookmarks"
   | typeof undefined;
 
+type ShowBookmarkState = {
+  [key: string]: boolean;
+};
+
 interface PageState {
   pageCategory: PageCategory;
   searchBarPlaceHolder: string;
@@ -16,6 +20,9 @@ interface PageState {
   setPageCategory: (category: PageCategory) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  showBookmarksState: ShowBookmarkState;
+  updateShowBookmarksState: (extraShowBookmarks: ShowBookmarkState) => void;
+  updateOneShowBookmarkState: (showId: string, value: boolean) => void;
 }
 
 export const usePageStore = create<PageState>()(
@@ -45,6 +52,25 @@ export const usePageStore = create<PageState>()(
       searchQuery: "",
       setSearchQuery: (query: string) => {
         set({ searchQuery: query });
+      },
+      showBookmarksState: {},
+      updateOneShowBookmarkState: (showId: string) => {
+        set((state) => {
+          const updatedShowBookmarksState = {
+            ...state.showBookmarksState,
+            [showId]: !state.showBookmarksState[showId],
+          };
+          return { showBookmarksState: updatedShowBookmarksState };
+        });
+      },
+      updateShowBookmarksState: (extraState: ShowBookmarkState) => {
+        set((state) => {
+          const updatedShowBookmarksState = {
+            ...state.showBookmarksState,
+            ...extraState,
+          };
+          return { showBookmarksState: updatedShowBookmarksState };
+        });
       },
     }),
     {

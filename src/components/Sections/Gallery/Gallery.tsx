@@ -24,12 +24,12 @@ const Gallery: React.FC<GalleryProps> = ({ mediaToDisplay }) => {
         return (
           <GalleryItem
             key={item.id}
+            showId={item.id}
             src={item.thumbnail.regular.large}
             title={item.title}
             year={item.year}
             category={item.category === "Movie" ? "Movie" : "TV Series"}
             parentalRating={item.rating}
-            isBookmarked={item.isBookmarked}
           />
         );
       })}
