@@ -1,6 +1,9 @@
 import { Flex, Box, Image, Tooltip } from "@chakra-ui/react";
 import { usePageStore } from "../../data/appState";
-import { addShowToUserBookmarks } from "../../data/data";
+import {
+  addShowToUserBookmarks,
+  removeShowFromUserBookmarks,
+} from "../../data/data";
 
 interface BookmarkButtonProps {
   showId: string;
@@ -27,6 +30,13 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
     }
   };
 
+  const handleRemoveBookmark = async () => {
+    const isSuccess = await removeShowFromUserBookmarks(showId);
+    console.log("Removing show from bookmarks", showId);
+    if (isSuccess) {
+      updateShowBookmarkedState(showId, false);
+    }
+  };
   const iconToDisplay = isBookmarked
     ? "assets/icon-bookmark-full.svg"
     : "assets/figma-bookmark-icon.svg";
@@ -38,7 +48,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
       gridColumn={gridColumn}
       justifyContent="center"
       zIndex={1}
-      onClick={handleAddBookmark}
+      onClick={isBookmarked ? handleRemoveBookmark : handleAddBookmark}
     >
       <Tooltip
         label={isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"}
