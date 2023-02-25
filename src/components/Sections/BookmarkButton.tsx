@@ -1,5 +1,4 @@
 import { Flex, Box, Image, Tooltip } from "@chakra-ui/react";
-import React, { useState } from "react";
 import { usePageStore } from "../../data/appState";
 import { addShowToUserBookmarks } from "../../data/data";
 
@@ -16,11 +15,16 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
   const isBookmarked = usePageStore(
     (state) => state.showBookmarksState[showId] || false
   );
+  const updateShowBookmarkedState = usePageStore(
+    (state) => state.updateOneShowBookmarkState
+  );
 
   const handleAddBookmark = async () => {
-    const addBookmarkToDb = await addShowToUserBookmarks(showId);
+    const isSuccess = await addShowToUserBookmarks(showId);
     console.log("Adding show to bookmarks", showId);
-    console.log(addBookmarkToDb);
+    if (isSuccess) {
+      updateShowBookmarkedState(showId, true);
+    }
   };
 
   const iconToDisplay = isBookmarked

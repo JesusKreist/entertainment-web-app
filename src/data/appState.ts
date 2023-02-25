@@ -22,7 +22,7 @@ interface PageState {
   setSearchQuery: (query: string) => void;
   showBookmarksState: ShowBookmarkState;
   updateShowBookmarksState: (extraShowBookmarks: ShowBookmarkState) => void;
-  updateOneShowBookmarkState: (showId: string, value: boolean) => void;
+  updateOneShowBookmarkState: (showId: string, newState: boolean) => void;
 }
 
 export const usePageStore = create<PageState>()(
@@ -54,11 +54,11 @@ export const usePageStore = create<PageState>()(
         set({ searchQuery: query });
       },
       showBookmarksState: {},
-      updateOneShowBookmarkState: (showId: string) => {
+      updateOneShowBookmarkState: (showId: string, newState: boolean) => {
         set((state) => {
           const updatedShowBookmarksState = {
             ...state.showBookmarksState,
-            [showId]: !state.showBookmarksState[showId],
+            [showId]: newState,
           };
           return { showBookmarksState: updatedShowBookmarksState };
         });
