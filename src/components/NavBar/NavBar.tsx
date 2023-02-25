@@ -7,8 +7,6 @@ import ProfileAvatar from "./ProfileAvatar";
 const NavBar = () => {
   const { data: session } = useSession();
 
-  console.log("session :>>", session);
-
   return (
     <Grid
       as="nav"

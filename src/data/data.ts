@@ -87,3 +87,22 @@ export const addShowToUserBookmarks = async (
 
   return { isSuccess };
 };
+
+export const removeShowFromUserBookmarks = async (
+  showId: string
+): Promise<{ isSuccess: boolean }> => {
+  let isSuccess = false;
+
+  try {
+    await axios.delete(`/api/shows/bookmarks/${showId}`);
+    isSuccess = true;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.response?.statusText);
+    } else {
+      console.log(error);
+    }
+  }
+
+  return { isSuccess };
+};
