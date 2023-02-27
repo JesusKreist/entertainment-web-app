@@ -1,4 +1,5 @@
 import { Flex, Box, Image, Tooltip, useToast } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 import { usePageStore } from "../../data/appState";
 import {
   addShowToUserBookmarks,
@@ -15,6 +16,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
   gridRow,
   gridColumn,
 }) => {
+  const { data: session } = useSession();
   const isBookmarked = usePageStore(
     (state) => state.showBookmarksState[showId] || false
   );
@@ -25,6 +27,16 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
   const toast = useToast();
 
   const handleAddBookmark = async () => {
+    if (!session) {
+      toast({
+        title: "You need to be logged in to bookmark a show.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
     const isSuccess = await addShowToUserBookmarks(showId);
     console.log("Adding show to bookmarks", showId);
     if (isSuccess) {
@@ -40,6 +52,17 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
   };
 
   const handleRemoveBookmark = async () => {
+    if (!session) {
+      toast({
+        title: "You need to be logged in to bookmark a show.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
+
     const isSuccess = await removeShowFromUserBookmarks(showId);
     console.log("Removing show from bookmarks", showId);
     if (isSuccess) {
