@@ -1,48 +1,90 @@
-import { Grid, Image, Box, Text } from "@chakra-ui/react";
+import {
+  Grid,
+  Image,
+  Box,
+  Text,
+  useDisclosure,
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+} from "@chakra-ui/react";
 import cssClasses from "./CarouselItemImage.module.css";
 
 import React from "react";
 
 const PlayButton = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Grid
       width={{ base: "4.5rem", md: "7.31rem", "2xl": "7vw" }}
       sx={{ aspectRatio: "117/48" }}
-      // border="1px solid yellow"
       gridColumn="1 / -1"
       gridRow="1 / -1"
       templateColumns="30% 1fr"
       alignItems="center"
-      //   gap={{ base: "", lg: "0rem", "2xl": "1.3vw" }}
       paddingLeft={{ base: "0.5rem", md: "0.5rem", "2xl": "0.4vw" }}
       borderRadius={{ base: "2rem", md: "2rem", "2xl": "2vw" }}
       bgColor="rgb(151, 151, 151, 0.25)"
-      //   border="1px solid red"
       justifySelf={"center"}
       alignSelf={"center"}
       zIndex={1}
       opacity={0}
       className={cssClasses.play_button}
       as="button"
+      onClick={onOpen}
     >
-      <Box
-      // border="1px solid yellow"
-      >
+      <Box>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent
+            bgColor="brand.semiDarkBlue"
+            // borderWidth="2px"
+            borderColor="brand"
+            color="white"
+            maxW="80%"
+          >
+            <ModalHeader textStyle="headingS">Demo Application</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody textStyle="paragraphMedium">
+              Thank you for using our movie streaming web application! While we
+              offer a wide variety of movies on our platform, please note that
+              the movies you see are for demo purposes only and may or may not
+              exist.
+            </ModalBody>
+
+            <ModalBody textStyle="paragraphMedium">
+              For copyright reasons, we are unable to allow you to play any
+              content on our platform, even if it is just for demonstration
+              purposes.
+            </ModalBody>
+
+            <ModalFooter>
+              <Button
+                textStyle="paragraphMedium"
+                colorScheme="red"
+                onClick={onClose}
+              >
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
         <Image
           src="/assets/icon-play.svg"
           alt="play icon"
           width="100%"
-          // height="100%"
           borderRadius="1vw"
           zIndex={0}
         />
       </Box>
-      <Text
-        // border="1px solid blue"
-        textStyle="headingXS"
-      >
-        Play
-      </Text>
+      <Text textStyle="headingXS">Play</Text>
     </Grid>
   );
 };
