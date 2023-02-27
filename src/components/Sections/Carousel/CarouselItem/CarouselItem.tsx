@@ -1,4 +1,4 @@
-import { Grid, Box } from "@chakra-ui/react";
+import { Grid, Box, useBreakpointValue } from "@chakra-ui/react";
 import CarouselItemImage from "./CarouselItemImage";
 import CarouselItemText from "./CarouselItemText/CarouselItemText";
 import PlayButton from "./PlayButton";
@@ -28,6 +28,10 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 }) => {
   const [isPreviewShowing, setIsPreviewShowing] = useState(false);
   const [timeOutVariable, setTimeOutVariable] = useState<NodeJS.Timeout>();
+  const isAtleastMediumScreen = useBreakpointValue({
+    base: false,
+    md: true,
+  });
 
   const setIsPreviewToTrueAfterDelay = () => {
     setTimeOutVariable(
@@ -55,7 +59,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
         console.log("isPreviewShowing", isPreviewShowing);
       }}
     >
-      {isPreviewShowing && (
+      {isPreviewShowing && isAtleastMediumScreen && (
         <Box
           gridColumn="1 / -1"
           gridRow="1 / -1"
@@ -75,7 +79,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
           />
         </Box>
       )}
-      {
+      {(!isPreviewShowing || !isAtleastMediumScreen) && (
         <>
           <BookmarkButton
             showId={showId}
@@ -92,7 +96,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
           <CarouselItemImage src={src} title={title} />
         </>
-      }
+      )}
 
       <PlayButton />
     </Grid>
