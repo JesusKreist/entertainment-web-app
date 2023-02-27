@@ -1,6 +1,8 @@
 import { Grid, Box, Image, Flex } from "@chakra-ui/react";
+import { useState } from "react";
 import GalleryItemImage from "./GalleryItemImage";
 import GalleryItemText from "./GalleryItemText/GalleryItemText";
+import ReactPlayer from "react-player/youtube";
 
 interface GalleryItemProps {
   showId: string;
@@ -9,6 +11,7 @@ interface GalleryItemProps {
   category: "Movie" | "TV Series";
   parentalRating: string;
   title: string;
+  youtubeUrl: string;
 }
 
 const GalleryItem: React.FC<GalleryItemProps> = ({
@@ -18,16 +21,21 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
   category,
   parentalRating,
   title,
+  youtubeUrl,
 }) => {
   return (
     <Grid
       templateRows={{ base: "71.43% 1fr", md: "77% 1fr" }}
-      // border="1px solid red"
       sx={{
         aspectRatio: { base: "164/154", md: "280/226" },
       }}
     >
-      <GalleryItemImage src={src} title={title} showId={showId} />
+      <GalleryItemImage
+        src={src}
+        title={title}
+        showId={showId}
+        youtubeUrl={youtubeUrl}
+      />
       <GalleryItemText
         year={year}
         category={category}

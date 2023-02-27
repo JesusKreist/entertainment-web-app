@@ -1,4 +1,4 @@
-import { Grid, Flex, Image, Box, Text, AspectRatio } from "@chakra-ui/react";
+import { Grid, Box } from "@chakra-ui/react";
 import CarouselItemImage from "./CarouselItemImage";
 import CarouselItemText from "./CarouselItemText/CarouselItemText";
 import PlayButton from "./PlayButton";
@@ -35,8 +35,6 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
         setIsPreviewShowing(true);
       }, 2000)
     );
-
-    console.log("isPreviewShowing", isPreviewShowing);
   };
 
   return (
@@ -46,9 +44,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       sx={{
         aspectRatio: { base: "24/14", md: "47/23" },
       }}
-      // border="1px solid red"
       borderRadius="1vw"
-      // border="2px solid white"
       templateRows="repeat(16, minmax(0, 1fr))"
       templateColumns="repeat(16, minmax(0, 1fr))"
       position="relative"
@@ -60,7 +56,12 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       }}
     >
       {isPreviewShowing && (
-        <Box gridColumn="1 / -1" gridRow="1 / -1" position="relative">
+        <Box
+          gridColumn="1 / -1"
+          gridRow="1 / -1"
+          position="relative"
+          display={{ base: "none", md: "block" }}
+        >
           <ReactPlayer
             className="react-player"
             url={youtubeUrl}
@@ -74,7 +75,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
           />
         </Box>
       )}
-      {!isPreviewShowing && (
+      {
         <>
           <BookmarkButton
             showId={showId}
@@ -91,7 +92,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
           <CarouselItemImage src={src} title={title} />
         </>
-      )}
+      }
 
       <PlayButton />
     </Grid>
