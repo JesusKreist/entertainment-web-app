@@ -16,8 +16,12 @@ import useSWR from "swr";
 import { InfinitySpin } from "react-loader-spinner";
 
 const Bookmarks = () => {
-  const { setPageCategory, setSearchQuery, updateShowBookmarksState } =
-    usePageStore();
+  const {
+    setPageCategory,
+    setSearchQuery,
+    updateShowBookmarksState,
+    showBookmarksState,
+  } = usePageStore();
   const { data: session } = useSession();
   const [userBookmarks, setUserBookmarks] = useState<BookmarkedShow[]>([]);
   const [bookmarkedMovies, setBookmarkedMovies] = useState<BookmarkedShow[]>(
@@ -50,13 +54,19 @@ const Bookmarks = () => {
   useEffect(() => {
     if (userBookmarks.length > 0) {
       setBookmarkedMovies(
-        userBookmarks.filter((show) => show.category === "Movie")
+        userBookmarks.filter((show) => {
+          if (showBookmarksState[show.id] === false) return false;
+          return show.category === "Movie";
+        })
       );
       setBookmarkedSeries(
-        userBookmarks.filter((show) => show.category === "TV Series")
+        userBookmarks.filter((show) => {
+          if (showBookmarksState[show.id] === false) return false;
+          return show.category === "TV Series";
+        })
       );
     }
-  }, [userBookmarks]);
+  }, [userBookmarks, showBookmarksState]);
 
   let defaultContent: JSX.Element;
   if (isLoading) {
