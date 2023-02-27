@@ -30,6 +30,7 @@ model Show {
   category     String
   rating       String
   isTrending   Boolean
+  youtubeUrl   String          @default("")
   bookmarkedBy UserBookmarks[]
 }
 

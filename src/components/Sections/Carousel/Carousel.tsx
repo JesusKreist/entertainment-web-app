@@ -26,6 +26,7 @@ const Carousel: React.FC<CarouselProps> = ({ carouselItems }) => {
             year={item.year}
             category={item.category === "Movie" ? "Movie" : "TV Series"}
             parentalRating={item.rating}
+            youtubeUrl={item.youtubeUrl}
           />
         );
       })}

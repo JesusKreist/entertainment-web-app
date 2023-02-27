@@ -8,6 +8,7 @@ export type ShowTemplate = {
   rating: string;
   isBookmarked: boolean;
   isTrending: boolean;
+  youtubeUrl: string;
 };
 
 export type TrendingShow = ShowTemplate & {

@@ -1,10 +1,11 @@
-import { Grid, Flex, Image, Box, Text } from "@chakra-ui/react";
-import React from "react";
+import { Grid, Flex, Image, Box, Text, AspectRatio } from "@chakra-ui/react";
 import CarouselItemImage from "./CarouselItemImage";
 import CarouselItemText from "./CarouselItemText/CarouselItemText";
 import PlayButton from "./PlayButton";
 import cssClasses from "./CarouselItemImage.module.css";
 import BookmarkButton from "../../BookmarkButton";
+import ReactPlayer from "react-player/youtube";
+import { useState } from "react";
 
 interface CarouselItemProps {
   src: string;
@@ -13,6 +14,7 @@ interface CarouselItemProps {
   category: "Movie" | "TV Series";
   parentalRating: string;
   title: string;
+  youtubeUrl: string;
 }
 
 const CarouselItem: React.FC<CarouselItemProps> = ({
@@ -22,11 +24,24 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
   parentalRating,
   title,
   showId,
+  youtubeUrl,
 }) => {
+  const [isPreviewShowing, setIsPreviewShowing] = useState(false);
+  const [timeOutVariable, setTimeOutVariable] = useState<NodeJS.Timeout>();
+
+  const setIsPreviewToTrueAfterDelay = () => {
+    setTimeOutVariable(
+      setTimeout(() => {
+        setIsPreviewShowing(true);
+      }, 2000)
+    );
+
+    console.log("isPreviewShowing", isPreviewShowing);
+  };
+
   return (
     <Grid
       className={cssClasses.container}
-      //   width="22.46vw"
       minW={{ base: "max(240px, 64vw)", md: "max(470px, 22.46vw)" }}
       sx={{
         aspectRatio: { base: "24/14", md: "47/23" },
@@ -37,18 +52,47 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       templateRows="repeat(16, minmax(0, 1fr))"
       templateColumns="repeat(16, minmax(0, 1fr))"
       position="relative"
+      onMouseEnter={setIsPreviewToTrueAfterDelay}
+      onMouseLeave={() => {
+        clearTimeout(timeOutVariable!);
+        setIsPreviewShowing(false);
+        console.log("isPreviewShowing", isPreviewShowing);
+      }}
     >
-      {/* <BookmarkButton /> */}
-      <BookmarkButton showId={showId} gridRow="2 / 5" gridColumn="14 / 16" />
+      {isPreviewShowing && (
+        <Box gridColumn="1 / -1" gridRow="1 / -1" position="relative">
+          <ReactPlayer
+            className="react-player"
+            url={youtubeUrl}
+            height="100%"
+            width="100%"
+            controls={false}
+            playing={true}
+            loop={true}
+            volume={0}
+            muted={true}
+          />
+        </Box>
+      )}
+      {!isPreviewShowing && (
+        <>
+          <BookmarkButton
+            showId={showId}
+            gridRow="2 / 5"
+            gridColumn="14 / 16"
+          />
 
-      <CarouselItemText
-        year={year}
-        category={category}
-        parentalRating={parentalRating}
-        title={title}
-      />
+          <CarouselItemText
+            year={year}
+            category={category}
+            parentalRating={parentalRating}
+            title={title}
+          />
 
-      <CarouselItemImage src={src} title={title} />
+          <CarouselItemImage src={src} title={title} />
+        </>
+      )}
+
       <PlayButton />
     </Grid>
   );
