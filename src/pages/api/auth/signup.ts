@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../../lib/prisma";
-import { hashPassword } from "./databaseFunctions";
+import { generateDiceBearAvataars, hashPassword } from "./databaseFunctions";
 
 export default async function handler(
   req: NextApiRequest,
@@ -44,11 +44,13 @@ export default async function handler(
       }
 
       const passwordHash = await hashPassword(password);
+      const image = generateDiceBearAvataars();
 
       const user = await prisma.user.create({
         data: {
           email,
           passwordHash,
+          image,
         },
       });
 

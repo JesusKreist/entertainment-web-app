@@ -30,7 +30,6 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
       {isLoggedIn && (
         <>
           <Image
-            // src="/assets/image-avatar.png"
             src={
               avatarUrl ||
               "https://avatars.dicebear.com/api/avataaars/0.5338501174534187.svg"

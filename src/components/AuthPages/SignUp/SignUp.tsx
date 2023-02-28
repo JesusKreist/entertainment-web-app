@@ -1,17 +1,10 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import SignUpForm from "./SignUpForm/SignUpForm";
 
 const SignUp = () => {
   return (
     <Flex
       height="100vh"
-      // width="100vw"
       bgColor="brand.darkBlue"
       direction="column"
       alignItems="center"
@@ -32,7 +25,6 @@ const SignUp = () => {
         sx={{
           aspectRatio: "32/25.6",
         }}
-        // border="1px solid white"
       >
         <Image
           src="/assets/logo.svg"
