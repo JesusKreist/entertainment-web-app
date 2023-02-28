@@ -1,4 +1,4 @@
-import { Grid, IconButton, Image } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
@@ -32,7 +32,13 @@ const NavBar = () => {
     >
       <Logo />
       <NavLinks isLoggedIn={Boolean(session)} />
-      <ProfileAvatar isLoggedIn={Boolean(session)} />
+
+      {session && (
+        <ProfileAvatar
+          isLoggedIn={Boolean(session)}
+          avatarUrl={session.user?.image}
+        />
+      )}
     </Grid>
   );
 };

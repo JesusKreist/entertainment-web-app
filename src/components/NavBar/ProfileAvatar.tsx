@@ -1,14 +1,18 @@
+import { BigHead } from "@bigheads/core";
 import { Box, Flex, Image } from "@chakra-ui/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { IconContext } from "react-icons";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 
 type ProfileAvatarProps = {
   isLoggedIn: boolean;
+  avatarUrl?: string | null;
 };
 
-const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
+const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
+  isLoggedIn,
+  avatarUrl,
+}) => {
   return (
     <Flex
       className="profile-avatar"
@@ -26,10 +30,13 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ isLoggedIn }) => {
       {isLoggedIn && (
         <>
           <Image
-            src="/assets/image-avatar.png"
+            // src="/assets/image-avatar.png"
+            src={
+              avatarUrl ||
+              "https://avatars.dicebear.com/api/avataaars/0.5338501174534187.svg"
+            }
             alt="profile avatar"
             objectFit={{ base: "contain", lg: "cover" }}
-            // width={{ lg: "40%" }}
             width={{ base: "2.5rem", md: "2.5rem", lg: "unset" }}
             height={{ lg: "50%" }}
             margin="0 auto"

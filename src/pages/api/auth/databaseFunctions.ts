@@ -1,8 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import bcryptjs from "bcryptjs";
 import { randomUUID } from "crypto";
+import { createAvatar } from "@dicebear/core";
+import { avataaars } from "@dicebear/collection";
+import prisma from "../../../../lib/prisma";
 
-const prisma = new PrismaClient();
+export const generateDiceBearAvataars = () =>
+  `https://avatars.dicebear.com/api/avataaars/${Math.random()}.svg`;
 
 export const checkIfUserExists = async (email: string) => {
   const user = await prisma.user.findFirst({
