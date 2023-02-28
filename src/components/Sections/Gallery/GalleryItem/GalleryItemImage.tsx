@@ -1,9 +1,10 @@
-import { Box, Flex, Grid, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Flex, Grid, useBreakpointValue } from "@chakra-ui/react";
 import PlayButton from "./PlayButton";
 import cssClasses from "./GalleryItem.module.css";
 import BookmarkButton from "../../BookmarkButton";
 import ReactPlayer from "react-player/youtube";
 import { useState } from "react";
+import Image from "next/image";
 
 interface GalleryItemImageProps {
   src: string;
@@ -32,6 +33,8 @@ const GalleryItemImage: React.FC<GalleryItemImageProps> = ({
       }, 2000)
     );
   };
+
+  const srcWithStrippedDot = src.replace("./assets", "/assets");
 
   return (
     <Grid
@@ -78,17 +81,14 @@ const GalleryItemImage: React.FC<GalleryItemImageProps> = ({
             gridRow="2 / 6"
             gridColumn="13 / 16"
           />
-
-          <Image
-            gridRow="1 / -1"
-            gridColumn="1 / -1"
-            src={src}
-            alt={title}
-            width="100%"
-            height="100%"
-            className={cssClasses.image}
-            borderRadius={{ base: "1vw", "2xl": "1vw" }}
-          />
+          <Box gridRow="1 / -1" gridColumn="1 / -1">
+            <Image
+              src={srcWithStrippedDot}
+              alt={title}
+              fill={true}
+              className={cssClasses.image}
+            />
+          </Box>
         </>
       )}
 

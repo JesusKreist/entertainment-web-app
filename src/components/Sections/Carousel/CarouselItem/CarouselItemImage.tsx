@@ -1,5 +1,6 @@
-import { Image, Flex, Grid, Box, Text } from "@chakra-ui/react";
+import { Flex, Grid, Box, Text } from "@chakra-ui/react";
 import cssClasses from "./CarouselItemImage.module.css";
+import Image from "next/image";
 
 interface CarouselItemImageProps {
   src: string;
@@ -10,24 +11,19 @@ const CarouselItemImage: React.FC<CarouselItemImageProps> = ({
   src,
   title,
 }) => {
+  const srcWithStrippedDot = src.replace("./assets", "/assets");
+
   return (
     <Flex
       gridColumn={"1 / -1"}
       gridRow="1 / -1"
-      // border="1px solid red"
       alignItems={"center"}
       justifyContent={"center"}
-
-      // zIndex={1}
     >
       <Image
-        src={src}
+        src={srcWithStrippedDot}
         alt={title}
-        width="100%"
-        height="100%"
-        borderRadius="1vw"
-        // zIndex={0}
-        opacity="1"
+        fill={true}
         className={cssClasses.image}
       />
     </Flex>
