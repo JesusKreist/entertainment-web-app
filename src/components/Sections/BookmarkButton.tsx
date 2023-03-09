@@ -37,10 +37,12 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
       });
       return;
     }
+
+    updateShowBookmarkedState(showId, true);
     const isSuccess = await addShowToUserBookmarks(showId);
-    console.log("Adding show to bookmarks", showId);
-    if (isSuccess) {
-      updateShowBookmarkedState(showId, true);
+
+    if (!isSuccess) {
+      updateShowBookmarkedState(showId, false);
     }
     toast({
       title: "Show added to bookmarks.",
