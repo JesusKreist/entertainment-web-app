@@ -56,7 +56,6 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
       onMouseLeave={() => {
         clearTimeout(timeOutVariable!);
         setIsPreviewShowing(false);
-        console.log("isPreviewShowing", isPreviewShowing);
       }}
     >
       {isPreviewShowing && isAtleastMediumScreen && (

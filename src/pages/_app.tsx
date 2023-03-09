@@ -13,12 +13,15 @@ import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import theme from "../styles/theme";
 import "./ReactPlayer.css";
+import ChooseExperience from "../components/ChooseExperience/ChooseExperience";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <SessionProvider session={pageProps.session}>
-        <Component {...pageProps} />
+        <ChooseExperience>
+          <Component {...pageProps} />
+        </ChooseExperience>
       </SessionProvider>
     </ChakraProvider>
   );

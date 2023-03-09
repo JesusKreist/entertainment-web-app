@@ -1,7 +1,12 @@
-import { Box, Flex, Grid } from "@chakra-ui/react";
+import { Box, Flex, Grid, useDisclosure } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { usePageStore } from "../../data/appState";
-import { AnyShow, dataFetcher, mapShowArrayToIsBookmarkedObject, TrendingShow } from "../../data/data";
+import {
+  AnyShow,
+  dataFetcher,
+  mapShowArrayToIsBookmarkedObject,
+  TrendingShow,
+} from "../../data/data";
 import { scrollBarReset } from "../misc";
 import Carousel from "../Sections/Carousel/Carousel";
 import Gallery from "../Sections/Gallery/Gallery";
@@ -9,17 +14,20 @@ import Section from "../Sections/Section/Section";
 import MainContent from "../UI/Layout/MainContent";
 import useSWR from "swr";
 import { InfinitySpin } from "react-loader-spinner";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import FirstPrompt from "./FirstPrompt";
 
 const Homepage = () => {
-  const { setPageCategory, setSearchQuery, updateShowBookmarksState } = usePageStore();
+  const { setPageCategory, setSearchQuery, updateShowBookmarksState } =
+    usePageStore();
 
   const { data: trendingShowsResponse, isLoading: isTrendingShowsLoading } =
     useSWR<TrendingShow[]>("/api/shows?isTrending=true", dataFetcher);
 
-  const { data: allShowsResponse, isLoading: isAllShowsLoading } = useSWR<AnyShow[]>(
-    "/api/shows",
-    dataFetcher
-  );
+  const { data: allShowsResponse, isLoading: isAllShowsLoading } = useSWR<
+    AnyShow[]
+  >("/api/shows", dataFetcher);
 
   const [trendingShows, setTrendingShows] = useState<TrendingShow[]>([]);
   const [allShows, setAllShows] = useState<AnyShow[]>([]);
@@ -35,16 +43,19 @@ const Homepage = () => {
   useEffect(() => {
     if (trendingShowsResponse) {
       setTrendingShows(trendingShowsResponse);
-      updateShowBookmarksState(mapShowArrayToIsBookmarkedObject(trendingShowsResponse));
+      updateShowBookmarksState(
+        mapShowArrayToIsBookmarkedObject(trendingShowsResponse)
+      );
     }
   }, [trendingShowsResponse, updateShowBookmarksState]);
 
   useEffect(() => {
     if (allShowsResponse) {
       setAllShows(allShowsResponse);
-      updateShowBookmarksState(mapShowArrayToIsBookmarkedObject(allShowsResponse));
+      updateShowBookmarksState(
+        mapShowArrayToIsBookmarkedObject(allShowsResponse)
+      );
     }
-    
   }, [allShowsResponse, updateShowBookmarksState]);
 
   let defaultContent: JSX.Element;

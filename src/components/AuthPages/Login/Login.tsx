@@ -1,10 +1,4 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
 import LoginForm from "./LoginForm/LoginForm";
 
 type LoginProps = {

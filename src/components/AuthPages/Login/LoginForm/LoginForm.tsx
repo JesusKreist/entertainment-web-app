@@ -19,6 +19,7 @@ import { GetServerSidePropsContext } from "next";
 import { getCsrfToken, signIn } from "next-auth/react";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/router";
+import { usePageStore } from "../../../../data/appState";
 
 type LoginFormProps = {
   csrfToken: string | undefined;
@@ -33,7 +34,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
     resolver: yupResolver(validationSchema),
     mode: "onSubmit",
     defaultValues: {
-      email: "DarlaKossSr@mailforspam.com",
+      email: "demo@example.com",
       password: "password",
     },
   });

@@ -33,12 +33,10 @@ const NavBar = () => {
       <Logo />
       <NavLinks isLoggedIn={Boolean(session)} />
 
-      {session && (
-        <ProfileAvatar
-          isLoggedIn={Boolean(session)}
-          avatarUrl={session.user?.image}
-        />
-      )}
+      <ProfileAvatar
+        isLoggedIn={Boolean(session)}
+        avatarUrl={session?.user?.image}
+      />
     </Grid>
   );
 };
