@@ -6,7 +6,7 @@ type AppMode = {
   setAppMode: (appMode: "demo" | "normal" | "unset") => void;
 };
 
-export const appModeStore = create<AppMode>()(
+export const useAppModeStore = create<AppMode>()(
   persist(
     (set) => ({
       appMode: "unset",

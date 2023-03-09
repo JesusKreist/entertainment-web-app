@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { appModeStore } from "../../data/appMode";
+import { useAppModeStore } from "../../data/appMode";
 import FirstPrompt from "../Homepage/FirstPrompt";
 
 type ChooooseExperienceProps = {
@@ -9,7 +9,7 @@ const ChooseExperience: React.FC<ChooooseExperienceProps> = ({ children }) => {
   const [currentAppMode, setCurrentAppMode] = useState<
     "demo" | "normal" | "unset" | undefined
   >();
-  const { appMode, setAppMode } = appModeStore();
+  const { appMode, setAppMode } = useAppModeStore();
 
   const handleAppModeChange = (appMode: "demo" | "normal") => {
     setAppMode(appMode);
