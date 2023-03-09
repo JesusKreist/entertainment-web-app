@@ -13,8 +13,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SignUpFormInput, validationSchema } from "./validationSchema";
 import { useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
+import { BallTriangle } from "react-loader-spinner";
+import classes from "./SignUpForm.module.css";
+import { useAppModeStore } from "../../../../data/appMode";
 
 const SignUpForm = () => {
+  const appMode = useAppModeStore((state) => state.appMode);
+
   const {
     register,
     handleSubmit,
@@ -24,18 +29,31 @@ const SignUpForm = () => {
     resolver: yupResolver(validationSchema),
     mode: "onSubmit",
     defaultValues: {
-      email: "sally@gmail.com",
-      password: "sally@gmail.com",
-      passwordConfirmation: "sally@gmail.com",
+      email: appMode === "demo" ? "demo@example.com" : "",
+      password: appMode === "demo" ? "password" : "",
+      passwordConfirmation: appMode === "demo" ? "password" : "",
     },
   });
 
   const [signUpSuccessful, setSignUpSuccessful] = useState(false);
   const [signUpErrorMessage, setSignUpErrorMessage] = useState("");
+  const [formButtonContent, setFormButtonContent] = useState<
+    String | JSX.Element
+  >("Create an account");
 
   const toast = useToast();
 
   const onSubmit: SubmitHandler<SignUpFormInput> = async (data) => {
+    setFormButtonContent(
+      <BallTriangle
+        height={40}
+        radius={5}
+        color="#4fa94d"
+        ariaLabel="ball-triangle-loading"
+        wrapperClass={classes.ball_triangle_loading}
+        visible={true}
+      />
+    );
     try {
       await axios.post("/api/auth/signup", {
         email: data.email,
@@ -44,6 +62,8 @@ const SignUpForm = () => {
       });
       setSignUpSuccessful(true);
     } catch (error) {
+      setFormButtonContent("Create an account");
+
       if (error instanceof AxiosError) {
         setSignUpSuccessful(false);
         setSignUpErrorMessage(error.response?.data.message);
@@ -209,7 +229,7 @@ const SignUpForm = () => {
             bgColor: "white",
           }}
         >
-          Create an account
+          {formButtonContent}
         </Grid>
       </Flex>
 

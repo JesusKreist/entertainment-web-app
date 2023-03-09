@@ -15,17 +15,19 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormInput, validationSchema } from "./validationSchema";
 import { useEffect, useState } from "react";
-import { GetServerSidePropsContext } from "next";
 import { getCsrfToken, signIn } from "next-auth/react";
-import axios, { AxiosError } from "axios";
 import { useRouter } from "next/router";
-import { usePageStore } from "../../../../data/appState";
+import { BallTriangle } from "react-loader-spinner";
+import classes from "./LoginForm.module.css";
+import { useAppModeStore } from "../../../../data/appMode";
 
 type LoginFormProps = {
   csrfToken: string | undefined;
 };
 
 const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
+  const appMode = useAppModeStore((state) => state.appMode);
+
   const {
     register,
     handleSubmit,
@@ -34,8 +36,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
     resolver: yupResolver(validationSchema),
     mode: "onSubmit",
     defaultValues: {
-      email: "demo@example.com",
-      password: "password",
+      email: appMode === "demo" ? "demo@example.com" : "",
+      password: appMode === "demo" ? "password" : "",
     },
   });
 
@@ -43,12 +45,26 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
   const [signInErrorMessage, setSignInErrorMessage] = useState("");
 
   const toast = useToast();
+  const [formButtonContent, setFormButtonContent] = useState<
+    String | JSX.Element
+  >("Login to your account");
 
   const router = useRouter();
   const navigateToHomepage = () => {
     router.push("/");
   };
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
+    setFormButtonContent(
+      <BallTriangle
+        height={40}
+        radius={5}
+        color="#4fa94d"
+        ariaLabel="ball-triangle-loading"
+        wrapperClass={classes.ball_triangle_loading}
+        visible={true}
+      />
+    );
+
     try {
       const response = await signIn("credentials", {
         email: data.email,
@@ -62,6 +78,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
       setSignInSuccessful(true);
       navigateToHomepage();
     } catch (error) {
+      setFormButtonContent("Login to your account");
+
       if (error instanceof Error) {
         console.log(error.message);
         setSignInErrorMessage(error.message);
@@ -104,13 +122,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
       <Text textStyle="headingL">Login</Text>
 
       <Flex
-        // justifyContent={nameIsInvalid ? "center" : "end"}
         direction="column"
         as="form"
         gap={{ base: "2rem", "2xl": "5vh" }}
-        method="post"
-        // action="/api/auth/callback/credentials"
-
         onSubmit={handleSubmit(onSubmit)}
       >
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
@@ -195,7 +209,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken }) => {
             bgColor: "white",
           }}
         >
-          Login to your account
+          {formButtonContent}
         </Grid>
       </Flex>
 
