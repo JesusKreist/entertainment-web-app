@@ -37,8 +37,8 @@ model Show {
 model UserBookmarks {
   showId    String
   userId    String
-  show      Show     @relation(fields: [showId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+  show      Show     @relation(fields: [showId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
