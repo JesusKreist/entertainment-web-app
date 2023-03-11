@@ -51,13 +51,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       minH="100vh"
       maxH="100vh"
       // gap={{ base: "1.25rem", lg: "1.95vw" }}
-      // border={{
-      //   base: "2px solid purple",
-      //   md: "2px solid yellow",
-      //   lg: "2px solid red",
-      //   xl: "2px solid blue",
-      //   "2xl": "2px solid green",
-      // }}
       bgColor="brand.darkBlue"
       color="white"
       alignItems="center"
